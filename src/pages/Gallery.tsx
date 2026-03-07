@@ -23,11 +23,14 @@ const Gallery = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   return (
-    <div className="bg-background pt-24">
+    <div className="bg-background pt-24 relative">
+      {/* Noise overlay */}
+      <div className="fixed inset-0 z-[5] pointer-events-none opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjEiLz48L3N2Zz4=')]" />
+
       {/* Header */}
-      <section className="px-6 md:px-20 py-16">
-        <span className="text-xs font-sans uppercase tracking-[0.5em] text-primary">The Visual Echo</span>
-        <h1 className="text-5xl md:text-8xl font-serif font-black mt-4">Gallery</h1>
+      <section className="px-6 md:px-20 py-16 relative z-10">
+        <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">The Visual Echo</span>
+        <h1 className="text-[14vw] md:text-[10vw] font-serif font-black mt-4 leading-[0.85] tracking-[-0.04em] mix-blend-difference">Gallery</h1>
       </section>
 
       {/* Horizontal Scroll Section */}
@@ -38,7 +41,7 @@ const Gallery = () => {
               <div
                 key={i}
                 className={`flex-shrink-0 ${img.tall ? "w-[350px] h-[500px]" : "w-[500px] h-[350px]"} ${
-                  i % 2 === 0 ? "mt-0" : "mt-20"
+                  i % 2 === 0 ? "mt-0" : "mt-24"
                 }`}
               >
                 <TiltImage src={img.src} alt={img.alt} className="w-full h-full rounded-sm" />
@@ -49,8 +52,8 @@ const Gallery = () => {
       </section>
 
       {/* Bottom text */}
-      <section className="py-20 px-6 md:px-20 text-center">
-        <p className="text-2xl md:text-4xl font-serif italic text-muted-foreground">
+      <section className="py-24 px-6 md:px-20 text-center relative z-10">
+        <p className="text-[6vw] md:text-[3vw] font-serif italic text-muted-foreground leading-[1.1]">
           Every frame tells a story of <span className="text-primary">tradition</span> meeting{" "}
           <span className="text-neon-pink">revolution</span>.
         </p>

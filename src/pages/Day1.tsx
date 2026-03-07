@@ -23,38 +23,47 @@ const Day1 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-24" onMouseMove={handleMouseMove}>
+    <div className="min-h-screen bg-background pt-24 relative" onMouseMove={handleMouseMove}>
+      {/* Noise overlay */}
+      <div className="fixed inset-0 z-[5] pointer-events-none opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjEiLz48L3N2Zz4=')]" />
+
+      {/* Golden hour ambient glow */}
+      <div className="fixed top-0 right-0 w-[60vw] h-[60vh] pointer-events-none opacity-30 bg-[radial-gradient(ellipse_at_top_right,_hsl(30_100%_60%/0.3)_0%,_transparent_70%)]" />
+
       {/* Cursor-following image */}
       <AnimatePresence>
         {hoveredArtist !== null && (
           <motion.div
-            className="fixed pointer-events-none z-30 w-64 h-80 overflow-hidden"
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="fixed pointer-events-none z-30 w-72 h-96 overflow-hidden"
+            initial={{ opacity: 0, scale: 0.7, rotate: -5 }}
             animate={{
               opacity: 1,
               scale: 1,
-              x: mousePos.x - 128,
-              y: mousePos.y - 160,
+              rotate: 0,
+              x: mousePos.x - 144,
+              y: mousePos.y - 192,
             }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            exit={{ opacity: 0, scale: 0.7, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
           >
             <img
               src={artists[hoveredArtist].image}
               alt={artists[hoveredArtist].name}
               className="w-full h-full object-cover"
-              style={{ filter: "sepia(40%) saturate(1.3) brightness(0.9)" }}
+              style={{ filter: "sepia(40%) saturate(1.4) brightness(0.85)" }}
             />
+            {/* Golden hour overlay on image */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(30_100%_60%/0.15)_0%,_transparent_70%)]" />
           </motion.div>
         )}
       </AnimatePresence>
 
-      <div className="flex min-h-[calc(100vh-6rem)]">
+      <div className="flex min-h-[calc(100vh-6rem)] relative z-10">
         {/* Sticky Sidebar */}
         <aside className="hidden lg:flex w-80 flex-shrink-0 sticky top-24 h-[calc(100vh-6rem)] flex-col justify-between p-8 border-r border-border">
           <div>
-            <span className="text-xs font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
-            <h2 className="text-6xl font-serif font-black mt-4 leading-none">
+            <span className="text-[10px] font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
+            <h2 className="text-[8vw] lg:text-[5vw] font-serif font-black mt-4 leading-[0.85] tracking-[-0.03em]">
               DAY<br />
               <span className="text-primary">01</span>
             </h2>
@@ -63,7 +72,7 @@ const Day1 = () => {
               An evening dedicated to the sacred foundations of Indian rhythm. From the temples to the stage.
             </p>
           </div>
-          <div className="text-xs font-sans uppercase tracking-widest text-muted-foreground">
+          <div className="text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground">
             6:00 PM — 12:00 AM
           </div>
         </aside>
@@ -72,14 +81,16 @@ const Day1 = () => {
         <main className="flex-1 px-6 md:px-16 py-12">
           {/* Mobile header */}
           <div className="lg:hidden mb-12">
-            <span className="text-xs font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
-            <h1 className="text-5xl font-serif font-black mt-2">DAY <span className="text-primary">01</span></h1>
+            <span className="text-[10px] font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
+            <h1 className="text-[14vw] font-serif font-black mt-2 leading-[0.85] tracking-[-0.03em]">
+              DAY <span className="text-primary">01</span>
+            </h1>
             <p className="text-xl font-serif italic text-gold mt-1">Roots & Rhythm</p>
           </div>
 
           <div className="space-y-0">
             {artists.map((artist, i) => (
-              <ScrollReveal key={i} delay={i * 0.05}>
+              <ScrollReveal key={i} delay={i * 0.04}>
                 <div
                   className="group py-8 border-b border-border cursor-pointer"
                   onMouseEnter={() => setHoveredArtist(i)}
@@ -87,12 +98,12 @@ const Day1 = () => {
                 >
                   <div className="flex items-baseline justify-between">
                     <div>
-                      <span className="text-xs font-sans text-muted-foreground mr-4">{artist.time}</span>
-                      <h3 className="inline text-2xl md:text-4xl font-serif font-bold group-hover:text-primary transition-colors duration-300">
+                      <span className="text-[10px] font-sans text-muted-foreground mr-4 tracking-widest">{artist.time}</span>
+                      <h3 className="inline text-2xl md:text-[3.5vw] font-serif font-bold leading-[0.95] tracking-[-0.02em] group-hover:text-primary transition-colors duration-500">
                         {artist.name}
                       </h3>
                     </div>
-                    <span className="text-sm font-sans uppercase tracking-widest text-gold hidden md:block">
+                    <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-gold hidden md:block">
                       {artist.role}
                     </span>
                   </div>
