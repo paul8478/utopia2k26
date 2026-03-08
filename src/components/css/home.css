@@ -1,0 +1,150 @@
+.ab{
+    width: 90%;
+    height: 600px;
+    /* border: 2px solid black; */
+    margin : auto;
+    margin-top: 100px;   
+    display: flex;
+}
+
+.ab1{
+    width: 60%;
+    height: 100%;
+}
+
+.ab2{
+    width: 40%;
+    height: 100%;
+    display: flex;
+align-items: center;
+justify-content: center;}   
+
+.ab2 img{
+    width: 100%;
+    height: 100%;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-15px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+
+
+
+
+
+/******SPONSOR SECTION*****/
+
+
+
+
+
+.creative-section{
+    position: relative;
+    height: 700px;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* rotating mandala */
+.creative-section::before{
+    content: "";
+    position: absolute;
+
+    width: 1000px;
+    height: 1000px;
+
+    background-image: url("../../assets/alpona2.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    bottom: -500px;   /* pushes image half outside bottom */
+    left: 50%;
+    transform: translateX(-50%);
+
+    opacity: 0.7;
+
+    animation: rotateMandala 40s linear infinite;
+}
+
+/* text content */
+.content{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+
+    gap: 100px;
+}
+
+/* rotation animation */
+@keyframes rotateMandala{
+    from{
+        transform: translateX(-50%) rotate(0deg);
+    }
+    to{
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+.sponsor-logos{
+    height: 170px;
+    width: 170px;
+    background-color: white;
+    border: 1px solid rgba(20, 12, 12, 0.658);
+        border-radius: 20px;
+
+}
+
+.sponsor-logos img{
+    border-radius: 20px;
+}
+
+
+
+
+.pattern-section{
+  width:100%;
+  overflow:hidden;
+  background:#f5f5f5;
+  padding:1px 0;
+}
+
+.pattern-track{
+  display:flex;
+  width:max-content;
+  animation: scrollPattern 20s linear infinite;
+}
+
+.pattern-row{
+  display:flex;
+}
+
+.pattern-row img{
+  height:80px;
+  width:auto;
+  margin-right: 0px;
+}
+
+/* animation */
+@keyframes scrollPattern{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}

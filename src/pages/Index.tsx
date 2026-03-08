@@ -5,7 +5,13 @@ import heroNeon from "@/assets/hero-neon.jpg";
 import MagneticButton from "@/components/MagneticButton";
 import StaggerText from "@/components/StaggerText";
 import ScrollReveal from "@/components/ScrollReveal";
-
+import "../components/css/home.css";
+import img1 from "../assets/img7.png";
+import sponsor1 from "../assets/gdgc.png";
+import sponsor2 from "../assets/mckv.png";  
+import sponsor3 from "../assets/barca.png";
+import headdown from "../assets/head.png";
+import headup from "../assets/headup.png";
 const breathe = {
   scale: [1, 1.03, 1],
   transition: { duration: 10, repeat: Infinity, ease: "easeInOut" },
@@ -123,6 +129,102 @@ const Index = ({ isLoading }: IndexProps) => {
           </motion.div>
         </section>
       )}
+      {/* About Section */}
+
+      <div className="ab">
+        <div className="ab1">
+          <section className="py-40 px-6 md:px-20 relative">
+        <div className="max-w-6xl mx-auto">
+          <ScrollReveal>
+            <h2 className="text-[8vw] md:text-[3vw] font-serif leading-[0.95] tracking-[-0.02em]">
+              About Our Cultural {" "}
+              <span className="text-primary italic">Fest</span> with{" "}
+              <span className="text-neon-pink italic">Utopia 2026</span>.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <p className="mt-10 text-lg md:text-l text-muted-foreground font-sans max-w-3xl leading-relaxed">
+              UTOPIA-2K26 marked an unforgettable celebration of talent and culture. From mesmerizing Octet performances to the electrifying 'Flight of feet' dance competitions and the glamorous 'Style Symphony' fashion show, the event showcased the best of our creative spirit.
+
+Established in 1999, MCKV Institute of Engineering stands as a beacon of excellence in technical education. Our NAAC 'A' Grade accreditation and autonomous status reflect our commitment to quality education and innovation
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+        </div>
+        <div className="ab2">
+          <img src={img1} alt="example" />
+        </div>
+      </div>
+
+      {/* Sponsors Section */}
+      <div>
+        <section className="pattern-section">
+                <div className="pattern-track">
+                  <div className="pattern-row">
+                    <img src={headup} alt="head down" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                  </div>
+
+                  <div className="pattern-row">
+                    <img src={headup} alt="head down" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                    <img src={headup} alt="pattern" />
+                  </div>
+                </div>
+              </section>
+        <section className="py-10 px-10 md:px-20 relative">
+          <div className="max-w-6xl mx-auto flex justify-center">
+            <ScrollReveal>
+              <h2 className="text-[8vw] md:text-[3vw] font-serif leading-[0.95] tracking-[-0.02em] text-center mb-0">
+                Our Esteemed Event<span className="text-primary italic">Sponsors</span>.
+              </h2>
+            </ScrollReveal>
+          </div>
+        </section>
+          <section className="creative-section">
+            <div className="content">
+              <div className="sponsor-logos"><img src={sponsor1} alt="Sponsor 1" /></div>
+              <div className="sponsor-logos"><img src={sponsor2} alt="Sponsor 2" /></div>
+              <div className="sponsor-logos"><img src={sponsor3} alt="Sponsor 3" /></div>
+
+
+            </div>
+          </section>
+
+              <section className="pattern-section">
+                <div className="pattern-track">
+                  <div className="pattern-row">
+                    <img src={headdown} alt="head down" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                  </div>
+
+                  <div className="pattern-row">
+                    <img src={headdown} alt="head down" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                    <img src={headdown} alt="pattern" />
+                  </div>
+                </div>
+              </section>
+
+
+      </div>
+
+
 
       {/* Tagline Section */}
       <section className="py-40 px-6 md:px-20 relative">
