@@ -66,15 +66,15 @@ export default function Preloader({ onComplete }) {
   return (
     <div ref={wrapperRef} className="fixed inset-0 z-[99999] flex items-center justify-center pointer-events-auto">
       {/* Left Door */}
-      <div ref={leftPanelRef} className="absolute left-0 top-0 w-1/2 h-full bg-[#050505]"></div>
+      <div ref={leftPanelRef} className="absolute left-0 top-0 w-1/2 h-full bg-[#F4F4F0]"></div>
       
       {/* Right Door */}
-      <div ref={rightPanelRef} className="absolute right-0 top-0 w-1/2 h-full bg-[#050505]"></div>
+      <div ref={rightPanelRef} className="absolute right-0 top-0 w-1/2 h-full bg-[#F4F4F0]"></div>
       
       <div className="relative z-10 overflow-hidden mix-blend-difference">
         <h1
           ref={counterRef}
-          className="font-syne text-[18vw] text-[#FF9933] leading-none tracking-tighter"
+          className="font-syne text-[18vw] text-[#E65100] leading-none tracking-tighter"
         >
           000
         </h1>

@@ -144,7 +144,7 @@ export default function Navigation() {
       <button
         ref={buttonRef}
         type="button"
-        className="fixed right-5 top-5 z-[10000] flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/60 backdrop-blur-md transition-colors duration-300 hover:border-white hover:bg-black/80"
+        className="fixed right-5 top-5 z-[10000] flex h-14 w-14 items-center justify-center rounded-full border border-[#111111]/30 bg-[#F4F4F0]/60 backdrop-blur-md transition-colors duration-300 hover:border-[#111111] hover:bg-[#F4F4F0]/80"
         onClick={toggleMenu}
         onMouseMove={handleMagneticMove}
         onMouseLeave={handleMagneticLeave}
@@ -153,18 +153,18 @@ export default function Navigation() {
         <div className="relative h-5 w-6">
           <span
             ref={lineTopRef}
-            className="absolute left-0 top-1/2 block h-[2px] w-full -translate-y-[6px] rounded-full bg-white"
+            className="absolute left-0 top-1/2 block h-[2px] w-full -translate-y-[6px] rounded-full bg-[#111111]"
           />
           <span
             ref={lineBottomRef}
-            className="absolute left-0 top-1/2 block h-[2px] w-full translate-y-[6px] rounded-full bg-white"
+            className="absolute left-0 top-1/2 block h-[2px] w-full translate-y-[6px] rounded-full bg-[#111111]"
           />
         </div>
       </button>
 
       <div
         ref={overlayRef}
-        className="pointer-events-none fixed inset-0 z-[9998] flex items-center justify-center bg-[#050505]"
+        className="pointer-events-none fixed inset-0 z-[9998] flex items-center justify-center bg-[#F4F4F0]"
         style={{ clipPath: "circle(0% at 100% 0%)" }}
       >
         <div className="flex w-full max-w-6xl flex-col gap-6 px-6 md:gap-10 md:px-10">
@@ -175,7 +175,7 @@ export default function Navigation() {
                   ref={(el) => {
                     linkRefs.current[idx] = el;
                   }}
-                  className="font-syne text-[12vw] leading-[0.9] tracking-[-0.04em] text-white md:text-[8vw] transition-transform duration-500 group-hover:italic"
+                  className="font-syne text-[12vw] leading-[0.9] tracking-[-0.04em] text-[#111111] md:text-[8vw] transition-transform duration-500 group-hover:italic"
                 >
                   <span className="bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FF9933] group-hover:to-[#ADFF2F]">
                     {link.label}

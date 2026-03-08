@@ -99,7 +99,7 @@ export default function ScheduleSection() {
           end: "bottom center",
           onEnter: () => {
             gsap.to(container, {
-              backgroundColor: "#000000",
+              backgroundColor: "#FFFFFF",
               duration: 1.4,
               ease: "power3.inOut",
             });
@@ -132,7 +132,7 @@ export default function ScheduleSection() {
           },
           onLeaveBack: () => {
             gsap.to(container, {
-              backgroundColor: "#1A0F0A",
+              backgroundColor: "#F6EAC2",
               duration: 1.4,
               ease: "power3.inOut",
             });
@@ -238,18 +238,18 @@ export default function ScheduleSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen w-full bg-[#1A0F0A] text-[#FFD27F] overflow-hidden"
+      className="relative min-h-screen w-full bg-[#F6EAC2] text-[#E65100] overflow-hidden"
     >
       <div className="mx-auto flex max-w-7xl flex-col lg:flex-row">
         {/* Left sticky typography */}
-        <div className="lg:w-2/5 w-full border-r border-white/10">
+        <div className="lg:w-2/5 w-full border-r border-[#111111]/10">
           <div className="sticky top-0 flex h-screen flex-col items-start justify-center px-6 py-16 lg:px-10">
             <span className="mb-4 text-xs tracking-[0.35em] uppercase text-[#FFB347]/80">
               UTOPIA 2K26 · SCHEDULE
             </span>
             <h2
               ref={leftLabelRef}
-              className="font-syne text-[18vw] lg:text-[9vw] leading-[0.8] tracking-[-0.04em] text-[#FFD27F]"
+              className="font-syne text-[18vw] lg:text-[9vw] leading-[0.8] tracking-[-0.04em] text-[#E65100]"
             >
               DAY 01
             </h2>
@@ -266,7 +266,7 @@ export default function ScheduleSection() {
           className="relative lg:w-3/5 w-full px-6 py-20 lg:px-12 lg:py-24"
         >
           {/* Central vertical line + progress dot (desktop) */}
-          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/10 lg:block">
+          <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-[#111111]/10 lg:block">
             <div
               ref={progressDotRef}
               className="absolute left-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FFB347] shadow-[0_0_25px_rgba(255,179,71,0.9)]"
@@ -306,7 +306,7 @@ export default function ScheduleSection() {
                       <h3 className="schedule-text font-syne uppercase leading-[0.85] tracking-[-0.04em] text-[#FFD27F] transition-colors duration-700 text-[8vw] lg:text-[4vw]">
                         {event.title}
                       </h3>
-                      <p className="mt-3 text-sm font-sans uppercase tracking-[0.25em] text-white/40">
+                      <p className="mt-3 text-sm font-sans uppercase tracking-[0.25em] text-[#111111]/40">
                         {event.artist}
                       </p>
                     </div>
@@ -314,7 +314,7 @@ export default function ScheduleSection() {
 
                   {/* Inline node on mobile */}
                   <div className="mt-6 flex items-center gap-4 lg:hidden">
-                    <div className="h-px flex-1 bg-white/10" />
+                    <div className="h-px flex-1 bg-[#111111]/10" />
                     <div
                       className={`h-3 w-3 rounded-full ${
                         isDay2
@@ -331,7 +331,7 @@ export default function ScheduleSection() {
           {/* Floating artist image (desktop) */}
           <div
             ref={floatingImageRef}
-            className="pointer-events-none absolute z-30 hidden h-40 w-40 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-white/20 bg-black/80 shadow-[0_18px_60px_rgba(0,0,0,0.8)] lg:block"
+            className="pointer-events-none absolute z-30 hidden h-40 w-40 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-3xl border border-black/20 bg-[#F4F4F0]/80 shadow-[0_18px_60px_rgba(0,0,0,0.8)] lg:block"
           >
             {activeImage && (
               <img

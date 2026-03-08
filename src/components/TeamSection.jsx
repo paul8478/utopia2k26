@@ -80,22 +80,20 @@ export default function TeamSection() {
     const nameEl = row.querySelector(".team-name");
     if (nameEl) {
       gsap.to(nameEl, {
-        color: "#00F5FF",
+        color: "#E65100",
         duration: 0.5,
         ease: "power3.out",
       });
       gsap.to(nameEl, {
-        WebkitTextStrokeColor: "rgba(0,245,255,0)",
-        duration: 0.5,
-        ease: "power3.out",
+        WebkitTextStrokeColor: "rgba(0,0,0,0)",
       });
     }
 
     if (badge) {
       gsap.to(badge, {
-        backgroundColor: "rgba(0,245,255,0.15)",
-        borderColor: "rgba(0,245,255,0.8)",
-        color: "#00F5FF",
+        backgroundColor: "rgba(230,81,0,0.15)",
+        borderColor: "rgba(230,81,0,0.8)",
+        color: "#E65100",
         duration: 0.4,
         ease: "power3.out",
       });
@@ -132,17 +130,10 @@ export default function TeamSection() {
         ease: "power3.out",
       });
       gsap.to(nameEl, {
-        WebkitTextStrokeColor: "rgba(255,255,255,0.9)",
-        duration: 0.5,
-        ease: "power3.out",
-      });
-    }
-
-    if (badge) {
-      gsap.to(badge, {
+        WebkitTextStrokeColor: "rgba(0,0,0,0.9)",
         backgroundColor: "transparent",
-        borderColor: "rgba(255,255,255,0.35)",
-        color: "#ffffff",
+        borderColor: "rgba(0,0,0,0.35)",
+        color: "#111111",
         x: 0,
         y: 0,
         duration: 0.4,
@@ -194,11 +185,11 @@ export default function TeamSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen w-full bg-[#050505] text-white"
+      className="min-h-screen w-full bg-[#F4F4F0] text-[#111111]"
     >
       <div className="mx-auto flex max-w-7xl flex-col">
-        <header className="border-b border-white/15 px-6 py-6 md:px-12 md:py-8">
-          <p className="font-sans text-[10px] uppercase tracking-[0.5em] text-white/50">
+        <header className="border-b border-[#111111]/15 px-6 py-6 md:px-12 md:py-8">
+          <p className="font-sans text-[10px] uppercase tracking-[0.5em] text-[#111111]/50">
             UTOPIA 2K26 · THE ARCHITECTS
           </p>
         </header>
@@ -208,7 +199,7 @@ export default function TeamSection() {
             <div
               key={member.name}
               ref={(el) => (rowRefs.current[index] = el)}
-              className="relative flex h-[16vh] cursor-pointer items-center overflow-hidden bg-[#050505] px-6 transition-colors md:px-12"
+              className="relative flex h-[16vh] cursor-pointer items-center overflow-hidden bg-[#F4F4F0] px-6 transition-colors md:px-12"
               onMouseEnter={() => handleRowEnter(index)}
               onMouseLeave={() => handleRowMouseLeave(index)}
               onMouseMove={(e) => handleRowMouseMove(index, e)}
@@ -227,13 +218,13 @@ export default function TeamSection() {
 
                   <span
                     ref={(el) => (badgeRefs.current[index] = el)}
-                    className="mt-2 inline-flex items-center rounded-full border border-white/35 px-4 py-1 text-[10px] font-sans uppercase tracking-[0.35em]"
+                    className="mt-2 inline-flex items-center rounded-full border border-[#111111]/35 px-4 py-1 text-[10px] font-sans uppercase tracking-[0.35em]"
                   >
                     {member.role}
                   </span>
                 </div>
 
-                <p className="mt-4 max-w-md text-xs font-sans uppercase tracking-[0.25em] text-white/35">
+                <p className="mt-4 max-w-md text-xs font-sans uppercase tracking-[0.25em] text-[#111111]/35">
                   Architecting the systems, light, and sound that hold the
                   festival together.
                 </p>
@@ -241,7 +232,7 @@ export default function TeamSection() {
 
               <div
                 ref={(el) => (portraitRefs.current[index] = el)}
-                className="pointer-events-none absolute right-4 top-1/2 h-32 w-32 -translate-y-1/2 overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/5 to-white/0 opacity-0 md:right-12 md:h-40 md:w-40"
+                className="pointer-events-none absolute right-4 top-1/2 h-32 w-32 -translate-y-1/2 overflow-hidden rounded-3xl border border-[#111111]/15 bg-gradient-to-br from-[#111111]/5 to-white/0 opacity-0 md:right-12 md:h-40 md:w-40"
                 style={{ transform: "translate(80px, -50%)" }}
               >
                 <img
