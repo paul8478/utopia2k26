@@ -11,7 +11,7 @@ const links = [
   { to: "/schedule", label: "Schedule" },
   { to: "/day-1", label: "Day 01" },
   { to: "/day-2", label: "Day 02" },
-  { to: "/architects", label: "Architects" },
+  { to: "/architects", label: "Contact US" },
 ];
 
 const Navbar = () => {
