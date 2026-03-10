@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import ScrollReveal from "@/components/ScrollReveal";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const artists = [
   { name: "Priya Venkatesh", role: "Bharatanatyam", time: "6:00 PM", image: gallery1 },
@@ -15,104 +18,217 @@ const artists = [
 ];
 
 const Day1 = () => {
-  const [hoveredArtist, setHoveredArtist] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMousePos({ x: e.clientX, y: e.clientY });
-  };
+  useEffect(() => {
+    const container = containerRef.current;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    const frameCount = 300; 
+    const currentFrame = (index: number) => 
+      `/frames/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`;
+
+    const images: HTMLImageElement[] = [];
+    const sequence = { frame: 0 };
+
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      images.push(img);
+    }
+
+    const renderFrame = (index: number) => {
+      const img = images[Math.round(index)];
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+
+      const canvasRatio = canvas.width / canvas.height;
+      const imgRatio = img.width / img.height;
+      
+      let drawWidth, drawHeight, offsetX, offsetY;
+
+      if (canvasRatio > imgRatio) {
+        drawWidth = canvas.width;
+        drawHeight = canvas.width / imgRatio;
+        offsetX = 0;
+        offsetY = (canvas.height - drawHeight) / 2;
+      } else {
+        drawHeight = canvas.height;
+        drawWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - drawWidth) / 2;
+        offsetY = 0;
+      }
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    };
+
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      renderFrame(sequence.frame);
+    };
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas(); 
+
+    images[0].onload = () => renderFrame(0);
+
+    const ctx = gsap.context(() => {
+      
+      // BACKGROUND VIDEO SCRUBBING
+      gsap.to(sequence, {
+        frame: frameCount - 1,
+        ease: "none", 
+        scrollTrigger: {
+          trigger: container,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.5, 
+        },
+        onUpdate: () => {
+          requestAnimationFrame(() => {
+            renderFrame(sequence.frame);
+          });
+        },
+      });
+
+      // STRICT CUSTOM CARD CHOREOGRAPHY
+      cardsRef.current.forEach((card, index) => {
+        if (!card) return;
+        const content = card.querySelector('.card-content');
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 60%",  
+            end: "bottom 40%", 
+            scrub: true,
+          }
+        });
+
+        switch(index) {
+          case 0:
+            // 1st Card: Center, Slide Right to Left (As it was)
+            tl.fromTo(content, { x: "100vw", y: 0, opacity: 0 }, { x: "0", y: 0, opacity: 1, duration: 1 })
+              .to(content, { x: "0", opacity: 1, duration: 1.5 })
+              .to(content, { x: "-100vw", opacity: 0, duration: 1 });
+            break;
+            
+          case 1:
+            // 2nd Card: Lower middle left
+            tl.fromTo(content, { x: "-25vw", y: "40vh", opacity: 0 }, { x: "-25vw", y: "25vh", opacity: 1, duration: 1 })
+              .to(content, { x: "-25vw", y: "25vh", opacity: 1, duration: 1.5 })
+              .to(content, { x: "-25vw", y: "40vh", opacity: 0, duration: 1 });
+            break;
+
+          case 2:
+            // 3rd Card: Right top under navbar
+            tl.fromTo(content, { x: "25vw", y: "-40vh", opacity: 0 }, { x: "25vw", y: "-25vh", opacity: 1, duration: 1 })
+              .to(content, { x: "25vw", y: "-25vh", opacity: 1, duration: 1.5 })
+              .to(content, { x: "25vw", y: "-40vh", opacity: 0, duration: 1 });
+            break;
+
+          case 3:
+            // 4th Card: Paper untwist from bottom
+            // Set 3D perspective and hinge point at the bottom of the card
+            gsap.set(content, { transformPerspective: 1000, transformOrigin: "bottom center" });
+            tl.fromTo(content, 
+                // Folded completely down/away (-90deg) at the bottom
+                { rotationX: -90, y: "35vh", x: "0", opacity: 0 }, 
+                // Unfold to flat (0deg)
+                { rotationX: 0, y: "25vh", x: "0", opacity: 1, duration: 1, ease: "back.out(1.5)" }
+              )
+              .to(content, { rotationX: 0, y: "25vh", opacity: 1, duration: 1.5 })
+              // Fold back down and disappear
+              .to(content, { rotationX: 90, y: "35vh", opacity: 0, duration: 1, ease: "power2.in" });
+            break;
+
+          case 4:
+            // 5th Card: Left middle appear
+            tl.fromTo(content, { x: "-50vw", y: "0", opacity: 0 }, { x: "-35vw", y: "0", opacity: 1, duration: 1 })
+              .to(content, { x: "-35vw", y: "0", opacity: 1, duration: 1.5 })
+              .to(content, { x: "-50vw", y: "0", opacity: 0, duration: 1 });
+            break;
+
+          case 5:
+            // 6th Card: Direct middle appear
+            tl.fromTo(content, { x: "0", y: "0", scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 })
+              .to(content, { scale: 1, opacity: 1, duration: 1.5 })
+              .to(content, { scale: 1.2, opacity: 0, duration: 1 });
+            break;
+
+          default:
+            break;
+        }
+      });
+
+    }, container);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#F6EAC2] pt-24 relative" onMouseMove={handleMouseMove}>
-      {/* Noise overlay */}
-      <div className="fixed inset-0 z-[5] pointer-events-none opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjEiLz48L3N2Zz4=')]" />
+    <div ref={containerRef} className="relative bg-black text-white w-full overflow-hidden">
+      
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <canvas 
+          ref={canvasRef} 
+          className="opacity-100" 
+        />
+      </div>
 
-      {/* Golden hour ambient glow */}
-      <div className="fixed top-0 right-0 w-[60vw] h-[60vh] pointer-events-none opacity-30 bg-[radial-gradient(ellipse_at_top_right,_hsl(30_100%_60%/0.3)_0%,_transparent_70%)]" />
+      <div className="fixed top-8 left-8 md:top-12 md:left-12 z-50 pointer-events-none">
+        <h1 className="text-[12vw] md:text-[6vw] font-serif font-black leading-none tracking-tighter text-white mix-blend-difference">
+          DAY 1
+        </h1>
+        <p className="text-xl md:text-2xl font-serif italic ml-2 mt-2 text-gold mix-blend-difference">Roots & Rhythm</p>
+      </div>
 
-      {/* Cursor-following image */}
-      <AnimatePresence>
-        {hoveredArtist !== null && (
-          <motion.div
-            className="fixed pointer-events-none z-30 w-72 h-96 overflow-hidden"
-            initial={{ opacity: 0, scale: 0.7, rotate: -5 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              rotate: 0,
-              x: mousePos.x - 144,
-              y: mousePos.y - 192,
-            }}
-            exit={{ opacity: 0, scale: 0.7, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.8 }}
+      <div className="relative z-10 w-full flex flex-col items-center">
+        
+        <div className="h-[100vh] w-full"></div>
+
+        {artists.map((artist, index) => (
+          <div 
+            key={index}
+            className="h-[300vh] w-full flex items-center justify-center px-6 overflow-hidden"
+            ref={(el) => (cardsRef.current[index] = el)}
           >
-            <img
-              src={artists[hoveredArtist].image}
-              alt={artists[hoveredArtist].name}
-              className="w-full h-full object-cover"
-              style={{ filter: "sepia(40%) saturate(1.4) brightness(0.85)" }}
-            />
-            {/* Golden hour overlay on image */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_hsl(30_100%_60%/0.15)_0%,_transparent_70%)]" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div className="card-content w-full max-w-lg flex flex-col items-center text-center will-change-transform">
+               <div className="bg-white/5 backdrop-blur-xl p-10 md:p-14 border border-white/10 shadow-[-20px_0_50px_rgb(0,0,0,0.5)] flex flex-col items-center w-full rounded-sm">
+                  <img 
+                    src={artist.image} 
+                    alt={artist.name} 
+                    className="w-32 h-32 rounded-full object-cover mb-8 filter grayscale opacity-80" 
+                  />
+                  <span className="text-xs font-sans tracking-[0.4em] uppercase mb-4 text-white/50">
+                    {artist.time}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-serif font-bold mb-3 tracking-tight text-white">
+                    {artist.name}
+                  </h2>
+                  <p className="text-lg font-sans text-gold/80 italic">
+                    {artist.role}
+                  </p>
+               </div>
+            </div>
+          </div>
+        ))}
 
-      <div className="flex min-h-[calc(100vh-6rem)] relative z-10">
-        {/* Sticky Sidebar */}
-        <aside className="hidden lg:flex w-80 flex-shrink-0 sticky top-24 h-[calc(100vh-6rem)] flex-col justify-between p-8 border-r border-border">
-          <div>
-            <span className="text-[10px] font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
-            <h2 className="text-[8vw] lg:text-[5vw] font-serif font-black mt-4 leading-[0.85] tracking-[-0.03em]">
-              DAY<br />
-              <span className="text-primary">01</span>
-            </h2>
-            <p className="mt-4 text-xl font-serif italic text-gold">Roots & Rhythm</p>
-            <p className="mt-6 text-sm text-muted-foreground font-sans leading-relaxed">
-              An evening dedicated to the sacred foundations of Indian rhythm. From the temples to the stage.
-            </p>
-          </div>
-          <div className="text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground">
-            6:00 PM — 12:00 AM
-          </div>
-        </aside>
-
-        {/* Artist Lineup */}
-        <main className="flex-1 px-6 md:px-16 py-12">
-          {/* Mobile header */}
-          <div className="lg:hidden mb-12">
-            <span className="text-[10px] font-sans uppercase tracking-[0.5em] text-primary">March 14, 2026</span>
-            <h1 className="text-[14vw] font-serif font-black mt-2 leading-[0.85] tracking-[-0.03em]">
-              DAY <span className="text-primary">01</span>
-            </h1>
-            <p className="text-xl font-serif italic text-gold mt-1">Roots & Rhythm</p>
-          </div>
-
-          <div className="space-y-0">
-            {artists.map((artist, i) => (
-              <ScrollReveal key={i} delay={i * 0.04}>
-                <div
-                  className="group py-8 border-b border-border cursor-pointer"
-                  onMouseEnter={() => setHoveredArtist(i)}
-                  onMouseLeave={() => setHoveredArtist(null)}
-                >
-                  <div className="flex items-baseline justify-between">
-                    <div>
-                      <span className="text-[10px] font-sans text-muted-foreground mr-4 tracking-widest">{artist.time}</span>
-                      <h3 className="inline text-2xl md:text-[3.5vw] font-serif font-bold leading-[0.95] tracking-[-0.02em] group-hover:text-primary transition-colors duration-500">
-                        {artist.name}
-                      </h3>
-                    </div>
-                    <span className="text-[10px] font-sans uppercase tracking-[0.3em] text-gold hidden md:block">
-                      {artist.role}
-                    </span>
-                  </div>
-                  <p className="text-sm font-sans text-muted-foreground mt-1 md:hidden">{artist.role}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </main>
+        <div className="h-[100vh] w-full"></div>
+        
       </div>
     </div>
   );
