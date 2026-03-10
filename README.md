@@ -1,73 +1,90 @@
-# Welcome to your Lovable project
 
-## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+# UTOPIA 2K26 – MCKVIE Cultural Fest Website ✨
 
-## How can I edit this code?
+Welcome to the official codebase of **UTOPIA 2K26**, the **Annual Cultural Fest of MCKV Institute of Engineering (MCKVIE)**.  
+This website showcases the vibe of our fest – from classical roots to neon nights – with event schedules, gallery, and contact information.
 
-There are several ways of editing your application.
+> 📍 Venue: **MCKVIE Campus**  
+> 🌐 Live Site (when deployed): `https://utopia.mckvie` *(or your final URL)*
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🎭 About UTOPIA 2K26
 
-Changes made via Lovable will be committed automatically to this repo.
+**UTOPIA** is MCKVIE’s flagship cultural festival where:
 
-**Use your preferred IDE**
+- 🎶 **Rhythm evolves** from classical performances to modern electronic beats  
+- 💃 **Dancers, musicians, artists, and performers** from across departments and years come together  
+- 🎨 The campus transforms into a playground of **art, music, fashion, and creativity**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+This website is built to:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Highlight the **theme and story** of UTOPIA 2K26  
+- Share **event days (Day 01 & Day 02)** and the complete **schedule**  
+- Show **photo highlights** in the gallery  
+- Provide **contact details, FAQs, and quick links** for participants
 
-Follow these steps:
+---
+## Contributors
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+| Sl. No. | GitHub Username | Full Name |
+|--------|----------------|-----------|
+| 1 | [Nirnoy12](https://github.com/Nirnoy12) | Nirnoy Chatterjee |
+| 2 | [paul8478](https://github.com/paul8478) | Somnath Paul |
+| 3 | [Debayan-Ghosh2005](https://github.com/Debayan-Ghosh2005) | Debayan Ghosh |
+| 4 | [nyxarf](https://github.com/nyxarf) | nyx |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📸 Official Instagram
 
-# Step 3: Install the necessary dependencies.
-npm i
+**UTOPIA 2026 – Official Annual Cultural Fest of MCKVIE**
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+- 🔗 Instagram: [`@utopia.mckvie`](https://www.instagram.com/utopia.mckvie)
+- 📌 Bio:
+  - **UTOPIA 2026 ✨**  
+  - Official Annual Cultural Fest of **MCKVIE** 🎓  
+  
+Follow us on Instagram for:
 
-**Edit a file directly in GitHub**
+- Event announcements  
+- Behind-the-scenes moments  
+- Highlights, winners, and memories from the fest
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## 🧱 Tech Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- ⚛️ **React** + **TypeScript**
+- 🎨 **Tailwind CSS** and custom CSS for the unique UTOPIA aesthetic
+- 🧭 **react-router-dom** for multi-page navigation
+- ✨ **framer-motion** for smooth animations and transitions
+- 🧩 Reusable UI components from `@/components` (cards, layout, navbar, etc.)
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 🗺️ Main Pages
 
-## Can I connect a custom domain to my Lovable project?
+- `/` – **Home**: Hero section, about, sponsors, and event overview  
+- `/about` – **Manifesto**: The philosophy and story behind UTOPIA  
+- `/gallery` – **Gallery**: Visual highlights from the fest  
+- `/schedule` – **Schedule**: Event timings across days  
+- `/day-1` – **Day 01**: Roots & Rhythm – classical and traditional events  
+- `/day-2` – **Day 02**: Neon Nights – modern, electronic & club vibes  
+- `/architects` – **Contact Us**: Contact cards, WhatsApp, email, location map, and FAQs
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🚀 Getting Started (Development)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd utopia-2k26-website
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
