@@ -3,15 +3,21 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ganesh from "../assets/ganesh.jpg";
+import lunch from "../assets/lunch.jpg";
+import cultural2 from "../assets/cultural2.jpg";
+import cultural3 from "../assets/cultural3.jpg";
+import main_event from "../assets/main_event.jpg";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const events = [
-  { time: "09:00 AM", title: "Opening Ceremony", img: "/src/assets/ganesh.jpg" },
-  { time: "10:30 AM", title: "Cultural Performance", img: "/src/assets/cultural2.jpg" },
-  { time: "01:00 PM", title: "Lunch Break", img: "/src/assets/lunch.jpg" },
-  { time: "02:30 PM", title: "Cultural Programme", img: "/src/assets/cultural3.jpg" },
-  { time: "05:00 PM", title: "Main Event", img: "/src/assets/main_event.jpg" }
+  { time: "09:00 AM", title: "Opening Ceremony", img: ganesh },
+  { time: "10:30 AM", title: "Cultural Performance", img: cultural2 },
+  { time: "01:00 PM", title: "Lunch Break", img: lunch},
+  { time: "02:30 PM", title: "Cultural Programme", img: cultural3 },
+  { time: "05:00 PM", title: "Main Event", img: main_event}
 ];
 
 export default function ScheduleSection() {
