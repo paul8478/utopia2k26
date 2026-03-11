@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
@@ -22,7 +23,7 @@ const Day1 = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
+  useGSAP(() => {
     const container = containerRef.current;
     const canvas = canvasRef.current;
     if (!container || !canvas) return;
@@ -30,6 +31,7 @@ const Day1 = () => {
     const context = canvas.getContext("2d");
     if (!context) return;
 
+    // --- 1. CANVAS VIDEO SETUP ---
     const frameCount = 300; 
     const currentFrame = (index: number) => 
       `/frames/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`;
@@ -49,7 +51,6 @@ const Day1 = () => {
 
       const canvasRatio = canvas.width / canvas.height;
       const imgRatio = img.width / img.height;
-      
       let drawWidth, drawHeight, offsetX, offsetY;
 
       if (canvasRatio > imgRatio) {
@@ -79,113 +80,100 @@ const Day1 = () => {
 
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas(); 
-
     images[0].onload = () => renderFrame(0);
 
-    const ctx = gsap.context(() => {
-      
-      // BACKGROUND VIDEO SCRUBBING
-      gsap.to(sequence, {
-        frame: frameCount - 1,
-        ease: "none", 
+    // --- 2. MASTER TIMELINES ---
+    
+    // Background Video Scrubbing
+    gsap.to(sequence, {
+      frame: frameCount - 1,
+      ease: "none", 
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.5, 
+      },
+      onUpdate: () => {
+        requestAnimationFrame(() => renderFrame(sequence.frame));
+      },
+    });
+
+    // Custom Card Choreography
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return;
+      const content = card.querySelector('.card-content');
+
+      // Restored the 60% to 40% unpinned trigger for fluid movement
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5, 
-        },
-        onUpdate: () => {
-          requestAnimationFrame(() => {
-            renderFrame(sequence.frame);
-          });
-        },
-      });
-
-      // STRICT CUSTOM CARD CHOREOGRAPHY
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-        const content = card.querySelector('.card-content');
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: card,
-            start: "top 60%",  
-            end: "bottom 40%", 
-            scrub: true,
-          }
-        });
-
-        switch(index) {
-          case 0:
-            // 1st Card: Center, Slide Right to Left (As it was)
-            tl.fromTo(content, { x: "100vw", y: 0, opacity: 0 }, { x: "0", y: 0, opacity: 1, duration: 1 })
-              .to(content, { x: "0", opacity: 1, duration: 1.5 })
-              .to(content, { x: "-100vw", opacity: 0, duration: 1 });
-            break;
-            
-          case 1:
-            // 2nd Card: Lower middle left
-            tl.fromTo(content, { x: "-25vw", y: "40vh", opacity: 0 }, { x: "-25vw", y: "25vh", opacity: 1, duration: 1 })
-              .to(content, { x: "-25vw", y: "25vh", opacity: 1, duration: 1.5 })
-              .to(content, { x: "-25vw", y: "40vh", opacity: 0, duration: 1 });
-            break;
-
-          case 2:
-            // 3rd Card: Right top under navbar
-            tl.fromTo(content, { x: "25vw", y: "-40vh", opacity: 0 }, { x: "25vw", y: "-25vh", opacity: 1, duration: 1 })
-              .to(content, { x: "25vw", y: "-25vh", opacity: 1, duration: 1.5 })
-              .to(content, { x: "25vw", y: "-40vh", opacity: 0, duration: 1 });
-            break;
-
-          case 3:
-            // 4th Card: Paper untwist from bottom
-            // Set 3D perspective and hinge point at the bottom of the card
-            gsap.set(content, { transformPerspective: 1000, transformOrigin: "bottom center" });
-            tl.fromTo(content, 
-                // Folded completely down/away (-90deg) at the bottom
-                { rotationX: -90, y: "35vh", x: "0", opacity: 0 }, 
-                // Unfold to flat (0deg)
-                { rotationX: 0, y: "25vh", x: "0", opacity: 1, duration: 1, ease: "back.out(1.5)" }
-              )
-              .to(content, { rotationX: 0, y: "25vh", opacity: 1, duration: 1.5 })
-              // Fold back down and disappear
-              .to(content, { rotationX: 90, y: "35vh", opacity: 0, duration: 1, ease: "power2.in" });
-            break;
-
-          case 4:
-            // 5th Card: Left middle appear
-            tl.fromTo(content, { x: "-50vw", y: "0", opacity: 0 }, { x: "-35vw", y: "0", opacity: 1, duration: 1 })
-              .to(content, { x: "-35vw", y: "0", opacity: 1, duration: 1.5 })
-              .to(content, { x: "-50vw", y: "0", opacity: 0, duration: 1 });
-            break;
-
-          case 5:
-            // 6th Card: Direct middle appear
-            tl.fromTo(content, { x: "0", y: "0", scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 })
-              .to(content, { scale: 1, opacity: 1, duration: 1.5 })
-              .to(content, { scale: 1.2, opacity: 0, duration: 1 });
-            break;
-
-          default:
-            break;
+          trigger: card,
+          start: "top 60%",  
+          end: "bottom 40%", 
+          scrub: true,
         }
       });
 
-    }, container);
+      switch(index) {
+        case 0:
+          tl.fromTo(content, { x: "100vw", y: 0, opacity: 0 }, { x: "0", y: 0, opacity: 1, duration: 1 })
+            .to(content, { x: "0", opacity: 1, duration: 1.5 })
+            .to(content, { x: "-100vw", opacity: 0, duration: 1 });
+          break;
+          
+        case 1:
+          tl.fromTo(content, { x: "-25vw", y: "40vh", opacity: 0 }, { x: "-25vw", y: "25vh", opacity: 1, duration: 1 })
+            .to(content, { x: "-25vw", y: "25vh", opacity: 1, duration: 1.5 })
+            .to(content, { x: "-25vw", y: "40vh", opacity: 0, duration: 1 });
+          break;
+
+        case 2:
+          tl.fromTo(content, { x: "25vw", y: "-40vh", opacity: 0 }, { x: "25vw", y: "-25vh", opacity: 1, duration: 1 })
+            .to(content, { x: "25vw", y: "-25vh", opacity: 1, duration: 1.5 })
+            .to(content, { x: "25vw", y: "-40vh", opacity: 0, duration: 1 });
+          break;
+
+        case 3:
+          gsap.set(content, { transformPerspective: 1000, transformOrigin: "bottom center" });
+          tl.fromTo(content, 
+              { rotationX: -90, y: "35vh", x: "0", opacity: 0 }, 
+              { rotationX: 0, y: "25vh", x: "0", opacity: 1, duration: 1, ease: "back.out(1.5)" }
+            )
+            .to(content, { rotationX: 0, y: "25vh", opacity: 1, duration: 1.5 })
+            .to(content, { rotationX: 90, y: "35vh", opacity: 0, duration: 1, ease: "power2.in" });
+          break;
+
+        case 4:
+          tl.fromTo(content, { x: "-50vw", y: "0", opacity: 0 }, { x: "-35vw", y: "0", opacity: 1, duration: 1 })
+            .to(content, { x: "-35vw", y: "0", opacity: 1, duration: 1.5 })
+            .to(content, { x: "-50vw", y: "0", opacity: 0, duration: 1 });
+          break;
+
+        case 5:
+          tl.fromTo(content, { x: "0", y: "0", scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 })
+            .to(content, { scale: 1, opacity: 1, duration: 1.5 })
+            .to(content, { scale: 1.2, opacity: 0, duration: 1 });
+          break;
+
+        default:
+          break;
+      }
+    });
 
     return () => {
-      ctx.revert();
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, []);
+  }, { scope: containerRef });
 
   return (
+    // Hardcoded pure black background instead of bg-background
     <div ref={containerRef} className="relative bg-black text-white w-full overflow-hidden">
       
+      {/* Restored Crisp Canvas (No mix-blend-screen, full opacity) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <canvas 
           ref={canvasRef} 
-          className="opacity-100" 
+          className="opacity-100 w-full h-full object-cover" 
         />
       </div>
 
@@ -200,6 +188,7 @@ const Day1 = () => {
         
         <div className="h-[100vh] w-full"></div>
 
+        {/* Restored 300vh wrappers for unpinned, smooth scrubbing */}
         {artists.map((artist, index) => (
           <div 
             key={index}
@@ -207,6 +196,7 @@ const Day1 = () => {
             ref={(el) => (cardsRef.current[index] = el)}
           >
             <div className="card-content w-full max-w-lg flex flex-col items-center text-center will-change-transform">
+               {/* Restored Dark Glassmorphism UI */}
                <div className="bg-white/5 backdrop-blur-xl p-10 md:p-14 border border-white/10 shadow-[-20px_0_50px_rgb(0,0,0,0.5)] flex flex-col items-center w-full rounded-sm">
                   <img 
                     src={artist.image} 
