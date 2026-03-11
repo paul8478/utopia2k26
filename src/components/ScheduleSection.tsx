@@ -7,11 +7,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const events = [
-  { time: "09:00 AM", title: "Opening Ceremony", img: "/events/1.jpg" },
-  { time: "10:30 AM", title: "Tech Talk", img: "/events/2.jpg" },
-  { time: "01:00 PM", title: "Lunch Break", img: "/events/3.jpg" },
-  { time: "02:30 PM", title: "Workshop", img: "/events/4.jpg" },
-  { time: "05:00 PM", title: "Closing Ceremony", img: "/events/5.jpg" }
+  { time: "09:00 AM", title: "Opening Ceremony", img: "/src/assets/ganesh.jpg" },
+  { time: "10:30 AM", title: "Cultural Performance", img: "/src/assets/cultural2.jpg" },
+  { time: "01:00 PM", title: "Lunch Break", img: "/src/assets/lunch.jpg" },
+  { time: "02:30 PM", title: "Cultural Programme", img: "/src/assets/cultural3.jpg" },
+  { time: "05:00 PM", title: "Main Event", img: "/src/assets/main_event.jpg" }
 ];
 
 export default function ScheduleSection() {

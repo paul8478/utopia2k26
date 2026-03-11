@@ -29,9 +29,9 @@ const Architects = () => {
     {
       icon: Mail,
       label: "Email Us",
-      value: "mckvie.hackathon.2k25",
+      value: "utopiaculturalfestmckvie@gmail.com",
       description: "Click to email us directly",
-      action: "mailto:mckvie.hackathon.2k25@gmail.com",
+      action: "mailto:utopiaculturalfestmckvie@gmail.com",
     },
     {
       icon: Instagram,

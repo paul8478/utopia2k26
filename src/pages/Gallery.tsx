@@ -1,63 +1,80 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import TiltImage from "@/components/TiltImage";
+
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
 
 const images = [
-  { src: gallery1, alt: "Kathak dancer", tall: false },
-  { src: gallery2, alt: "DJ performing", tall: true },
-  { src: gallery3, alt: "Dhol drummer", tall: false },
-  { src: gallery4, alt: "Neon crowd", tall: true },
-  { src: gallery5, alt: "Sitar player", tall: false },
-  { src: gallery6, alt: "Stage design", tall: false },
+  { src: gallery1, alt: "Image 1" },
+  { src: gallery2, alt: "Image 2" },
+  { src: gallery3, alt: "Image 3" },
 ];
 
 const Gallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+  });
+
+  const row1 = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+  const row2 = useTransform(scrollYProgress, [0, 1], ["-60%", "0%"]);
+  const row3 = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
+
+  const renderRow = (xMotion: any) => (
+    <motion.div style={{ x: xMotion }} className="flex gap-8">
+      {[...images, ...images, ...images].map((img, i) => (
+        <div key={i} className="flex-shrink-0 w-[420px] h-[280px]">
+          <TiltImage
+            src={img.src}
+            alt={img.alt}
+            className="w-full h-full object-cover rounded-md"
+          />
+        </div>
+      ))}
+    </motion.div>
+  );
 
   return (
-    <div className="bg-background pt-24 relative">
-      {/* Noise overlay */}
-      <div className="fixed inset-0 z-[5] pointer-events-none opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjEiLz48L3N2Zz4=')]" />
+    <div className="bg-background pt-24 overflow-hidden">
 
-      {/* Header */}
-      <section className="px-6 md:px-20 py-16 relative z-10">
-        <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">The Visual Echo</span>
-        <h1 className="text-[14vw] md:text-[10vw] font-serif font-black mt-4 leading-[0.85] tracking-[-0.04em] mix-blend-difference">Gallery</h1>
-      </section>
+      {/* Title */}
+      <section className="px-20 py-20 text-center">
+        <h1 className="text-[9vw] font-serif font-black">Gallery</h1>
 
-      {/* Horizontal Scroll Section */}
-      <section ref={containerRef} className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <motion.div style={{ x }} className="flex gap-6 pl-20">
-            {images.map((img, i) => (
-              <div
-                key={i}
-                className={`flex-shrink-0 ${img.tall ? "w-[350px] h-[500px]" : "w-[500px] h-[350px]"} ${
-                  i % 2 === 0 ? "mt-0" : "mt-24"
-                }`}
-              >
-                <TiltImage src={img.src} alt={img.alt} className="w-full h-full rounded-sm" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Bottom text */}
-      <section className="py-24 px-6 md:px-20 text-center relative z-10">
-        <p className="text-[6vw] md:text-[3vw] font-serif italic text-muted-foreground leading-[1.1]">
-          Every frame tells a story of <span className="text-primary">tradition</span> meeting{" "}
-          <span className="text-neon-pink">revolution</span>.
+        <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto">
+          A visual journey through moments, culture, and creativity — where every
+          frame captures the spirit of innovation and tradition coming together.
         </p>
       </section>
+
+      {/* Scroll Gallery */}
+      <section ref={containerRef} className="relative h-[250vh]">
+
+        <div className="sticky top-0 h-screen flex flex-col justify-center gap-20 overflow-hidden px-20">
+
+          {/* Row 1 */}
+          {renderRow(row1)}
+
+          {/* Row 2 */}
+          {renderRow(row2)}
+
+          {/* Row 3 */}
+          {renderRow(row3)}
+
+        </div>
+
+      </section>
+
+      {/* Bottom Quote */}
+      <section className="py-24 text-center px-20">
+        <p className="text-3xl font-serif italic text-muted-foreground">
+          “Moments fade, but the stories they create live forever.”
+        </p>
+      </section>
+
     </div>
   );
 };
