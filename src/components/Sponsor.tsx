@@ -31,7 +31,7 @@ const Sponsor = () => {
       </section>
 
       {/* SPONSOR LOGOS */}
-      <section className="relative min-h-[900px] overflow-hidden bg-transparent flex items-baseline justify-center mt-[30px] px-4">
+      <section className="relative overflow-hidden bg-transparent flex items-baseline justify-center mt-[30px] px-4 pb-20">
         <div className="relative z-10 text-center w-auto grid grid-cols-2 lg:grid-cols-[repeat(4,170px)] gap-10 lg:gap-[80px] justify-center items-center py-[14px]">
           {sponsors.map((sponsor, index) => (
             <div

@@ -373,8 +373,7 @@ const Index = () => {
           <Sponsor />
         </div>
         <div
-          style={{ minHeight: "200px" }}
-          className="md:min-h-[400px]"
+          className="w-full px-4 md:px-8 mb-20 flex justify-center"
           id="contact"
           data-section-id="contact"
         >
