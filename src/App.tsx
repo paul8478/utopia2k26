@@ -15,6 +15,9 @@ import Schedule from "./pages/Schedule";
 import Architects from "./pages/Architects";
 import NotFound from "./pages/NotFound";
 
+// FIXED: Capitalized the component name
+import Teams from "./pages/Teams"; 
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -32,7 +35,10 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/schedule" element={<Schedule />} />
-  
+            
+            // FIXED: Capitalized the JSX element
+            <Route path="/teams" element={<Teams />} /> 
+            
             <Route path="/day-1" element={<Day1 />} />
             <Route path="/day-2" element={<Day2 />} />
             <Route path="/architects" element={<Architects />} />

@@ -110,7 +110,7 @@ const Day2 = () => {
         scrollTrigger: {
           trigger: container,
           start: "top top",
-          end: `+=${totalPages * 450}vh`, 
+          end: `+=${totalPages * 1500}vh`, 
           scrub: 1, 
           pin: true,
         }
@@ -121,7 +121,7 @@ const Day2 = () => {
       if (titleRef.current) {
         masterTl.to(titleRef.current, {
           autoAlpha: 0,
-          duration: 0.5,
+          duration: 5,
           ease: "power2.out"
         }, 0); 
       }
@@ -134,7 +134,7 @@ const Day2 = () => {
 
         masterTl.to([leftCard, rightCard].filter(Boolean), {
           autoAlpha: 1,
-          duration: 0.5
+          duration: 5
         });
 
         // LIFT LEFT CARD
@@ -147,7 +147,7 @@ const Day2 = () => {
             rotationX: 10, 
             zIndex: 50,
             boxShadow: "0px 40px 60px rgba(0,0,0,0.5)", 
-            duration: 2,
+            duration: 5,
             ease: "power2.inOut"
           })
           .to({}, { duration: 1 }) 
@@ -160,7 +160,7 @@ const Day2 = () => {
             rotationX: 0,
             zIndex: 10,
             boxShadow: "0px 5px 15px rgba(0,0,0,0.2)", 
-            duration: 2,
+            duration: 5,
             ease: "power2.inOut"
           });
         }
@@ -175,7 +175,7 @@ const Day2 = () => {
             rotationX: 10,
             zIndex: 50,
             boxShadow: "0px 40px 60px rgba(0,0,0,0.5)",
-            duration: 2,
+            duration: 5,
             ease: "power2.inOut"
           })
           .to({}, { duration: 1 })
@@ -188,7 +188,7 @@ const Day2 = () => {
             rotationX: 0,
             zIndex: 10,
             boxShadow: "0px 5px 15px rgba(0,0,0,0.2)",
-            duration: 2,
+            duration: 5,
             ease: "power2.inOut"
           });
         }
