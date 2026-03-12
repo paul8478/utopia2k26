@@ -20,11 +20,14 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Disable global Preloader strictly on the home route, as it uses its own custom loader
+  const isHomePage = window.location.pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+        {isLoading && !isHomePage && <Preloader onComplete={() => setIsLoading(false)} />}
         <Toaster />
         <Sonner />
         <BrowserRouter>
