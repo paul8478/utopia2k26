@@ -29,11 +29,7 @@ const Index = () => {
   const stripBgX = useTransform(scrollYProgress, [0, 1], ["0px", "-1000px"]); // Move background like marquee
 
   useEffect(() => {
-    // Only start our custom 3.5s loader sequence on the home page independently
-    const timer = setTimeout(() => {
-      setShowCustomLoader(false);
-    }, 3500);
-    return () => clearTimeout(timer);
+    // The loader stays indefinitely until the user clicks the EXPLORE button.
   }, []);
 
   return (
@@ -137,19 +133,28 @@ const Index = () => {
                 </svg>
               </div>
 
-              {/* Typography */}
+              {/* Typography & Actions */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
-                className="text-center"
+                className="text-center flex flex-col items-center"
               >
                 <h1 className="text-4xl md:text-5xl font-serif tracking-[0.15em] text-[#3b2a1f] mb-4">
                   UTOPIA<span className="text-[#b64a2b]">2K26</span>
                 </h1>
-                <p className="text-[#3b2a1f]/70 uppercase tracking-[0.4em] text-xs font-sans font-medium">
-                  Loading Experience...
+                <p className="text-[#3b2a1f]/70 uppercase tracking-[0.4em] text-xs font-sans font-medium mb-8">
+                  Welcome to the Experience
                 </p>
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 2.2 }}
+                  onClick={() => setShowCustomLoader(false)}
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 border-0 py-3 bg-[#B7410E] hover:bg-[#8B2635] text-white h-12 px-10 text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 rounded-sm cursor-pointer pointer-events-auto"
+                >
+                  EXPLORE
+                </motion.button>
               </motion.div>
             </div>
 
@@ -240,16 +245,6 @@ const Index = () => {
                 <span>2</span>
                 <span>6</span>
               </h1>
-            </div>
-            <div className="z-20">
-              <button
-                data-slot="button"
-                data-variant="theatrical"
-                data-size="default"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 border-0 py-3 bg-[#B7410E] hover:bg-[#8B2635] text-white h-14 px-12 text-base font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 rounded-sm"
-              >
-                EXPLORE
-              </button>
             </div>
           </div>
         </div>
