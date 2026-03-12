@@ -33,12 +33,12 @@ const Gallery = () => {
             ease: "linear",
             repeat: Infinity,
           }}
-          className="flex gap-3 sm:gap-4 lg:gap-6"
+          className="flex gap-4 lg:gap-6"
         >
           {[...getSevenImages(), ...getSevenImages()].map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-32 h-20 sm:w-40 sm:h-24 md:w-52 md:h-32 lg:w-64 lg:h-40"
+              className="flex-shrink-0 w-40 h-24 sm:w-52 sm:h-32 md:w-64 md:h-40 lg:w-72 lg:h-44"
             >
               <TiltImage
                 src={img.src}
@@ -55,14 +55,18 @@ const Gallery = () => {
   return (
     <div className="bg-background pt-24 overflow-hidden">
 
-      {/* Title */}
-      <section className="px-4 sm:px-10 lg:px-20 py-16 lg:py-20 text-center">
+      {/* Title Section */}
+      <section className="px-4 sm:px-10 lg:px-20 py-20 text-center">
 
-        <h1 className="text-5xl sm:text-6xl md:text-[9vw] font-serif font-black">
-          Gallery
-        </h1>
+        <motion.img
+          src="/deb/Culturex-CLmvyJNH.png"
+          alt="Gallery"
+          className="w-full max-w-6xl mx-auto object-contain drop-shadow-2xl"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
 
-        <p className="mt-6 text-xl text-muted-foreground max-w-3xl mx-auto">
+        <p className="mt-10 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
           A visual journey through moments, culture, and creativity — where every
           frame captures the spirit of innovation and tradition coming together.
         </p>
@@ -70,20 +74,20 @@ const Gallery = () => {
       </section>
 
       {/* Gallery Rows */}
-      <section className="flex flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-10 lg:px-20 py-16">
+      <section className="flex flex-col gap-10 sm:gap-12 lg:gap-16 px-4 sm:px-10 lg:px-20 py-16">
 
-        {/* Row 1 → Right to Left */}
+        {/* Row 1 */}
         {renderRow("left")}
 
-        {/* Row 2 → Left to Right */}
+        {/* Row 2 */}
         {renderRow("right")}
 
-        {/* Row 3 → Right to Left */}
+        {/* Row 3 */}
         {renderRow("left")}
 
       </section>
 
-      {/* Quote */}
+      {/* Quote Section */}
       <section className="py-20 text-center px-4 sm:px-10 lg:px-20">
 
         <p className="text-2xl sm:text-3xl font-serif italic text-muted-foreground">
