@@ -172,7 +172,7 @@ const Index = () => {
       </div>
 
       <main className="min-h-screen bg-background selection:bg-primary selection:text-primary-foreground">
-        <div className="preloader-overlay relative w-full h-screen bg-[#FFF8F0] flex flex-col items-center justify-center overflow-hidden">
+        <div id="hero" className="preloader-overlay relative w-full h-screen bg-[#FFF8F0] flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center opacity-[0.9] pointer-events-none">
             <img alt="Decorative bg" decoding="async" className="object-cover hidden md:block w-full h-full" src={heroClassical} />
             <img alt="Decorative bg" decoding="async" className="object-cover w-full h-full md:hidden" src={heroNeon} />
@@ -180,8 +180,6 @@ const Index = () => {
           <div className="relative flex flex-col items-center gap-6 z-50">
             <div className="lg:w-[350px] w-[250px] aspect-square mt-[-10vh]">
               <div className="w-full h-full flex items-center justify-center p-8 relative">
-                 <img src={headup} alt="Logo Up" className="w-full h-full object-contain absolute" />
-                 <img src={headdown} alt="Logo Down" className="w-full h-full object-contain absolute" />
               </div>
             </div>
             <div className="text-center mb-8 w-full px-4 overflow-hidden z-20">
@@ -201,9 +199,6 @@ const Index = () => {
           <audio src="/music/THUNDER.mp3" loop preload="auto" crossOrigin="anonymous"></audio>
         </div>
         
-        <div id="hero" data-section-id="hero" className="relative">
-          <section className="h-screen bg-[#FFF8F0]" aria-hidden="true"></section>
-        </div>
         <div style={{ minHeight: '400px' }} id="about" data-section-id="about">
           <Culture />
         </div>
