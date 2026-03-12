@@ -12,7 +12,7 @@ import Gallery from "./pages/Gallery";
 import Day1 from "./pages/Day1";
 import Day2 from "./pages/Day2";
 import Schedule from "./pages/Schedule";
-import Architects from "./pages/Architects";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 // FIXED: Capitalized the component name
@@ -35,13 +35,10 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/schedule" element={<Schedule />} />
-            
-            // FIXED: Capitalized the JSX element
-            <Route path="/teams" element={<Teams />} /> 
-            
+            <Route path="/teams" element={<Teams />} />
             <Route path="/day-1" element={<Day1 />} />
             <Route path="/day-2" element={<Day2 />} />
-            <Route path="/architects" element={<Architects />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

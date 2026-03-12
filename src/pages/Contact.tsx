@@ -9,7 +9,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 
-const Architects = () => {
+const Contact = () => {
   const spcontact = [
     {
       name: "Mr. Debayan Ghosh",
@@ -244,4 +244,4 @@ const Architects = () => {
   );
 };
 
-export default Architects;
+export default Contact;

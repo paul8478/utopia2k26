@@ -12,7 +12,7 @@ const links = [
   { to: "/teams", label: "Team" },
   { to: "/day-1", label: "Day 01" },
   { to: "/day-2", label: "Day 02" },
-  { to: "/architects", label: "Contact US" },
+  { to: "/contact", label: "Contact" },
 ];
 
 const Navbar = () => {
