@@ -44,7 +44,7 @@ export default function Teams() {
       {/* bg-fixed creates a nice parallax effect as you scroll down the list of 120 people */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url('/tmbg.jpg')` }}
+        style={{ backgroundImage: `url('/tmbg2.jpg')` }}
       />
       {/* Light frosted overlay: Keeps the light theme intact and text readable */}
       <div className="absolute inset-0 z-0 bg-white/55 backdrop-blur-[2px]" />

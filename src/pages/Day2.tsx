@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,16 +10,17 @@ import gallery5 from "@/assets/gallery-5.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Added descriptions to the data array for the modal
 const artistsDay2 = [
   // PAGE 1
-  { name: "Priya Venkatesh", role: "Bharatanatyam", time: "6:00 PM", image: gallery1 },
-  { name: "Ravi Shankar Collective", role: "Sitar & Tabla Ensemble", time: "7:00 PM", image: gallery5 },
+  { name: "Priya Venkatesh", role: "Bharatanatyam", time: "6:00 PM", image: gallery1, description: "Experience the grace and precision of traditional Bharatanatyam. Priya Venkatesh brings ancient stories to life through intricate footwork and expressive abhinaya." },
+  { name: "Ravi Shankar Collective", role: "Sitar & Tabla Ensemble", time: "7:00 PM", image: gallery5, description: "A mesmerizing classical fusion of Sitar and Tabla. This ensemble pays tribute to the legends while exploring new improvisational soundscapes." },
   // PAGE 2
-  { name: "Dhol Foundation", role: "Percussion Ensemble", time: "8:00 PM", image: gallery3 },
-  { name: "Anoushka Menon", role: "Kathak Fusion", time: "9:00 PM", image: gallery1 },
+  { name: "Dhol Foundation", role: "Percussion Ensemble", time: "8:00 PM", image: gallery3, description: "Feel the earth-shattering rhythms of the Dhol. A high-energy percussion performance designed to get your heart racing and feet moving." },
+  { name: "Anoushka Menon", role: "Kathak Fusion", time: "9:00 PM", image: gallery1, description: "Blurring the lines between classical Kathak and contemporary movement. Anoushka Menon delivers a visually stunning and emotionally charged performance." },
   // PAGE 3
-  { name: "Tala Vādya Ensemble", role: "Classical Orchestra", time: "10:00 PM", image: gallery5 },
-  { name: "Ghungroo Collective", role: "Dance Theater", time: "11:00 PM", image: gallery3 },
+  { name: "Tala Vādya Ensemble", role: "Classical Orchestra", time: "10:00 PM", image: gallery5, description: "A grand congregation of traditional Indian instruments. The Tala Vādya Ensemble creates a rich, polyrhythmic tapestry of classical melodies." },
+  { name: "Ghungroo Collective", role: "Dance Theater", time: "11:00 PM", image: gallery3, description: "A theatrical dance experience combining storytelling, dramatic lighting, and synchronized Ghungroo footwork to end the night on a high note." },
 ];
 
 const Day2 = () => {
@@ -28,18 +29,19 @@ const Day2 = () => {
   const titleRef = useRef<HTMLDivElement>(null);
   const endCTA = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  // Added wrappersRef for mobile scrolling distances
   const wrappersRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // STATE FOR THE MODAL
+  const [selectedArtist, setSelectedArtist] = useState<typeof artistsDay2[0] | null>(null);
 
   useGSAP(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // --- GSAP MATCHMEDIA FOR RESPONSIVE ANIMATIONS ---
     const mm = gsap.matchMedia();
 
     // ==========================================
-    // DESKTOP LOGIC (Pinned Canvas + Page Turns)
+    // DESKTOP LOGIC
     // ==========================================
     mm.add("(min-width: 768px)", () => {
       const canvas = canvasRef.current;
@@ -54,7 +56,6 @@ const Day2 = () => {
       const images: HTMLImageElement[] = [];
       const sequence = { frame: 0 };
 
-      // Load frames only on desktop
       for (let i = 0; i < totalFrames; i++) {
         const img = new Image();
         img.src = currentFrame(i);
@@ -100,7 +101,6 @@ const Day2 = () => {
 
       const totalPages = Math.ceil(artistsDay2.length / 2);
 
-      // Set initial desktop card positions
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
         const isLeftPage = index % 2 === 0;
@@ -126,12 +126,10 @@ const Day2 = () => {
         }
       });
 
-      // Fade out title
       if (titleRef.current) {
         masterTl.to(titleRef.current, { autoAlpha: 0, duration: 5, ease: "power2.out" }, 0); 
       }
 
-      // Animate Pages
       for (let page = 0; page < totalPages; page++) {
         const leftCardIndex = page * 2;
         const rightCardIndex = leftCardIndex + 1;
@@ -141,13 +139,13 @@ const Day2 = () => {
         masterTl.to([leftCard, rightCard].filter(Boolean), { autoAlpha: 1, duration: 5 });
 
         if (leftCard) {
-          masterTl.to(leftCard, { left: "50%", top: "50%", scale: 1, rotation: 0, rotationX: 10, zIndex: 50, boxShadow: "0px 40px 60px rgba(0,0,0,0.5)", duration: 5, ease: "power2.inOut" })
+          masterTl.to(leftCard, { left: "50%", top: "50%", scale: 1.5, rotation: 0, rotationX: 0, zIndex: 50, boxShadow: "0px 40px 60px rgba(0,0,0,0.5)", duration: 5, ease: "power2.inOut" })
           .to({}, { duration: 1 }) 
           .to(leftCard, { left: "38%", top: "48%", scale: 0.7, rotation: -4, rotationX: 0, zIndex: 10, boxShadow: "0px 5px 15px rgba(0,0,0,0.2)", duration: 5, ease: "power2.inOut" });
         }
 
         if (rightCard) {
-          masterTl.to(rightCard, { left: "50%", top: "50%", scale: 1, rotation: 0, rotationX: 10, zIndex: 50, boxShadow: "0px 40px 60px rgba(0,0,0,0.5)", duration: 5, ease: "power2.inOut" })
+          masterTl.to(rightCard, { left: "50%", top: "50%", scale: 1.5, rotation: 0, rotationX: 0, zIndex: 50, boxShadow: "0px 40px 60px rgba(0,0,0,0.5)", duration: 5, ease: "power2.inOut" })
           .to({}, { duration: 1 })
           .to(rightCard, { left: "62%", top: "48%", scale: 0.7, rotation: 2, rotationX: 0, zIndex: 10, boxShadow: "0px 5px 15px rgba(0,0,0,0.2)", duration: 5, ease: "power2.inOut" });
         }
@@ -157,7 +155,6 @@ const Day2 = () => {
           masterTl.to(sequence, { frame: (page + 1) * framesPerPageTurn, duration: 4, ease: "power2.inOut", onUpdate: () => renderFrame(sequence.frame) }, "<"); 
           masterTl.to({}, { duration: 0.1 });
         } else {
-          // Final page: Fade out last cards then reveal the Return link
           masterTl.to([leftCard, rightCard].filter(Boolean), { autoAlpha: 0, duration: 2 }, "+=1");
           if (endCTA.current) {
             masterTl.to(endCTA.current, { autoAlpha: 1, duration: 3, ease: "power2.out" });
@@ -171,11 +168,10 @@ const Day2 = () => {
     });
 
     // ==========================================
-    // MOBILE LOGIC (Vertical Scroll, Day 1 Style)
+    // MOBILE LOGIC
     // ==========================================
     mm.add("(max-width: 767px)", () => {
       
-      // 1. Fade title out early
       if (titleRef.current) {
         gsap.to(titleRef.current, {
           opacity: 0,
@@ -189,12 +185,10 @@ const Day2 = () => {
         });
       }
 
-      // 2. Individual vertical scroll for cards
       cardsRef.current.forEach((card, index) => {
         const wrapper = wrappersRef.current[index];
         if (!card || !wrapper) return;
 
-        // Clear desktop styles
         gsap.set(card, { clearProps: "all" });
 
         const tl = gsap.timeline({
@@ -206,7 +200,6 @@ const Day2 = () => {
           }
         });
 
-        // Add a slight alternating tilt for polaroid charm (-2deg or +2deg)
         const tilt = index % 2 === 0 ? -2 : 2;
 
         tl.fromTo(card, 
@@ -217,7 +210,6 @@ const Day2 = () => {
           .to(card, { y: "-50vh", opacity: 0, rotation: tilt * -1, duration: 1, ease: "power2.in" });
       });
 
-      // 3. Reveal Return Link at bottom of mobile scroll
       if (endCTA.current) {
         gsap.fromTo(endCTA.current,
           { autoAlpha: 0 },
@@ -232,23 +224,19 @@ const Day2 = () => {
           }
         );
       }
-
     });
 
   }, { scope: containerRef });
 
   return (
-    // Note: overflow-x-hidden instead of overflow-hidden allows mobile vertical scrolling!
     <div ref={containerRef} className="relative bg-[#1A1814] w-full min-h-screen md:h-screen overflow-x-hidden md:overflow-hidden font-sans text-[#2C2A25]">
       
       {/* --- BACKGROUND --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* MOBILE: Static background */}
         <div 
           className="fixed inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('/day2mobilebg.jpg')` }}
         />
-        {/* DESKTOP: Canvas Video */}
         <canvas ref={canvasRef} className="hidden md:block opacity-100 w-full h-full object-cover" />
       </div>
 
@@ -262,40 +250,56 @@ const Day2 = () => {
       </div>
 
       {/* --- CARDS CONTAINER --- */}
-      {/* Mobile: Standard relative flex flow. Desktop: Absolute overlay */}
       <div className="relative z-10 w-full flex flex-col items-center md:absolute md:inset-0 md:block md:pointer-events-none perspective-[1200px]">
         
-        {/* Initial mobile spacer so cards start below the fold */}
         <div className="h-[100vh] w-full block md:hidden"></div>
 
         {artistsDay2.map((artist, index) => (
           <div 
             key={index}
             ref={(el) => (wrappersRef.current[index] = el)}
-            // Mobile uses h-[80vh] wrapper. Desktop wrapper is basically invisible/absolute.
-            className="h-[80vh] w-full flex items-center justify-center px-6 overflow-hidden md:h-auto md:w-auto md:block md:absolute md:inset-0 md:overflow-visible"
+            className="h-[80vh] w-full flex items-center justify-center px-4 overflow-hidden md:h-auto md:w-auto md:block md:absolute md:inset-0 md:overflow-visible"
           >
+            {/* --- POLAROID CARD UI --- */}
             <div 
               ref={(el) => (cardsRef.current[index] = el)}
-              className="relative md:absolute will-change-transform shadow-[0px_5px_15px_rgba(0,0,0,0.2)] bg-[#FAFAF8] p-3 pb-14 md:pb-16 ring-1 ring-black/5 rounded-[2px] w-[280px] md:w-[320px]"
+              className="relative md:absolute will-change-transform w-[280px] md:w-[370px] bg-[#f5efe6] p-4 md:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col items-center rounded-sm pointer-events-auto border border-[#3b2a1f]/10"
             >
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#EAE8E0] filter sepia-[20%] contrast-[1.1]">
-                <img src={artist.image} alt={artist.name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 shadow-[inner_0_0_20px_rgba(44,42,37,0.3)]" />
+              <div className="relative w-full aspect-square md:aspect-[4/3] overflow-hidden mb-5 bg-[#3b2a1f]/5 border border-[#3b2a1f]/10">
+                <img 
+                  src={artist.image} 
+                  alt={artist.name} 
+                  className="w-full h-full object-cover filter contrast-[1.05] sepia-[10%]" 
+                />
+                <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] pointer-events-none" />
               </div>
-
-              <div className="absolute bottom-3 md:bottom-4 left-0 w-full text-center px-4">
-                <span className="block text-[9px] md:text-[10px] tracking-widest uppercase text-[#8A9A9D] mb-1">
+              
+              <div className="w-full text-center flex flex-col items-center flex-grow">
+                <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.3em] uppercase mb-1 text-[#b64a2b]">
                   {artist.time}
                 </span>
-                <h2 className="font-serif text-xl md:text-2xl font-bold leading-none text-[#2C2A25]">
+                <h2 className="text-2xl md:text-3xl font-serif font-black tracking-tight text-[#3b2a1f] mb-1">
                   {artist.name}
                 </h2>
-                <p className="font-sans text-[10px] md:text-xs italic text-[#B85741] mt-1">
+                <p className="text-xs md:text-sm font-sans text-[#3b2a1f]/70 font-medium italic mb-6">
                   {artist.role}
                 </p>
+
+                <div className="flex w-full gap-2 md:gap-3 justify-center mt-auto">
+                  <button className="flex-1 bg-[#b64a2b] hover:bg-[#8B2635] text-white text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase py-3 md:py-3.5 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
+                    Register
+                  </button>
+                  {/* ADDED onClick HANDLER HERE */}
+                  <button 
+                    onClick={() => setSelectedArtist(artist)}
+                    className="flex-1 border border-[#3b2a1f]/30 hover:border-[#3b2a1f] text-[#3b2a1f] text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase py-3 md:py-3.5 rounded-sm transition-all duration-300 bg-transparent hover:bg-[#3b2a1f]/5 cursor-pointer"
+                  >
+                    Know More
+                  </button>
+                </div>
               </div>
             </div>
+            
           </div>
         ))}
 
@@ -303,27 +307,79 @@ const Day2 = () => {
       </div>
 
       {/* --- INSTRUCTION --- */}
-      <div className="fixed md:absolute top-8 md:bottom-8 md:top-auto left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-60">
+      <div className="fixed md:absolute top-8 md:bottom-8 md:top-auto left-1/2 -translate-x-1/2 z-40 pointer-events-none opacity-60">
         <p className="text-xs font-sans tracking-[0.3em] uppercase text-[#2C2A25]/70 animate-pulse drop-shadow-md whitespace-nowrap bg-white/50 px-4 py-2 rounded-full md:bg-transparent">
           Scroll to Inspect
         </p>
       </div>
 
-      {/* --- CALL TO ACTION - CROSS LINK (Appears at bottom of scroll) --- */}
-      <div ref={endCTA} className="relative z-20 w-full flex justify-center py-20 md:py-32 bg-black/40 backdrop-blur-md border-t border-[#2C2A25]/10 mt-20 opacity-0 invisible md:absolute md:bottom-0 md:bg-black/60 md:mt-0">
+      {/* --- CALL TO ACTION - CROSS LINK --- */}
+      <div ref={endCTA} className="relative z-20 w-full flex justify-center py-20 md:py-32 bg-black/40 backdrop-blur-md border-t border-[#2C2A25]/10 mt-20 opacity-0 invisible md:absolute md:bottom-0 md:bg-black/60 md:mt-0 pointer-events-auto">
         <div className="text-center group">
           <p className="text-xs md:text-sm font-sans tracking-[0.4em] uppercase text-white/60 mb-4 mix-blend-difference text-white">
             Where It All Began
           </p>
           <Link 
             to="/day-1"
-            className="inline-flex items-center gap-4 text-2xl md:text-4xl font-serif font-bold text-white hover:text-[#B85741] transition-colors duration-300 drop-shadow-lg"
+            className="inline-flex items-center gap-4 text-2xl md:text-4xl font-serif font-bold text-white hover:text-[#B85741] transition-colors duration-300 drop-shadow-lg cursor-pointer"
           >
             <span className="group-hover:-translate-x-4 transition-transform duration-300">←</span>
             <span>Return to Day 01</span>
           </Link>
         </div>
       </div>
+
+      {/* ========================================== */}
+      {/* TRANSPARENT GLASSMORPHISM MODAL */}
+      {/* ========================================== */}
+      {selectedArtist && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          {/* Backdrop (clicking it closes the modal) */}
+          <div 
+            className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer transition-opacity"
+            onClick={() => setSelectedArtist(null)}
+          />
+          
+          {/* Modal Box */}
+          <div className="relative w-full max-w-lg bg-[#1A1814]/40 backdrop-blur-xl border border-white/20 p-8 md:p-10 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.7)] text-[#f5efe6] animate-in fade-in zoom-in duration-300">
+            
+            {/* Close Button (X) */}
+            <button 
+              onClick={() => setSelectedArtist(null)}
+              className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors p-2 cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            
+            {/* Content */}
+            <span className="block text-[#b64a2b] text-xs font-bold tracking-[0.3em] uppercase mb-2">
+              {selectedArtist.time}
+            </span>
+            <h3 className="text-3xl md:text-4xl font-serif font-bold mb-1">
+              {selectedArtist.name}
+            </h3>
+            <p className="text-white/70 italic font-serif mb-6 text-sm md:text-base">
+              {selectedArtist.role}
+            </p>
+            
+            {/* Image Preview inside Modal */}
+            <div className="w-full aspect-video mb-6 overflow-hidden rounded-lg border border-white/10 shadow-inner">
+              <img 
+                src={selectedArtist.image} 
+                alt={selectedArtist.name} 
+                className="w-full h-full object-cover filter contrast-[1.05] sepia-[10%]" 
+              />
+            </div>
+
+            <p className="text-sm md:text-base font-sans text-white/80 leading-relaxed">
+              {selectedArtist.description}
+            </p>
+          </div>
+        </div>
+      )}
 
     </div>
   );
