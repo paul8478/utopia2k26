@@ -400,7 +400,7 @@ const Index = () => {
               />
             </div>
 
-            <div className="container mx-auto px-6 lg:px-8 relative z-10 py-12 md:py-16">
+            <div className="container mx-auto px-6 lg:px-8 lg:pr-16 relative z-10 py-12 md:py-16">
               <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-12 lg:gap-12">
                 <div className="col-span-2 lg:col-span-2 pt-12 md:pt-0">
                   <Link className="inline-block mb-6" to="/">
@@ -497,8 +497,9 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
                       >
-                        <span className="footer-connect-icon">
+                        <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -523,7 +524,7 @@ const Index = () => {
                             <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                           instagram.com/utopia.mckvie
                         </span>
                       </a>
@@ -534,8 +535,9 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
                       >
-                        <span className="footer-connect-icon">
+                        <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -551,7 +553,7 @@ const Index = () => {
                             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                           whatsapp.com/channel/utopia
                         </span>
                       </a>
@@ -562,8 +564,9 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
                       >
-                        <span className="footer-connect-icon">
+                        <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -580,7 +583,7 @@ const Index = () => {
                             <polyline points="22,6 12,13 2,6"></polyline>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
                           utopiaculturalfestmckvie@gmail.com
                         </span>
                       </a>
