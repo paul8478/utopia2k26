@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -227,6 +228,22 @@ const Day1 = () => {
 
         <div className="h-[50vh] md:h-[100vh] w-full"></div>
         
+        {/* 5. CALL TO ACTION - CROSS LINK */}
+        <div className="w-full flex justify-center py-20 bg-background/5 border-t border-white/10 z-20">
+          <div className="text-center group">
+            <p className="text-xs md:text-sm font-sans tracking-[0.4em] uppercase text-white/60 mb-4">
+              The Journey Continues
+            </p>
+            <Link 
+              to="/day-2"
+              className="inline-flex items-center gap-4 text-2xl md:text-4xl font-serif font-bold text-white hover:text-gold transition-colors duration-300"
+            >
+              <span>Experience Day 02</span>
+              <span className="group-hover:translate-x-4 transition-transform duration-300">→</span>
+            </Link>
+          </div>
+        </div>
+
       </div>
     </div>
   );

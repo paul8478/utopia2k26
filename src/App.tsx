@@ -9,6 +9,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
+import EventHub from "./pages/EventHub";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Day1 from "./pages/Day1";
@@ -36,6 +37,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/event" element={<EventHub />} />
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/schedule" element={<Schedule />} />

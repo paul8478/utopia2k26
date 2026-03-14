@@ -6,12 +6,10 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "Event" },
+  { to: "/event", label: "Event" },
   { to: "/schedule", label: "Schedule" },
   { to: "/gallery", label: "Gallery" },
   { to: "/teams", label: "Team" },
-  { to: "/day-1", label: "Day 01" },
-  { to: "/day-2", label: "Day 02" },
   { to: "/contact", label: "Contact" },
   { to: "/aboututopia", label: "About" },
 ];

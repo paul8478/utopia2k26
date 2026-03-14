@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -24,7 +25,8 @@ const artistsDay2 = [
 const Day2 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null); 
+  const titleRef = useRef<HTMLDivElement>(null);
+  const endCTA = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   // Added wrappersRef for mobile scrolling distances
   const wrappersRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -154,6 +156,12 @@ const Day2 = () => {
           masterTl.to([leftCard, rightCard].filter(Boolean), { autoAlpha: 0, duration: 1 }, "+=0.5"); 
           masterTl.to(sequence, { frame: (page + 1) * framesPerPageTurn, duration: 4, ease: "power2.inOut", onUpdate: () => renderFrame(sequence.frame) }, "<"); 
           masterTl.to({}, { duration: 0.1 });
+        } else {
+          // Final page: Fade out last cards then reveal the Return link
+          masterTl.to([leftCard, rightCard].filter(Boolean), { autoAlpha: 0, duration: 2 }, "+=1");
+          if (endCTA.current) {
+            masterTl.to(endCTA.current, { autoAlpha: 1, duration: 3, ease: "power2.out" });
+          }
         }
       }
 
@@ -208,6 +216,22 @@ const Day2 = () => {
           .to(card, { y: "0", opacity: 1, rotation: tilt, duration: 1 }) 
           .to(card, { y: "-50vh", opacity: 0, rotation: tilt * -1, duration: 1, ease: "power2.in" });
       });
+
+      // 3. Reveal Return Link at bottom of mobile scroll
+      if (endCTA.current) {
+        gsap.fromTo(endCTA.current,
+          { autoAlpha: 0 },
+          { 
+            autoAlpha: 1, 
+            scrollTrigger: {
+              trigger: endCTA.current,
+              start: "top 90%",
+              end: "bottom bottom",
+              scrub: true
+            }
+          }
+        );
+      }
 
     });
 
@@ -279,10 +303,26 @@ const Day2 = () => {
       </div>
 
       {/* --- INSTRUCTION --- */}
-      <div className="fixed md:absolute bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-60">
-        <p className="text-xs font-sans tracking-[0.3em] uppercase text-[#2C2A25]/70 animate-pulse drop-shadow-md whitespace-nowrap">
+      <div className="fixed md:absolute top-8 md:bottom-8 md:top-auto left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-60">
+        <p className="text-xs font-sans tracking-[0.3em] uppercase text-[#2C2A25]/70 animate-pulse drop-shadow-md whitespace-nowrap bg-white/50 px-4 py-2 rounded-full md:bg-transparent">
           Scroll to Inspect
         </p>
+      </div>
+
+      {/* --- CALL TO ACTION - CROSS LINK (Appears at bottom of scroll) --- */}
+      <div ref={endCTA} className="relative z-20 w-full flex justify-center py-20 md:py-32 bg-black/40 backdrop-blur-md border-t border-[#2C2A25]/10 mt-20 opacity-0 invisible md:absolute md:bottom-0 md:bg-black/60 md:mt-0">
+        <div className="text-center group">
+          <p className="text-xs md:text-sm font-sans tracking-[0.4em] uppercase text-white/60 mb-4 mix-blend-difference text-white">
+            Where It All Began
+          </p>
+          <Link 
+            to="/day-1"
+            className="inline-flex items-center gap-4 text-2xl md:text-4xl font-serif font-bold text-white hover:text-[#B85741] transition-colors duration-300 drop-shadow-lg"
+          >
+            <span className="group-hover:-translate-x-4 transition-transform duration-300">←</span>
+            <span>Return to Day 01</span>
+          </Link>
+        </div>
       </div>
 
     </div>
