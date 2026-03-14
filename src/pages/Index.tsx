@@ -216,7 +216,7 @@ const Index = () => {
       <main className="min-h-screen bg-background selection:bg-primary selection:text-primary-foreground">
         <div
           id="hero"
-          className="preloader-overlay relative w-full h-screen bg-[#FFF8F0] flex flex-col items-center justify-center overflow-hidden"
+          className="preloader-overlay relative w-full min-h-screen bg-[#FFF8F0] flex flex-col items-center justify-center overflow-hidden"
         >
           <div className="absolute inset-0 flex items-center justify-center opacity-[0.9] pointer-events-none">
             <img
@@ -228,7 +228,7 @@ const Index = () => {
             <img
               alt="Decorative bg"
               decoding="async"
-              className="object-cover w-full h-full md:hidden"
+              className="object-cover object-bottom w-full h-full md:hidden"
               src={heroClassical}
             />
           </div>
