@@ -497,7 +497,7 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
-                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                       >
                         <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
@@ -524,7 +524,7 @@ const Index = () => {
                             <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
                           instagram.com/utopia.mckvie
                         </span>
                       </a>
@@ -535,7 +535,7 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
-                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                       >
                         <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
@@ -553,7 +553,7 @@ const Index = () => {
                             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
                           whatsapp.com/channel/utopia
                         </span>
                       </a>
@@ -564,7 +564,7 @@ const Index = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
-                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', width: '100%', textAlign: 'left' }}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                       >
                         <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <svg
@@ -583,7 +583,7 @@ const Index = () => {
                             <polyline points="22,6 12,13 2,6"></polyline>
                           </svg>
                         </span>
-                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide" style={{ flex: 1, wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
                           utopiaculturalfestmckvie@gmail.com
                         </span>
                       </a>
