@@ -9,6 +9,7 @@ import {
 
 import heroClassical from "@/assets/hero-classical.jpg";
 import heroNeon from "@/assets/hero-neon.jpg";
+import grainImage from "@/assets/grain.jpg";
 
 import Artist from "../components/Artist";
 import Homecontact from "../components/Homecontact";
@@ -381,21 +382,21 @@ const Index = () => {
         </div>
 
         <div className="w-full z-0">
-          <footer className="bg-[#423f3d] text-background relative overflow-hidden flex flex-col justify-end">
-            <div className="absolute inset-0 flex items-center justify-center opacity-[0.4] pointer-events-none">
+          <footer className="bg-[#423f3d] text-background relative overflow-hidden flex flex-col justify-end min-h-full">
+            <div className="absolute inset-0 flex items-center justify-center opacity-[0.4] pointer-events-none z-0">
               <img
                 alt="Decorative bg"
                 loading="lazy"
                 decoding="async"
-                className="object-cover hidden md:block w-full h-full"
-                src={heroClassical}
+                className="object-cover hidden md:block w-full h-full min-h-full"
+                src={grainImage}
               />
               <img
                 alt="Decorative bg"
                 loading="lazy"
                 decoding="async"
-                className="object-cover w-full h-full md:hidden"
-                src={heroClassical}
+                className="object-cover w-full h-full min-h-full md:hidden"
+                src={grainImage}
               />
             </div>
 
@@ -411,25 +412,24 @@ const Index = () => {
                       </div>
                     </div>
                   </Link>
-                  <p className="text-background/60 leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base">
-                    The annual techno-management cultural fest. Evolution of
-                    Bengali Culture.
+                  <p className="text-white leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base">
+                    UTOPIA 2K26 is the annual cultural fest of MCKV Institute of Engineering, celebrating the fusion of technology, creativity, and the vibrant spirit of Indian culture through competitions, performances, and collaborative experiences.
                   </p>
                   <div className="mt-8 pt-8 border-t border-white/10">
-                    <p className="text-[10px] text-background/40 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em]">
+                    <p className="text-[10px] text-white/80 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em]">
                       © 2026 Utopia. All rights reserved.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-span-1">
-                  <h4 className="text-primary font-bold mb-6 text-sm uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+                  <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                     Explore
                   </h4>
                   <ul className="space-y-3">
                     <li>
                       <a
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         href="#about"
                       >
                         About
@@ -437,7 +437,7 @@ const Index = () => {
                     </li>
                     <li>
                       <a
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         href="#featured-artists"
                       >
                         Artists
@@ -445,7 +445,7 @@ const Index = () => {
                     </li>
                     <li>
                       <a
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         href="#sponsors"
                       >
                         Sponsors
@@ -453,7 +453,7 @@ const Index = () => {
                     </li>
                     <li>
                       <a
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         href="#contact"
                       >
                         Contact
@@ -463,13 +463,13 @@ const Index = () => {
                 </div>
 
                 <div className="col-span-1">
-                  <h4 className="text-primary font-bold mb-6 text-sm uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+                  <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                     Participate
                   </h4>
                   <ul className="space-y-3">
                     <li>
                       <Link
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         to="/events"
                       >
                         Buy Tickets
@@ -477,7 +477,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        className="text-lg md:text-2xl text-background/70 hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                        className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
                         to="/events"
                       >
                         Register Team
@@ -487,87 +487,102 @@ const Index = () => {
                 </div>
 
                 <div className="col-span-2 lg:col-span-1">
-                  <h4 className="text-primary font-bold mb-6 text-sm uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+                  <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                     Connect
                   </h4>
-                  <ul className="flex flex-wrap gap-4">
+                  <ul className="space-y-3 md:space-y-4">
                     <li>
                       <a
-                        href="#"
+                        href="https://www.instagram.com/utopia.mckvie?igsh=MTExNWdhdWY3ZzExMg=="
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-background/5 text-background/70 transition-all duration-300 group"
+                        className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="w-5 h-5 group-hover:scale-110 transition-transform"
-                        >
-                          <rect
-                            width="20"
-                            height="20"
-                            x="2"
-                            y="2"
-                            rx="5"
-                            ry="5"
-                          ></rect>
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                        </svg>
+                        <span className="footer-connect-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="w-5 h-5"
+                          >
+                            <rect
+                              width="20"
+                              height="20"
+                              x="2"
+                              y="2"
+                              rx="5"
+                              ry="5"
+                            ></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                          </svg>
+                        </span>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                          instagram.com/utopia.mckvie
+                        </span>
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="https://whatsapp.com/channel/0029Vb1611T8fewpIkWGQs0Z"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-background/5 text-background/70 transition-all duration-300 group"
+                        className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="w-5 h-5 group-hover:scale-110 transition-transform"
-                        >
-                          <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
-                          <path d="m10 15 5-3-5-3z"></path>
-                        </svg>
+                        <span className="footer-connect-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="w-5 h-5"
+                          >
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                          </svg>
+                        </span>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                          whatsapp.com/channel/utopia
+                        </span>
                       </a>
                     </li>
                     <li>
                       <a
-                        href="#"
+                        href="mailto:utopiaculturalfestmckvie@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-background/5 text-background/70 transition-all duration-300 group"
+                        className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="w-5 h-5 group-hover:scale-110 transition-transform"
-                        >
-                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
+                        <span className="footer-connect-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="w-5 h-5"
+                          >
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                          </svg>
+                        </span>
+                        <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                          utopiaculturalfestmckvie@gmail.com
+                        </span>
                       </a>
                     </li>
                   </ul>
