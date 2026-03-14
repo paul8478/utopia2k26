@@ -10,14 +10,14 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import EventHub from "./pages/EventHub";
-import About from "./pages/About";
+import About from "./pages/aboututopiapage";
 import Gallery from "./pages/Gallery";
 import Day1 from "./pages/Day1";
 import Day2 from "./pages/Day2";
 import Schedule from "./pages/Schedule";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import AboutUtopiaPage from "./pages/aboutpages/aboututopiapage";
+import AboutUtopiaPage from "./pages/aboututopiapage";;
 
 // FIXED: Capitalized the component name
 import Teams from "./pages/Teams"; 
