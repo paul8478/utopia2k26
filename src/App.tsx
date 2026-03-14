@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
+import Footer from "@/components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="/aboututopia" element={<AboutUtopia />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

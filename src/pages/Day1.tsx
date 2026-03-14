@@ -22,6 +22,9 @@ const Day1 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  
+  // 1. ADDED REF FOR THE TITLE
+  const titleRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const container = containerRef.current;
@@ -31,7 +34,7 @@ const Day1 = () => {
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    // --- 1. CANVAS VIDEO SETUP ---
+    // --- CANVAS VIDEO SETUP (Desktop Only) ---
     const frameCount = 300; 
     const currentFrame = (index: number) => 
       `/frames/ezgif-frame-${String(index + 1).padStart(3, '0')}.jpg`;
@@ -82,7 +85,7 @@ const Day1 = () => {
     resizeCanvas(); 
     images[0].onload = () => renderFrame(0);
 
-    // --- 2. MASTER TIMELINES ---
+    // --- MASTER TIMELINES ---
     
     // Background Video Scrubbing
     gsap.to(sequence, {
@@ -99,65 +102,40 @@ const Day1 = () => {
       },
     });
 
-    // Custom Card Choreography
-    cardsRef.current.forEach((card, index) => {
-      if (!card) return;
-      const content = card.querySelector('.card-content');
-
-      // Restored the 60% to 40% unpinned trigger for fluid movement
-      const tl = gsap.timeline({
+    // 2. ANIMATE TITLE FADING OUT ON SCROLL
+    if (titleRef.current) {
+      gsap.to(titleRef.current, {
+        opacity: 0,
+        y: -100, // Floats upward slightly as it fades
         scrollTrigger: {
-          trigger: card,
-          start: "top 60%",  
-          end: "bottom 40%", 
+          trigger: container,
+          start: "top top",
+          end: "50vh top", // Fades out completely after scrolling half a screen down
           scrub: true,
         }
       });
+    }
 
-      switch(index) {
-        case 0:
-          tl.fromTo(content, { x: "100vw", y: 0, opacity: 0 }, { x: "0", y: 0, opacity: 1, duration: 1 })
-            .to(content, { x: "0", opacity: 1, duration: 1.5 })
-            .to(content, { x: "-100vw", opacity: 0, duration: 1 });
-          break;
-          
-        case 1:
-          tl.fromTo(content, { x: "-25vw", y: "40vh", opacity: 0 }, { x: "-25vw", y: "25vh", opacity: 1, duration: 1 })
-            .to(content, { x: "-25vw", y: "25vh", opacity: 1, duration: 1.5 })
-            .to(content, { x: "-25vw", y: "40vh", opacity: 0, duration: 1 });
-          break;
+    // Custom Card Choreography
+    cardsRef.current.forEach((card) => {
+      if (!card) return;
+      const content = card.querySelector('.card-content');
 
-        case 2:
-          tl.fromTo(content, { x: "25vw", y: "-40vh", opacity: 0 }, { x: "25vw", y: "-25vh", opacity: 1, duration: 1 })
-            .to(content, { x: "25vw", y: "-25vh", opacity: 1, duration: 1.5 })
-            .to(content, { x: "25vw", y: "-40vh", opacity: 0, duration: 1 });
-          break;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 70%",  
+          end: "bottom 30%", 
+          scrub: 1,         
+        }
+      });
 
-        case 3:
-          gsap.set(content, { transformPerspective: 1000, transformOrigin: "bottom center" });
-          tl.fromTo(content, 
-              { rotationX: -90, y: "35vh", x: "0", opacity: 0 }, 
-              { rotationX: 0, y: "25vh", x: "0", opacity: 1, duration: 1, ease: "back.out(1.5)" }
-            )
-            .to(content, { rotationX: 0, y: "25vh", opacity: 1, duration: 1.5 })
-            .to(content, { rotationX: 90, y: "35vh", opacity: 0, duration: 1, ease: "power2.in" });
-          break;
-
-        case 4:
-          tl.fromTo(content, { x: "-50vw", y: "0", opacity: 0 }, { x: "-35vw", y: "0", opacity: 1, duration: 1 })
-            .to(content, { x: "-35vw", y: "0", opacity: 1, duration: 1.5 })
-            .to(content, { x: "-50vw", y: "0", opacity: 0, duration: 1 });
-          break;
-
-        case 5:
-          tl.fromTo(content, { x: "0", y: "0", scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 })
-            .to(content, { scale: 1, opacity: 1, duration: 1.5 })
-            .to(content, { scale: 1.2, opacity: 0, duration: 1 });
-          break;
-
-        default:
-          break;
-      }
+      tl.fromTo(content, 
+          { y: "50vh", opacity: 0 }, 
+          { y: "0", opacity: 1, duration: 1, ease: "power2.out" }
+        )
+        .to(content, { y: "0", opacity: 1, duration: 1 }) 
+        .to(content, { y: "-50vh", opacity: 0, duration: 1, ease: "power2.in" });
     });
 
     return () => {
@@ -166,58 +144,88 @@ const Day1 = () => {
   }, { scope: containerRef });
 
   return (
-    // Hardcoded pure black background instead of bg-background
     <div ref={containerRef} className="relative bg-black text-white w-full overflow-hidden">
       
-      {/* Restored Crisp Canvas (No mix-blend-screen, full opacity) */}
+      {/* BACKGROUND LAYER */}
       <div className="fixed inset-0 z-0 pointer-events-none">
+        
+        {/* MOBILE: Static Background Image */}
+        <div 
+          className="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('/day1mobilebg.jpg')` }}
+        />
+
+        {/* DESKTOP: Interactive Video Scrub Canvas */}
         <canvas 
           ref={canvasRef} 
-          className="opacity-100 w-full h-full object-cover" 
+          className="hidden md:block opacity-100 w-full h-full object-cover" 
         />
+        
       </div>
 
-      <div className="fixed top-8 left-8 md:top-12 md:left-12 z-50 pointer-events-none">
-        <h1 className="text-[12vw] md:text-[6vw] font-serif font-black leading-none tracking-tighter text-white mix-blend-difference">
+      {/* 3. CENTERED, FADING TITLE */}
+      <div 
+        ref={titleRef} 
+        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none flex flex-col items-center justify-center text-center w-full px-4"
+      >
+        <h1 className="text-[20vw] md:text-[10vw] font-serif font-black leading-none tracking-tighter text-white mix-blend-difference drop-shadow-2xl">
           DAY 1
         </h1>
-        <p className="text-xl md:text-2xl font-serif italic ml-2 mt-2 text-gold mix-blend-difference">Roots & Rhythm</p>
+        <p className="text-2xl md:text-4xl font-serif italic mt-2 text-gold mix-blend-difference drop-shadow-lg">
+          Roots & Rhythm
+        </p>
       </div>
 
       <div className="relative z-10 w-full flex flex-col items-center">
         
+        {/* Adjusted initial spacer so the first card comes up right after the title fades */}
         <div className="h-[100vh] w-full"></div>
-
-        {/* Restored 300vh wrappers for unpinned, smooth scrubbing */}
+        
+        {/* 4. RESPONSIVE HEIGHT WRAPPERS 
+            Mobile: 120vh (Faster scrolling)
+            Desktop: 300vh (Slow, cinematic video scrubbing)
+        */}
         {artists.map((artist, index) => (
           <div 
             key={index}
-            className="h-[300vh] w-full flex items-center justify-center px-6 overflow-hidden"
+            className="h-[50vh] md:h-[300vh] w-full flex items-center justify-center px-6 overflow-hidden"
             ref={(el) => (cardsRef.current[index] = el)}
           >
-            <div className="card-content w-full max-w-lg flex flex-col items-center text-center will-change-transform">
-               {/* Restored Dark Glassmorphism UI */}
-               <div className="bg-white/5 backdrop-blur-xl p-10 md:p-14 border border-white/10 shadow-[-20px_0_50px_rgb(0,0,0,0.5)] flex flex-col items-center w-full rounded-sm">
-                  <img 
-                    src={artist.image} 
-                    alt={artist.name} 
-                    className="w-32 h-32 rounded-full object-cover mb-8 filter grayscale opacity-80" 
-                  />
-                  <span className="text-xs font-sans tracking-[0.4em] uppercase mb-4 text-white/50">
+            <div className="card-content w-full max-w-3xl flex flex-col items-center text-center will-change-transform">
+               
+               {/* --- BRIGHT FROSTED GLASSMORPHISM UI --- */}
+               <div className="bg-white/20 backdrop-blur-2xl px-6 py-16 md:p-14 border border-white/50 shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center w-full rounded-2xl min-h-[55vh] md:min-h-fit"> 
+                  
+                  {/* Glowing Theme Ring around the Image */}                  
+                  <div className="p-1 rounded-full bg-gradient-to-tr from-[#ff6b35] to-white/50 mb-6 md:mb-8 shadow-xl">
+                    <img 
+                      src={artist.image} 
+                      alt={artist.name} 
+                      className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-white" 
+                    />
+                  </div>
+                  
+                  {/* Themed Accent Color for Time */}
+                  <span className="text-[10px] md:text-xs font-sans font-bold tracking-[0.4em] uppercase mb-3 md:mb-4 text-[#ff6b35] drop-shadow-sm">
                     {artist.time}
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-serif font-bold mb-3 tracking-tight text-white">
+                  
+                  {/* High Contrast Dark Text for Name */}
+                  <h2 className="text-2xl md:text-4xl font-serif font-black mb-2 md:mb-3 tracking-tight text-[#0a0a0a]">
                     {artist.name}
                   </h2>
-                  <p className="text-lg font-sans text-gold/80 italic">
+                  
+                  {/* Elegant Dark Subtitle */}
+                  <p className="text-base md:text-lg font-sans text-[#0a0a0a]/80 font-medium italic">
                     {artist.role}
                   </p>
                </div>
+
             </div>
           </div>
         ))}
 
-        <div className="h-[100vh] w-full"></div>
+        <div className="h-[50vh] md:h-[100vh] w-full"></div>
         
       </div>
     </div>

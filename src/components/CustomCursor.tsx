@@ -24,23 +24,27 @@ const CustomCursor = () => {
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
 
-    const handleHoverStart = () => setIsHovering(true);
-    const handleHoverEnd = () => setIsHovering(false);
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target?.closest && target.closest("a, button, [role='button'], input, textarea, select, .magnetic-btn")) {
+        setIsHovering(true);
+      }
+    };
 
-    const interactiveElements = document.querySelectorAll(
-      "a, button, [role='button'], input, textarea, select, .magnetic-btn"
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleHoverStart);
-      el.addEventListener("mouseleave", handleHoverEnd);
-    });
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target?.closest && target.closest("a, button, [role='button'], input, textarea, select, .magnetic-btn")) {
+        setIsHovering(false);
+      }
+    };
+
+    document.addEventListener("mouseover", handleMouseOver);
+    document.addEventListener("mouseout", handleMouseOut);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleHoverStart);
-        el.removeEventListener("mouseleave", handleHoverEnd);
-      });
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
     };
   }, [handleMouseMove]);
 
