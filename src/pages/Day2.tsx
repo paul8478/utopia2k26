@@ -10,18 +10,34 @@ import gallery5 from "@/assets/gallery-5.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Added descriptions to the data array for the modal
+// Real event data for Day 2 (16th March onwards)
 const artistsDay2 = [
-  // PAGE 1
-  { name: "Priya Venkatesh", role: "Bharatanatyam", time: "6:00 PM", image: gallery1, description: "Experience the grace and precision of traditional Bharatanatyam. Priya Venkatesh brings ancient stories to life through intricate footwork and expressive abhinaya." },
-  { name: "Ravi Shankar Collective", role: "Sitar & Tabla Ensemble", time: "7:00 PM", image: gallery5, description: "A mesmerizing classical fusion of Sitar and Tabla. This ensemble pays tribute to the legends while exploring new improvisational soundscapes." },
-  // PAGE 2
-  { name: "Dhol Foundation", role: "Percussion Ensemble", time: "8:00 PM", image: gallery3, description: "Feel the earth-shattering rhythms of the Dhol. A high-energy percussion performance designed to get your heart racing and feet moving." },
-  { name: "Anoushka Menon", role: "Kathak Fusion", time: "9:00 PM", image: gallery1, description: "Blurring the lines between classical Kathak and contemporary movement. Anoushka Menon delivers a visually stunning and emotionally charged performance." },
-  // PAGE 3
-  { name: "Tala Vādya Ensemble", role: "Classical Orchestra", time: "10:00 PM", image: gallery5, description: "A grand congregation of traditional Indian instruments. The Tala Vādya Ensemble creates a rich, polyrhythmic tapestry of classical melodies." },
-  { name: "Ghungroo Collective", role: "Dance Theater", time: "11:00 PM", image: gallery3, description: "A theatrical dance experience combining storytelling, dramatic lighting, and synchronized Ghungroo footwork to end the night on a high note." },
+  {
+    name: "Rhythm Rumble",
+    role: "Dance Competition — 3rd & 4th Year",
+    time: "12:50 PM – 1:40 PM · 16th March",
+    image: gallery1,
+    registerLink: "https://chat.whatsapp.com/FBqg6KIwnEd3kJxHkPzH8D?mode=gi_t",
+    description: "Feel the rhythm, own the stage! Rhythm Rumble is the ultimate Dance Competition of UTOPIA 2K26 for 3rd & 4th year students. Categories: Solo (max 3 min), Duo (max 5 min), Group (max 6 min). 🏆 Exciting prizes awarded live on stage!\n\nSPOC: Saptami Roy Chowdhury — 8348830666\nContacts: Shevanti Nandi – 6291397376 | Rishita Saha – 6290887016 | Nayna Jha – 8420643348 | Ahona Bose – 9830318312\n\nVenue: C-Block (C-302)",
+  },
+  {
+    name: "Singing Auditions",
+    role: "Vocal Competition — Open to All Years",
+    time: "1:40 PM · 16th March",
+    image: gallery5,
+    registerLink: "https://forms.gle/SmApWu72RwcSMkxNA",
+    description: "Unleash your voice! The Singing Auditions of UTOPIA 2K26 are open to all years. Fill out the registration form and join the WhatsApp group (link shared after registration).\n\nDate: 16th March 2026 · Time: from 1:40 PM\nVenue: C-Block (venue details in participant's group)\n\nContacts: Soham Das – 9038930100 | Subham Mondal – 9330537914\n\n⚠️ Joining the WhatsApp group is mandatory after filling the form.",
+  },
+  {
+    name: "Vogue Vista",
+    role: "Fashion Show Auditions",
+    time: "1:30 PM Onwards · 20th March",
+    image: gallery3,
+    registerLink: "https://forms.gle/4Ng8TrAhzg3KDzs27",
+    description: "Own the ramp. Own the spotlight. UTOPIA 2K26 presents Vogue Vista — the official Fashion Show, a celebration of style, confidence, and attitude.\n\nDate: 20th March 2026 · Time: 1:30 PM Onwards\nVenue: To be informed in the WhatsApp group\n\nRules & Guidelines: https://tinyurl.com/vogue-vista\nWhatsApp Group: https://chat.whatsapp.com/KxXzKWQi3MaDJaosEJFkgX\n\nContacts: Ariyen Sk – 9674566385 | Krittika Choudhuri – 9330803492 | Rishita Saha – 6290887016",
+  },
 ];
+
 
 const Day2 = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -286,9 +302,14 @@ const Day2 = () => {
                 </p>
 
                 <div className="flex w-full gap-2 md:gap-3 justify-center mt-auto">
-                  <button className="flex-1 bg-[#b64a2b] hover:bg-[#8B2635] text-white text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase py-3 md:py-3.5 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
+                  <a
+                    href={artist.registerLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-[#b64a2b] hover:bg-[#8B2635] text-white text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase py-3 md:py-3.5 rounded-sm transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer text-center"
+                  >
                     Register
-                  </button>
+                  </a>
                   {/* ADDED onClick HANDLER HERE */}
                   <button 
                     onClick={() => setSelectedArtist(artist)}
