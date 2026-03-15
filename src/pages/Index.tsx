@@ -12,7 +12,6 @@ import heroNeon from "@/assets/hero-neon.jpg";
 import grainImage from "@/assets/grain.jpg";
 
 import Artist from "../components/Artist";
-import Homecontact from "../components/Homecontact";
 import Culture from "../components/Culture";
 import Sponsor from "../components/Sponsor";
 import EventOverview from "../components/EventOverview";
@@ -23,7 +22,9 @@ import alpona2 from "../assets/alpona2.png";
 import headup from "../assets/headup.png";
 
 const Index = () => {
-  const [showCustomLoader, setShowCustomLoader] = useState(true);
+  const [showCustomLoader, setShowCustomLoader] = useState(() => {
+    return localStorage.getItem("hasVisitedBefore") !== "true";
+  });
 
   const { scrollYProgress } = useScroll();
 
@@ -36,6 +37,7 @@ const Index = () => {
 
   useEffect(() => {
     // The loader stays indefinitely until the user clicks the EXPLORE button.
+    localStorage.setItem("hasVisitedBefore", "true");
   }, []);
 
   return (
@@ -177,7 +179,7 @@ const Index = () => {
 
       {/* Left Decorative Column */}
       <div
-        className="desktop-decorative-column fixed left-0 top-0 h-screen w-[150px] pointer-events-none mix-blend-difference"
+        className="hidden md:block fixed left-0 top-0 h-screen w-[150px] pointer-events-none mix-blend-difference"
         style={{ zIndex: 10 }}
       >
         {/* Element 1: Rotating Semicircle (alpona2.png) */}
@@ -315,6 +317,38 @@ const Index = () => {
           </div>
         </div>
 
+        <div
+          className="relative w-full overflow-hidden flex flex-col md:flex-row items-center justify-center py-12 md:py-32 px-4 sm:px-6 md:px-12 lg:px-16 bg-transparent z-20 max-w-7xl mx-auto"
+        >
+          <div className="w-full md:w-[50%] lg:w-[45%] flex flex-col justify-center items-center text-center relative z-10 order-2 md:order-1 mt-12 md:mt-0">
+            {/* Small decorative accent */}
+            <div className="w-12 h-[3px] bg-[#B7410E] mb-8 opacity-80" />
+
+            <p className="text-base sm:text-xl lg:text-[1.75rem] font-serif text-[#3b2a1f] leading-[1.6] sm:leading-[1.8] drop-shadow-sm font-medium tracking-wide">
+              <span className="text-[#B7410E] font-bold">UTOPIA-2K26</span> marked an unforgettable celebration of talent and culture. From mesmerizing Octet performances to the electrifying
+              <span className="text-[#8B2635] italic font-semibold"> 'Flight of feet' </span> dance competitions and the glamorous
+              <span className="text-[#8B2635] italic font-semibold"> 'Style Symphony' </span> fashion show, the event showcased the best of our creative spirit.
+            </p>
+            {/* Small decorative dot */}
+            <div className="w-12 h-[3px] mt-6 bg-[#B7410E] mb-8 opacity-80" />
+          </div>
+
+          <div className="w-full md:w-[50%] lg:w-[55%] flex justify-center items-center relative z-10 order-1 md:order-2">
+            <div className="relative group w-full max-w-[220px] sm:max-w-[280px] md:max-w-sm lg:max-w-md">
+              {/* Subtle outer glow that pulses gently */}
+              <div className="absolute inset-0 bg-[#B7410E]/5 rounded-full blur-3xl transform scale-[1.15] group-hover:scale-[1.25] group-hover:bg-[#B7410E]/15 transition-all duration-1000 ease-in-out" />
+
+              {/* The main subject */}
+              <img
+                src={img1}
+                alt="Utopia Cultural Art"
+                className="w-full h-auto object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:-translate-y-2 drop-shadow-2xl"
+                style={{ animation: "floatArtist 6s ease-in-out infinite", filter: "contrast(1.05) brightness(1.02) saturate(1.1)" }}
+              />
+            </div>
+          </div>
+        </div>
+
         <div hidden>
           <audio loop preload="auto" crossOrigin="anonymous"></audio>
           <audio loop preload="auto" crossOrigin="anonymous"></audio>
@@ -329,40 +363,28 @@ const Index = () => {
         <div
           style={{ minHeight: "200px" }}
           className="md:min-h-[400px]"
-          id="about"
-          data-section-id="about"
+          id="featured-artists"
+          data-section-id="featured-artists"
         >
-          <Culture />
+          {/* Section Divider */}
+          <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
+
+          <Artist />
         </div>
+
+        {/* Section Divider */}
+        <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
+        <EventOverview />
 
         <div
           style={{ minHeight: "200px" }}
           className="md:min-h-[400px]"
-          id="featured-artists"
-          data-section-id="featured-artists"
+          id="about"
+          data-section-id="about"
         >
-          <Artist />
-        </div>
-
-        <EventOverview />
-
-        <div className="ab flex flex-col md:flex-row my-20">
-          <div className="ab1 w-full md:w-1/2 p-10 flex items-center">
-            <p className="text-2xl font-serif text-muted-foreground leading-relaxed">
-              UTOPIA-2K26 marked an unforgettable celebration of talent and
-              culture. From mesmerizing Octet performances to the electrifying
-              'Flight of feet' dance competitions and the glamorous 'Style
-              Symphony' fashion show, the event showcased the best of our
-              creative spirit.
-            </p>
-          </div>
-          <div className="ab2 w-full md:w-1/2 flex justify-center items-center">
-            <img
-              src={img1}
-              alt="example"
-              className="w-full max-w-md object-contain"
-            />
-          </div>
+          {/* Section Divider */}
+          <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
+          <Culture />
         </div>
 
         <div
@@ -371,14 +393,9 @@ const Index = () => {
           id="sponsors"
           data-section-id="sponsors"
         >
+          {/* Section Divider */}
+          <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
           <Sponsor />
-        </div>
-        <div
-          className="w-full px-4 md:px-8 mb-20 flex justify-center"
-          id="contact"
-          data-section-id="contact"
-        >
-          <Homecontact />
         </div>
 
       </main>

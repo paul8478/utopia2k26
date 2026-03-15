@@ -2,7 +2,7 @@ import React from "react";
 import ScrollReveal from "./ScrollReveal";
 
 import sponsor1 from "../assets/gdgc.png";
-import sponsor2 from "../assets/mckv.png"; 
+import sponsor2 from "../assets/mckv.png";
 
 const Sponsor = () => {
   const sponsors = [
@@ -15,6 +15,9 @@ const Sponsor = () => {
     sponsor2,
     sponsor1,
   ];
+
+  // Double the sponsors array for seamless looping
+  const allSponsors = [...sponsors, ...sponsors];
 
   return (
     <div>
@@ -30,17 +33,31 @@ const Sponsor = () => {
         </div>
       </section>
 
-      {/* SPONSOR LOGOS */}
-      <section className="relative overflow-hidden bg-transparent flex items-baseline justify-center mt-[30px] px-4 pb-20">
-        <div className="relative z-10 text-center w-auto grid grid-cols-2 lg:grid-cols-[repeat(4,170px)] gap-10 lg:gap-[80px] justify-center items-center py-[14px]">
-          {sponsors.map((sponsor, index) => (
+      {/* SPONSOR LOGOS — Infinite seamless marquee */}
+      <section className="relative overflow-hidden bg-transparent mt-[30px] pb-20 w-full">
+        <div className="flex animate-marquee py-[14px] [animation-duration:20s] md:[animation-duration:35s]">
+          {allSponsors.map((sponsor, index) => (
             <div
               key={index}
-              className="h-[150px] w-[150px] lg:h-[170px] lg:w-[170px] bg-white border border-black/65 rounded-[20px] flex justify-center items-center transition-all duration-300 hover:-translate-y-[10px] hover:scale-105 hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)] mx-auto"
+              className="shrink-0 h-[150px] w-[150px] lg:h-[170px] lg:w-[170px] bg-white border border-black/65 rounded-[20px] flex justify-center items-center transition-transform duration-300 hover:-translate-y-[10px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)] cursor-pointer mx-5 lg:mx-10"
             >
               <img
                 src={sponsor}
-                alt={`Sponsor ${index + 1}`}
+                alt={`Sponsor ${(index % sponsors.length) + 1}`}
+                className="w-[80%] h-auto rounded-[20px]"
+              />
+            </div>
+          ))}
+          {/* Third copy to guarantee no gap on ultra-wide screens */}
+          {allSponsors.map((sponsor, index) => (
+            <div
+              key={`extra-${index}`}
+              aria-hidden="true"
+              className="shrink-0 h-[150px] w-[150px] lg:h-[170px] lg:w-[170px] bg-white border border-black/65 rounded-[20px] flex justify-center items-center transition-transform duration-300 hover:-translate-y-[10px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)] cursor-pointer mx-5 lg:mx-10"
+            >
+              <img
+                src={sponsor}
+                alt={`Sponsor ${(index % sponsors.length) + 1}`}
                 className="w-[80%] h-auto rounded-[20px]"
               />
             </div>

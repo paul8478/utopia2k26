@@ -4,7 +4,7 @@ import grainImage from "@/assets/grain.jpg";
 const Footer = () => {
   return (
     <div className="w-full z-[100] relative">
-      <footer className="bg-[#423f3d] text-background relative overflow-hidden flex flex-col justify-end min-h-full">
+      <footer className="bg-[#423f3d]/25 text-background relative overflow-hidden flex flex-col justify-end min-h-full">
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.4] pointer-events-none z-0">
           <img
             alt="Decorative bg"
@@ -28,30 +28,30 @@ const Footer = () => {
               <Link className="inline-block mb-6" to="/">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center">
-                    <span className="text-5xl md:text-7xl font-bold text-primary font-[family-name:var(--font-medieval-sharp)] tracking-wider">
+                    <span className="text-5xl md:text-7xl font-bold text-[#c4521a] font-[family-name:var(--font-medieval-sharp)] tracking-wider" style={{ textShadow: '0 0 20px rgba(196, 82, 26, 0.4), 0 0 40px rgba(196, 82, 26, 0.2)' }}>
                       UTOPIA 2K26
                     </span>
                   </div>
                 </div>
               </Link>
-              <p className="text-white leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base">
+              <p className="text-foreground/90 leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base font-medium">
                 UTOPIA 2K26 is the annual cultural fest of MCKV Institute of Engineering, celebrating the fusion of technology, creativity, and the vibrant spirit of Indian culture through competitions, performances, and collaborative experiences.
               </p>
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <p className="text-[10px] text-white/80 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em]">
+              <div className="mt-8 pt-8 border-t border-foreground/20">
+                <p className="text-[10px] text-foreground/70 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em] font-semibold">
                   © 2026 Utopia. All rights reserved.
                 </p>
               </div>
             </div>
 
             <div className="col-span-1">
-              <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
                 Explore
               </h4>
               <ul className="space-y-3">
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/about"
                   >
                     About
@@ -59,15 +59,15 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
-                    to="/#featured-artists"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    to="/schedule"
                   >
-                    Artists
+                    Schedule
                   </Link>
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/#sponsors"
                   >
                     Sponsors
@@ -75,7 +75,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/contact"
                   >
                     Contact
@@ -85,13 +85,13 @@ const Footer = () => {
             </div>
 
             <div className="col-span-1">
-              <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
                 Participate
               </h4>
               <ul className="space-y-3">
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/events"
                   >
                     Buy Tickets
@@ -99,7 +99,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight"
+                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/events"
                   >
                     Register Team
@@ -109,7 +109,7 @@ const Footer = () => {
             </div>
 
             <div className="col-span-2 lg:col-span-1">
-              <h4 className="text-primary font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
+              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
                 Connect
               </h4>
               <ul className="space-y-3 md:space-y-4">
@@ -118,7 +118,7 @@ const Footer = () => {
                     href="https://www.instagram.com/utopia.mckvie?igsh=MTExNWdhdWY3ZzExMg=="
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -139,7 +139,7 @@ const Footer = () => {
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                       </svg>
                     </span>
-                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide font-semibold">
                       instagram.com/utopia.mckvie
                     </span>
                   </a>
@@ -149,7 +149,7 @@ const Footer = () => {
                     href="https://whatsapp.com/channel/0029Vb1611T8fewpIkWGQs0Z"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -168,7 +168,7 @@ const Footer = () => {
                         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                       </svg>
                     </span>
-                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide font-semibold">
                       whatsapp.com/channel/utopia
                     </span>
                   </a>
@@ -178,7 +178,7 @@ const Footer = () => {
                     href="mailto:utopiaculturalfestmckvie@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -198,7 +198,7 @@ const Footer = () => {
                         <polyline points="22,6 12,13 2,6"></polyline>
                       </svg>
                     </span>
-                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide">
+                    <span className="text-xs md:text-sm font-[family-name:var(--font-open-sans)] tracking-wide font-semibold">
                       utopiaculturalfestmckvie@gmail.com
                     </span>
                   </a>
