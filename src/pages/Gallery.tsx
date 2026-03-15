@@ -1,26 +1,13 @@
 import { motion } from "framer-motion";
 import TiltImage from "@/components/TiltImage";
 
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-
-const images = [
-  { src: gallery1, alt: "Image 1" },
-  { src: gallery2, alt: "Image 2" },
-  { src: gallery3, alt: "Image 3" },
-];
-
-const getSevenImages = () => {
-  const arr = [];
-  for (let i = 0; i < 7; i++) {
-    arr.push(images[i % images.length]);
-  }
-  return arr;
-};
+const images = Array.from({ length: 30 }, (_, i) => ({
+  src: `/gallery/${i + 1}.jpeg`,
+  alt: `Image ${i + 1}`,
+}));
 
 const Gallery = () => {
-  const renderRow = (direction: "left" | "right") => {
+  const renderRow = (direction: "left" | "right", rowImages: typeof images) => {
     const animateX = direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"];
     return (
       <div className="overflow-hidden w-full">
@@ -29,7 +16,7 @@ const Gallery = () => {
           transition={{ duration: 30, ease: "linear", repeat: Infinity }}
           className="flex gap-4 lg:gap-6"
         >
-          {[...getSevenImages(), ...getSevenImages()].map((img, i) => (
+          {[...rowImages, ...rowImages].map((img, i) => (
             <div key={i} className="flex-shrink-0 w-40 h-24 sm:w-52 sm:h-32 md:w-64 md:h-40 lg:w-72 lg:h-44">
               <TiltImage src={img.src} alt={img.alt} className="w-full h-full object-cover rounded-xl" />
             </div>
@@ -62,9 +49,9 @@ const Gallery = () => {
         </section>
 
         <section className="flex flex-col gap-10 sm:gap-12 lg:gap-16 px-4 sm:px-10 lg:px-20 py-16">
-          {renderRow("left")}
-          {renderRow("right")}
-          {renderRow("left")}
+          {renderRow("left", images.slice(0, 10))}
+          {renderRow("right", images.slice(10, 20))}
+          {renderRow("left", images.slice(20, 30))}
         </section>
 
         <section className="py-20 text-center px-4 sm:px-10 lg:px-20">
