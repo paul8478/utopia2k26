@@ -36,7 +36,7 @@ const App = () => {
           <CustomCursor />
           <Navbar />
           <div className="flex min-h-screen flex-col">
-            <main className="flex-1">
+            <main className="flex-1 pt-16 md:pt-0">
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/event" element={<EventHub />} />

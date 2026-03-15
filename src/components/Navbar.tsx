@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
@@ -39,18 +39,34 @@ const Navbar = () => {
 
   // Active link color
   const activeLinkColor = isNeon ? "text-neon-green" : isDark ? "text-white" : "text-primary";
+  const mobileLinkColor = isDark
+    ? "text-white/90 hover:text-white"
+    : isHome
+    ? "text-gray-800 hover:text-primary"
+    : "text-foreground hover:text-primary";
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-[9999] px-6 md:px-12 py-4 flex items-center justify-between backdrop-blur-md border-b ${navBg}`}>
-        <Link to="/" className="font-serif text-2xl md:text-2xl font-bold tracking-wider">
+      <nav className={`fixed top-0 left-0 right-0 z-[9999] px-4 md:px-12 py-3 md:py-4 flex items-center justify-between backdrop-blur-md border-b ${navBg}`}>
+        <Link to="/" className="font-serif text-xl md:text-2xl font-bold tracking-wider">
           <span
             className={isNeon ? "neon-glow-green" : ""}
             style={{ color: isNeon ? "hsl(var(--neon-green))" : isDark ? "#fff" : "hsl(var(--primary))" }}
           >
             UTOPIA
           </span>
-          <span className={`ml-1 font-sans text-sm font-light ${isDark ? "text-white/60" : "text-muted-foreground"}`}>2K26</span>
+          <span className={`ml-1 font-sans text-xs md:text-sm font-light ${isDark ? "text-white/60" : "text-muted-foreground"}`}>2K26</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -71,8 +87,10 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className={`md:hidden ${isDark ? "text-white" : isHome ? "text-gray-800" : "text-foreground"}`}
+          className={`md:hidden h-10 w-10 rounded-md flex items-center justify-center border transition-colors ${isDark ? "text-white border-white/20 bg-black/20" : isHome ? "text-gray-800 border-gray-300/60 bg-white/60" : "text-foreground border-border/50 bg-background/60"}`}
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle mobile menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -85,7 +103,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-20 flex flex-col items-center gap-6"
+            className={`fixed md:hidden inset-x-0 top-[64px] bottom-0 z-[9998] backdrop-blur-xl px-6 pt-6 pb-10 overflow-y-auto flex flex-col items-center gap-5 ${isDark ? "bg-black/92" : isHome ? "bg-white/92" : "bg-background/95"}`}
           >
             {links.map((link, i) => (
               <motion.div
@@ -97,7 +115,7 @@ const Navbar = () => {
                 <Link
                   to={link.to}
                   onClick={() => setMobileOpen(false)}
-                  className="font-serif text-3xl tracking-wide text-foreground hover:text-primary transition-colors"
+                  className={`font-serif text-2xl tracking-wide transition-colors ${location.pathname === link.to ? activeLinkColor : mobileLinkColor}`}
                 >
                   {link.label}
                 </Link>

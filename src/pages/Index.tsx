@@ -358,7 +358,7 @@ const Index = () => {
 
         <div
           style={{ minHeight: "200px" }}
-          className="md:min-h-[400px]"
+          className="mt-8 md:mt-0 md:min-h-[400px]"
           id="featured-artists"
           data-section-id="featured-artists"
         >
@@ -369,12 +369,14 @@ const Index = () => {
         </div>
 
         {/* Section Divider */}
-        <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
-        <EventOverview />
+        <div className="my-8 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
+        <div className="mt-8 md:mt-0">
+          <EventOverview />
+        </div>
 
         <div
           style={{ minHeight: "200px" }}
-          className="md:min-h-[400px]"
+          className="mt-8 md:mt-0 md:min-h-[400px]"
           id="about"
           data-section-id="about"
         >
@@ -385,7 +387,7 @@ const Index = () => {
 
         <div
           style={{ minHeight: "200px" }}
-          className="md:min-h-[400px]"
+          className="mt-8 md:mt-0 md:min-h-[400px]"
           id="sponsors"
           data-section-id="sponsors"
         >

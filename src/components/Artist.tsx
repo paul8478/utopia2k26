@@ -45,7 +45,17 @@ const Artist: React.FC = () => {
 
           {/* RIGHT IMAGE */}
           <div className="about-image relative group flex justify-center items-center">
-            <img src={artist1} alt="Cultural Art" className="relative z-10" />
+            <div className="relative flex justify-center items-center">
+              {/* Mandala Background */}
+              <div className="mandala-orbit">
+                <img 
+                  src="/avatar_mandala.png" 
+                  alt="Mandala Background" 
+                  className="mandala-bg animate-slow-rotate"
+                />
+              </div>
+              <img src={artist1} alt="Cultural Art" className="artist-photo" />
+            </div>
           </div>
 
           {/* LEFT CONTENT */}
@@ -86,7 +96,17 @@ const Artist: React.FC = () => {
 
           {/* RIGHT IMAGE */}
           <div className="about-image relative group flex justify-center items-center">
-            <img src={artist1} alt="Cultural Art" className="relative z-10 w-[80%]" />
+            <div className="relative flex justify-center items-center">
+              {/* Mandala Background */}
+              <div className="mandala-orbit">
+                <img 
+                  src="/avatar_mandala.png" 
+                  alt="Mandala Background" 
+                  className="mandala-bg animate-slow-rotate"
+                />
+              </div>
+              <img src={artist1} alt="Cultural Art" className="artist-photo w-[80%]" />
+            </div>
           </div>
 
         </div>

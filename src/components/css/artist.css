@@ -43,7 +43,7 @@
 }
 
 /* Artist image */
-.about-image img {
+.about-image .artist-photo {
   width: 100%;
   max-width: 600px;
   object-fit: contain;
@@ -58,27 +58,75 @@
     box-shadow 0.5s ease;
 }
 
+.about-image .mandala-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  min-width: 120%;
+  max-width: 120%;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: mandalaBounce 6s ease-in-out infinite; /*bounce speed*/
+  animation-play-state: running;
+  will-change: transform;
+}
+
+.about-image .mandala-bg {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.4;
+  display: block;
+  transform-origin: center center;
+  will-change: transform;
+}
+
 /* Floating animation */
 
 @keyframes floatArtist {
-
   0% {
     transform: translateY(0px);
   }
-
   50% {
     transform: translateY(-40px);
   }
-
   100% {
     transform: translateY(0px);
   }
+}
 
+@keyframes mandalaBounce {
+  0% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-40px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+}
+
+.animate-slow-rotate {
+  animation: rotateMandala 10s linear infinite; /*speed*/
+  animation-play-state: running;
+}
+
+@keyframes rotateMandala {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hover effect */
 
-.about-image img:hover {
+.about-image .artist-photo:hover {
   transform: scale(1.06) rotate(-1deg);
   filter: drop-shadow(0 25px 40px rgba(245, 113, 6, 0.55));
 }
@@ -126,7 +174,7 @@
 
 @media (max-width: 1024px) {
 
-  .about-image img {
+  .about-image .artist-photo {
     max-width: 500px;
   }
 
@@ -144,7 +192,7 @@
     justify-content: center;
   }
 
-  .about-image img {
+  .about-image .artist-photo {
     max-width: 280px;
   }
 
@@ -164,7 +212,7 @@
 }
 
 @media (max-width: 480px) {
-  .about-image img {
+  .about-image .artist-photo {
     max-width: 220px;
   }
 

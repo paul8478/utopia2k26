@@ -35,7 +35,7 @@ const Sponsor = () => {
 
       {/* SPONSOR LOGOS — Infinite seamless marquee */}
       <section className="relative overflow-hidden bg-transparent mt-[30px] pb-20 w-full">
-        <div className="flex animate-marquee py-[14px] [animation-duration:20s] md:[animation-duration:35s]">
+        <div className="flex animate-marquee py-[14px] [animation-duration:8s] md:[animation-duration:5s]">
           {allSponsors.map((sponsor, index) => (
             <div
               key={index}
