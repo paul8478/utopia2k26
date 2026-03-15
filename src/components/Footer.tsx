@@ -3,8 +3,8 @@ import grainImage from "@/assets/grain.jpg";
 
 const Footer = () => {
   return (
-    <div className="w-full z-[100] relative">
-      <footer className="bg-[#423f3d]/25 text-background relative overflow-hidden flex flex-col justify-end min-h-full">
+    <div className="w-full z relative">
+      <footer className="bg-[#423f3d] text-background relative overflow-hidden flex flex-col justify-end min-h-full">
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.4] pointer-events-none z-0">
           <img
             alt="Decorative bg"
