@@ -30,17 +30,27 @@ const Gallery = () => {
   }, []);
 
   const stripeVariants = {
-    initial: { x: 0, opacity: 1 },
+    initial: { 
+      x: 0, 
+      scaleX: 1, 
+      skewX: 0,
+      opacity: 1 
+    },
     exit: (custom: { direction: "left" | "right", index: number }) => ({
-      x: custom.direction === "left" ? "-100vw" : "100vw", 
+      x: custom.direction === "left" ? "-85vw" : "85vw", 
+      scaleX: 0.15, 
+      // Slightly more drag to emphasize the slow, heavy weight
+      skewX: custom.direction === "left" ? 10 : -10, 
       transition: {
-        // 👇 CONTROL 2: SLIDE SPEED 👇
-        duration: 1.8,
-        ease: [0.65, 0, 0.35, 1], 
-        // 👇 CONTROL 3: STAGGER DELAY 👇
+        // 👇 CONTROL 2: SLOWER SPRING PHYSICS 👇
+        type: "spring",
+        stiffness: 20,  // Lower tension = slower pull
+        damping: 16,    // Friction to keep it smooth
+        mass: 4,        // Higher mass makes it feel incredibly heavy
+        // 👇 CONTROL 3: SLOWER STAGGER DELAY 👇
         delay: custom.direction === "left" 
-                ? (5 - custom.index) * 0.1 
-                : custom.index * 0.1,
+                ? (5 - custom.index) * 0.2 
+                : custom.index * 0.2, // Increased from 0.12 to 0.2
       },
     }),
   };
@@ -80,12 +90,10 @@ const Gallery = () => {
                   variants={stripeVariants}
                   initial="initial"
                   exit="exit"
-                  // 🔥 DESIGN: Gradients for 3D folds and inner shadows for depth
-                  className="relative w-[20%] h-full bg-gradient-to-r from-[#3e0a0a] via-[#a31a1a] to-[#3e0a0a] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] border-r border-black/60 last:border-r-0"
+                  style={{ transformOrigin: "top" }} 
+                  className="relative w-[20%] h-full bg-gradient-to-r from-[#3e0a0a] via-[#a31a1a] to-[#3e0a0a] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] border-r border-black/60 last:border-r-0 origin-top"
                 >
-                  {/* 🔥 DESIGN: Gold Fringe at the bottom */}
                   <div className="absolute bottom-0 w-full h-6 sm:h-10 bg-gradient-to-b from-[#f9d976] via-[#e9c450] to-[#b38b22] border-t-2 border-[#5a1010] shadow-[0_-5px_15px_rgba(0,0,0,0.4)]" />
-                  {/* Subtle velvet highlight */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent mix-blend-overlay" />
                 </motion.div>
               ))}
@@ -100,12 +108,10 @@ const Gallery = () => {
                   variants={stripeVariants}
                   initial="initial"
                   exit="exit"
-                  // 🔥 DESIGN: Gradients for 3D folds and inner shadows for depth
-                  className="relative w-[20%] h-full bg-gradient-to-r from-[#3e0a0a] via-[#a31a1a] to-[#3e0a0a] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] border-l border-black/60 first:border-l-0"
+                  style={{ transformOrigin: "top" }}
+                  className="relative w-[20%] h-full bg-gradient-to-r from-[#3e0a0a] via-[#a31a1a] to-[#3e0a0a] shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] border-l border-black/60 first:border-l-0 origin-top"
                 >
-                  {/* 🔥 DESIGN: Gold Fringe at the bottom */}
                   <div className="absolute bottom-0 w-full h-6 sm:h-10 bg-gradient-to-b from-[#f9d976] via-[#e9c450] to-[#b38b22] border-t-2 border-[#5a1010] shadow-[0_-5px_15px_rgba(0,0,0,0.4)]" />
-                  {/* Subtle velvet highlight */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent mix-blend-overlay" />
                 </motion.div>
               ))}
@@ -118,8 +124,9 @@ const Gallery = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        // 👇 CONTROL 4: GALLERY FADE-IN 👇
-        transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }} 
+        // 👇 CONTROL 4: DELAYED GALLERY FADE-IN 👇
+        // Increased delay from 0.8 to 1.6 to wait for the slower curtains
+        transition={{ delay: 1.6, duration: 1.5, ease: "easeOut" }} 
         className="pt-24"
       >
         <section className="px-4 sm:px-10 lg:px-20 py-20 text-center">
