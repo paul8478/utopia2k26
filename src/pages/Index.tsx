@@ -7,7 +7,6 @@ import {
   useTransform,
 } from "framer-motion";
 
-import heroClassical from "@/assets/hero-classical.jpg";
 import heroNeon from "@/assets/hero-neon.jpg";
 import grainImage from "@/assets/grain.jpg";
 
@@ -222,18 +221,15 @@ const Index = () => {
           className="preloader-overlay relative w-full min-h-screen bg-[#FFF8F0] flex flex-col items-center justify-center overflow-hidden"
         >
           <div className="absolute inset-0 flex items-center justify-center opacity-[0.9] pointer-events-none">
-            <img
-              alt="Decorative bg"
-              decoding="async"
-              className="object-cover hidden md:block w-full h-full"
-              src={heroClassical}
-            />
-            <img
-              alt="Decorative bg"
-              decoding="async"
-              className="object-cover object-bottom w-full h-full md:hidden"
-              src={heroClassical}
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="object-cover w-full h-full"
+            >
+              <source src="/playback.mp4" type="video/mp4" />
+            </video>
           </div>
           <div className="relative flex flex-col items-center gap-6 z-50">
             <div className="lg:w-[350px] w-[250px] aspect-square mt-[-10vh]">
