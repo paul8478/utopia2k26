@@ -32,6 +32,9 @@ const UtopiaFestival: React.FC = () => {
   const [isExiting, setIsExiting] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [lastSpeed, setLastSpeed] = useState<number>(0.6);
+  const [bgVolume, setBgVolume] = useState<number>(0.5);
+  const [bgMuted, setBgMuted] = useState<boolean>(false);
+  const [showVolume, setShowVolume] = useState<boolean>(false);
 
   // Sweep Refs
   const touchedStrings = useRef<Set<number>>(new Set());
@@ -43,15 +46,22 @@ const UtopiaFestival: React.FC = () => {
   const pathsRef = useRef<(SVGPathElement | null)[]>([]);
   const glowsRef = useRef<(SVGLineElement | null)[]>([]);
   const rubCooldown = useRef<boolean>(false);
+  const hasRevealed = useRef<boolean>(false);
 
   // Audio Refs for MP3s
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
+  const bgMusicRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     // Initialize Audio Objects (Make sure these are in your public folder, or adjust paths)
     audio1Ref.current = new Audio('/sitar1.mp3');
     audio2Ref.current = new Audio('/sitar2.mp3');
+
+    // Background music setup
+    bgMusicRef.current = new Audio('/sitar.mp3');
+    bgMusicRef.current.loop = true;
+    bgMusicRef.current.volume = 0.5;
 
     // Unlock audio context silently on first interaction to bypass browser autoplay policies
     const unlockAudio = () => {
@@ -102,6 +112,13 @@ const UtopiaFestival: React.FC = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // Sync volume/mute to bg music
+  useEffect(() => {
+    if (bgMusicRef.current) {
+      bgMusicRef.current.volume = bgMuted ? 0 : bgVolume;
+    }
+  }, [bgVolume, bgMuted]);
+
   const pluck = (i: number) => {
     const now = performance.now();
     const lastTime = lastPluckTimes.current[i] || 0;
@@ -124,7 +141,7 @@ const UtopiaFestival: React.FC = () => {
     // Always trigger visual vibration on movement
     vibState.current[i] = { amp: 16, phase: Math.random() * 6 };
 
-    if (rubCooldown.current || revealedCount >= EVENTS.length) return;
+    if (hasRevealed.current || revealedCount >= EVENTS.length) return;
 
     // Reset logic: If the user stops rubbing for more than 500ms, reset the sweep progress
     if (now - lastInteractionTime.current > 500) {
@@ -142,24 +159,33 @@ const UtopiaFestival: React.FC = () => {
       const speed = Math.max(0.6, Math.min(1.4, duration / 400));
       setLastSpeed(speed);
       
-      triggerReveal();
+      triggerRevealAll();
       touchedStrings.current.clear();
     }
   };
 
-  const triggerReveal = () => {
-    rubCooldown.current = true;
-    setRevealedCount(prev => prev + 1);
-    
-    // Quick reset to allow the next card to be "rubbed" immediately after the first starts its flight
-    setTimeout(() => { rubCooldown.current = false; }, 400);
+  const triggerRevealAll = () => {
+    hasRevealed.current = true;
 
-    if (revealedCount + 1 === EVENTS.length) {
-      setTimeout(() => {
-        setIsExiting(true);
-        setTimeout(() => setIsExpanded(true), 1200);
-      }, 1800);
+    // Start background music
+    if (bgMusicRef.current) {
+      bgMusicRef.current.play().catch(e => console.warn("BG music blocked", e));
     }
+    setShowVolume(true);
+
+    // Reveal all cards with staggered delays
+    EVENTS.forEach((_, idx) => {
+      setTimeout(() => {
+        setRevealedCount(prev => prev + 1);
+      }, idx * 400);
+    });
+
+    // After all cards have appeared, trigger exit/expand
+    const totalRevealTime = (EVENTS.length - 1) * 400;
+    setTimeout(() => {
+      setIsExiting(true);
+      setTimeout(() => setIsExpanded(true), 1200);
+    }, totalRevealTime + 1800);
   };
 
   return (
@@ -308,6 +334,97 @@ const UtopiaFestival: React.FC = () => {
         .progress-indicator { display: flex; gap: 6px; margin-top: 15px; }
         .dot { width: 5px; height: 5px; border-radius: 50%; background: #d0c0a8; transition: 0.2s; }
         .dot.on { background: #b64a2b; box-shadow: 0 0 8px #b64a2b; transform: scale(1.3); }
+
+        /* Speaker / Volume Control */
+        .volume-control {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          z-index: 200;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+          pointer-events: none;
+        }
+        .volume-control.visible {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+        .volume-btn {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(182, 74, 43, 0.15);
+          backdrop-filter: blur(10px);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s, transform 0.15s;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .volume-btn:hover {
+          background: rgba(182, 74, 43, 0.3);
+          transform: scale(1.08);
+        }
+        .volume-btn:active {
+          transform: scale(0.95);
+        }
+        .volume-slider-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: rgba(245, 239, 230, 0.95);
+          backdrop-filter: blur(10px);
+          border-radius: 24px;
+          padding: 12px 8px;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: opacity 0.3s, max-height 0.3s;
+        }
+        .volume-slider-wrap.open {
+          opacity: 1;
+          max-height: 140px;
+        }
+        .volume-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100px;
+          height: 4px;
+          background: #d0c0a8;
+          border-radius: 2px;
+          outline: none;
+          transform: rotate(-90deg);
+          transform-origin: center;
+          margin: 40px 0;
+        }
+        .volume-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #b64a2b;
+          cursor: pointer;
+          box-shadow: 0 0 6px rgba(182, 74, 43, 0.4);
+        }
+        .volume-slider::-moz-range-thumb {
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #b64a2b;
+          cursor: pointer;
+          border: none;
+          box-shadow: 0 0 6px rgba(182, 74, 43, 0.4);
+        }
       `}</style>
 
       <div className="utopia-body">
@@ -397,6 +514,9 @@ const UtopiaFestival: React.FC = () => {
           </div>
 
           <div id="timeline-panel" className={revealedCount > 0 ? 'show-timeline' : ''}>
+            <div className="md:hidden text-[#b64a2b] font-serif text-4xl font-bold mb-8 text-center drop-shadow-sm">
+              Event Schedule
+            </div>
             {EVENTS.map((ev, i) => (
               <div 
                 key={i} 
@@ -415,6 +535,42 @@ const UtopiaFestival: React.FC = () => {
             <div className={`footer-wrapper ${isExpanded ? 'show' : ''}`}>
               <Footer />
             </div>
+          </div>
+
+          {/* Speaker / Volume Control */}
+          <div className={`volume-control ${showVolume ? 'visible' : ''}`}>
+            <div className={`volume-slider-wrap ${showVolume && !bgMuted ? 'open' : ''}`}>
+              <input
+                type="range"
+                className="volume-slider"
+                min="0"
+                max="1"
+                step="0.01"
+                value={bgVolume}
+                onChange={(e) => setBgVolume(parseFloat(e.target.value))}
+              />
+            </div>
+            <button
+              className="volume-btn"
+              onClick={() => setBgMuted(prev => !prev)}
+              title={bgMuted ? 'Unmute' : 'Mute'}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b64a2b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {bgMuted ? (
+                  <>
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </>
+                ) : (
+                  <>
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  </>
+                )}
+              </svg>
+            </button>
           </div>
         </div>
       </div>
