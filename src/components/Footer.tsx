@@ -22,36 +22,36 @@ const Footer = () => {
           />
         </div>
 
-        <div className="container mx-auto px-6 lg:px-8 lg:pr-16 relative z-10 py-12 md:py-16">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-12 lg:gap-12">
-            <div className="col-span-2 lg:col-span-2 pt-12 md:pt-0">
-              <Link className="inline-block mb-6" to="/">
+        <div className="container mx-auto px-6 lg:px-8 lg:pr-16 relative z-10 py-8 md:py-10">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-8 lg:gap-8">
+            <div className="col-span-2 lg:col-span-2 pt-6 md:pt-0">
+              <Link className="inline-block mb-4" to="/">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center">
-                    <span className="text-5xl md:text-7xl font-bold text-[#c4521a] font-[family-name:var(--font-medieval-sharp)] tracking-wider" style={{ textShadow: '0 0 20px rgba(196, 82, 26, 0.4), 0 0 40px rgba(196, 82, 26, 0.2)' }}>
+                    <span className="text-5xl md:text-7xl font-bold text-[#c4521a] font-[family-name:var(--font-medieval-sharp)] tracking-wider">
                       UTOPIA 2K26
                     </span>
                   </div>
                 </div>
               </Link>
-              <p className="text-foreground/90 leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base font-medium">
+              <p className="text-white/90 leading-relaxed max-w-sm font-[family-name:var(--font-open-sans)] text-sm md:text-base font-medium text-justify">
                 UTOPIA 2K26 is the annual cultural fest of MCKV Institute of Engineering, celebrating the fusion of technology, creativity, and the vibrant spirit of Indian culture through competitions, performances, and collaborative experiences.
               </p>
-              <div className="mt-8 pt-8 border-t border-foreground/20">
-                <p className="text-[10px] text-foreground/70 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em] font-semibold">
+              <div className="mt-4 pt-4 border-t border-white/20">
+                <p className="text-[10px] text-white/70 font-[family-name:var(--font-roboto-slab)] uppercase tracking-[0.2em] font-semibold">
                   © 2026 Utopia. All rights reserved.
                 </p>
               </div>
             </div>
 
             <div className="col-span-1">
-              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
+              <h4 className="text-[#c4521a] font-bold mb-4 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                 Explore
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/about"
                   >
                     About
@@ -59,7 +59,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/schedule"
                   >
                     Schedule
@@ -67,7 +67,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/#sponsors"
                   >
                     Sponsors
@@ -75,7 +75,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/contact"
                   >
                     Contact
@@ -85,13 +85,13 @@ const Footer = () => {
             </div>
 
             <div className="col-span-1">
-              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
+              <h4 className="text-[#c4521a] font-bold mb-4 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                 Participate
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/events"
                   >
                     Buy Tickets
@@ -99,7 +99,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    className="text-lg md:text-2xl text-foreground hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
+                    className="text-lg md:text-2xl text-white hover:text-primary transition-colors inline-block font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-bold"
                     to="/events"
                   >
                     Register Team
@@ -109,16 +109,16 @@ const Footer = () => {
             </div>
 
             <div className="col-span-2 lg:col-span-1">
-              <h4 className="text-[#c4521a] font-bold mb-6 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]" style={{ textShadow: '0 0 12px rgba(196, 82, 26, 0.35)' }}>
+              <h4 className="text-[#c4521a] font-bold mb-4 text-base md:text-lg uppercase tracking-[0.3em] font-[family-name:var(--font-roboto-slab)]">
                 Connect
               </h4>
-              <ul className="space-y-3 md:space-y-4">
+              <ul className="space-y-2">
                 <li>
                   <a
                     href="https://www.instagram.com/utopia.mckvie?igsh=MTExNWdhdWY3ZzExMg=="
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -149,7 +149,7 @@ const Footer = () => {
                     href="https://whatsapp.com/channel/0029Vb1611T8fewpIkWGQs0Z"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -178,7 +178,7 @@ const Footer = () => {
                     href="mailto:utopiaculturalfestmckvie@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group"
+                    className="flex items-center gap-4 text-white hover:text-primary transition-colors group"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.75rem', textAlign: 'left' }}
                   >
                     <span className="footer-connect-icon" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
