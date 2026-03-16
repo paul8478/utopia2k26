@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   motion,
   AnimatePresence,
@@ -22,6 +22,7 @@ import headup from "../assets/headup.png";
 import ScrollReveal from "../components/ScrollReveal";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [showCustomLoader, setShowCustomLoader] = useState(() => {
     return localStorage.getItem("hasVisitedBefore") !== "true";
   });
@@ -333,7 +334,7 @@ const Index = () => {
 
             <ScrollReveal delay={0.18}>
               <p className="mt-3 md:mt-6 max-w-2xl text-base md:text-lg font-sans text-muted-foreground leading-relaxed text-left">
-                <span className="text-foreground font-semibold">UTOPIA</span> is the annual cultural fest of MCKVIE—a grand showcase of talent and togetherness. From music, dance, and drama to fashion shows, gaming contests, and celebrity performances, it offers a platform for students to explore their creative limits. 
+                <span className="text-foreground font-semibold">UTOPIA</span> is the annual cultural fest of MCKVIE—a grand showcase of talent and togetherness. From music, dance, and drama to fashion shows, gaming contests, and celebrity performances, it offers a platform for students to explore their creative limits.
                 <br /><br />
                 Utopia-2K26 blends culture with innovation, featuring interactive workshops, exhibitions, and food stalls that create an unforgettable, electrifying atmosphere. It marked an unforgettable celebration of talent and culture, from mesmerizing Octet performances to the electrifying
                 <span className="text-primary italic font-semibold"> 'Flight of feet' </span> dance competitions and the glamorous
@@ -341,8 +342,54 @@ const Index = () => {
               </p>
             </ScrollReveal>
 
+            <ScrollReveal delay={0.2}>
+              <div className="mt-8">
+                <button
+                  type="button"
+                  onClick={() => navigate("/about")}
+                  className={[
+                    "group relative inline-flex items-center gap-3",
+                    "px-10 py-4",
+                    "bg-primary text-primary-foreground",
+                    "font-sans text-[11px] font-bold uppercase tracking-[0.25em]",
+                    "rounded-sm overflow-hidden",
+                    "transition-all duration-300",
+                    "hover:shadow-[0_8px_32px_hsl(var(--primary)/0.45)]",
+                    "hover:-translate-y-1",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                  ].join(" ")}
+                >
+                  {/* Animated fill layer */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-[hsl(var(--crimson))] translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
+                  />
+
+                  {/* Label */}
+                  <span className="relative z-10">Read More</span>
+
+                  {/* Arrow icon */}
+                  <svg
+                    aria-hidden="true"
+                    className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </ScrollReveal>
+
             {/* Ornamental divider */}
-            <ScrollReveal delay={0.22}>
+            <ScrollReveal delay={0.25}>
               <div className="mt-6 md:mt-10 flex items-center justify-start gap-4">
                 <div className="h-px w-20 bg-border" />
                 <span className="text-primary text-xs tracking-[0.5em] font-sans uppercase select-none">
@@ -356,7 +403,18 @@ const Index = () => {
           <div className="w-full md:w-[50%] lg:w-[55%] flex justify-center items-center relative z-10 order-1 md:order-2">
             <div className="relative group w-full max-w-[220px] sm:max-w-[280px] md:max-w-sm lg:max-w-md">
               {/* Subtle outer glow that pulses gently */}
-              <div className="absolute inset-0 bg-[#B7410E]/5 rounded-full blur-3xl transform scale-[1.15] group-hover:scale-[1.25] group-hover:bg-[#B7410E]/15 transition-all duration-1000 ease-in-out" />
+              <motion.div
+                animate={{
+                  scale: [0.7, 0.8, 0.6],
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0 bg-[#B7410E]/40 rounded-full blur-3xl transform pointer-events-none"
+              />
 
               {/* The main subject */}
               <img
