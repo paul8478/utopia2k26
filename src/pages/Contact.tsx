@@ -77,16 +77,51 @@ const Contact = () => {
 
   return (
     <>
-      {/* Intro Splash Screen */}
-      <div
-        className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-1000 ${showIntro ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+      <style>
+        {`
+          @keyframes ring-shake {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-12deg); }
+            20%, 40%, 60%, 80% { transform: rotate(12deg); }
+          }
+          .animate-ringing {
+            animation: ring-shake 2s ease-in-out infinite;
+          }
+          @keyframes wave-ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+          }
+          .animate-wave-1 {
+            animation: wave-ripple 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+          }
+          .animate-wave-2 {
+            animation: wave-ripple 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+            animation-delay: 1s;
+          }
+        `}
+      </style>
+
+      {/* Intro Splash Screen Overlay - Adjusted z-index and padding for Navbar */}
+      <div 
+        className={`fixed inset-0 z-40 pt-24 flex flex-col items-center justify-center bg-background transition-opacity duration-500 ease-in-out ${
+          showIntro ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
         <div className="relative flex items-center justify-center w-64 h-64 mb-8">
-          <Smartphone className="w-24 h-24 text-primary animate-pulse" />
+          {/* Ringing Sound Waves (CSS Ripples) */}
+          <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-wave-1"></div>
+          <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-wave-2"></div>
+          
+          {/* The Phone (Lucide Icon + CSS Shake) */}
+          <div className="relative z-10 bg-background rounded-full p-6 shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-border">
+            <Smartphone 
+              className="w-24 h-24 text-primary animate-ringing drop-shadow-lg" 
+              strokeWidth={1.5} 
+            />
+          </div>
         </div>
 
-        <p className="text-primary font-serif text-xl animate-pulse">
+        <p className="text-primary font-serif text-xl md:text-2xl animate-pulse tracking-wide">
           Connecting to Utopia...
         </p>
       </div>
