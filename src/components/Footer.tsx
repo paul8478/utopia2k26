@@ -43,7 +43,7 @@ const Footer = () => {
               <ul className="mt-3 space-y-2 flex flex-col items-start">
                 <li>
                   <Link className={linkClassName} to="/about">
-                    About
+                    About Us
                   </Link>
                 </li>
                 <li>
@@ -53,23 +53,28 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link className={linkClassName} to="/contact">
-                    Contact
+                    Contact Us
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
-              <h4 className={`${headingClassName} mb-2`}>Participate</h4>
+              <h4 className={`${headingClassName} mb-2`}>Discover</h4>
               <ul className="mt-3 space-y-2 flex flex-col items-start">
                 <li>
-                  <Link className={linkClassName} to="/events">
-                    Buy Tickets
+                  <Link className={linkClassName} to="/event">
+                    Events
                   </Link>
                 </li>
                 <li>
-                  <Link className={linkClassName} to="/events">
-                    Register Team
+                  <Link className={linkClassName} to="/teams">
+                    Our Team
+                  </Link>
+                </li>
+                <li>
+                  <Link className={linkClassName} to="/gallery">
+                    Gallery
                   </Link>
                 </li>
               </ul>
