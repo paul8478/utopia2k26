@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
 import {
   motion,
   AnimatePresence,
@@ -23,6 +24,20 @@ import ScrollReveal from "../components/ScrollReveal";
 
 const Index = () => {
   const navigate = useNavigate();
+  const faqs = [
+    {
+      question: "How can I register for MCKVIE Hackathon 2K25?",
+      answer: "You can register through the official event portal.",
+    },
+    {
+      question: "Can I participate across different departments?",
+      answer: "Yes, participation across departments and years is allowed.",
+    },
+    {
+      question: "What is the last day to register?",
+      answer: "The last date for registration is October 9th, 2025.",
+    },
+  ];
   const [showCustomLoader, setShowCustomLoader] = useState(() => {
     return localStorage.getItem("hasVisitedBefore") !== "true";
   });
@@ -465,6 +480,46 @@ const Index = () => {
           {/* Section Divider */}
           <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
           <Culture />
+        </div>
+
+        <div
+          style={{ minHeight: "200px" }}
+          className="mt-8 md:mt-0 md:min-h-[400px]"
+          id="faq"
+          data-section-id="faq"
+        >
+          {/* Section Divider */}
+          <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10 md:mb-16">
+              <ScrollReveal>
+                <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">
+                  FAQ
+                </span>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <h2 className="mt-2 text-4xl md:text-5xl font-serif font-black tracking-tight text-foreground">
+                  Quick <span className="italic text-primary">FAQs</span>
+                </h2>
+              </ScrollReveal>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {faqs.map((faq, index) => (
+                <ScrollReveal key={index} delay={index * 0.1}>
+                  <Card className="p-6 h-full hover:border-primary/50 transition-colors bg-card/50 backdrop-blur-sm">
+                    <h3 className="text-lg font-serif font-semibold mb-3 text-foreground">
+                      {faq.question}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div

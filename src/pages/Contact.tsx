@@ -60,21 +60,6 @@ const Contact = () => {
     },
   ];
 
-  const faqs = [
-    {
-      question: "How can I register for MCKVIE Hackathon 2K25?",
-      answer: "You can register through the official event portal.",
-    },
-    {
-      question: "Can I participate across different departments?",
-      answer: "Yes, participation across departments and years is allowed.",
-    },
-    {
-      question: "What is the last day to register?",
-      answer: "The last date for registration is October 9th, 2025.",
-    },
-  ];
-
   return (
     <>
       <style>
@@ -278,25 +263,6 @@ const Contact = () => {
                       </p>
                     </div>
                   </div>
-                </div>
-              </Card>
-
-              {/* FAQs */}
-              <Card className="p-6">
-                <h3 className="text-lg font-serif mb-4">Quick FAQs</h3>
-
-                <div className="space-y-4">
-                  {faqs.map((faq, index) => (
-                    <div key={index} className="border-b pb-3 last:border-0">
-                      <h4 className="text-sm font-semibold mb-1">
-                        {faq.question}
-                      </h4>
-
-                      <p className="text-xs text-muted-foreground">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  ))}
                 </div>
               </Card>
 
