@@ -21,6 +21,66 @@ const alpona2 = "/assets/alpona2.png";
 const headup = "/assets/headup.png";
 import ScrollReveal from "../components/ScrollReveal";
 
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      className={`w-full border-b border-border/20 last:border-0 transition-all duration-300 rounded-lg ${
+        isOpen ? "bg-primary/5 px-4 md:px-6 shadow-sm border-transparent py-2" : "px-2 hover:bg-white/5 hover:px-4 py-2"
+      }`}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between py-4 text-left focus:outline-none group bg-transparent"
+      >
+        <span 
+          className={`text-lg md:text-xl font-serif font-bold transition-colors duration-300 pr-4 ${
+            isOpen ? "text-primary" : "text-foreground group-hover:text-primary"
+          }`}
+        >
+          {question}
+        </span>
+        <span
+          className={`flex items-center justify-center w-8 h-8 rounded-full border transition-all duration-300 flex-shrink-0 ${
+            isOpen 
+              ? "bg-primary border-primary text-white rotate-180" 
+              : "border-primary/20 text-muted-foreground group-hover:border-primary group-hover:text-primary"
+          }`}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M6 9L12 15L18 9" />
+          </svg>
+        </span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+            className="overflow-hidden"
+          >
+            <p className="pb-4 text-base md:text-lg text-muted-foreground leading-relaxed text-left border-t border-primary/10 pt-4">
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const LogoPieces = () => {
   const pieces = [];
   const gridSize = 5;
@@ -507,17 +567,10 @@ const Index = () => {
               </ScrollReveal>
             </div>
 
-            <div className="flex flex-col gap-8 md:gap-12">
+            <div className="flex flex-col w-full gap-4">
               {faqs.map((faq, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="text-center md:text-left">
-                    <h3 className="text-xl md:text-2xl font-serif font-bold text-foreground mb-3">
-                      {faq.question}
-                    </h3>
-                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
+                  <FAQItem question={faq.question} answer={faq.answer} />
                 </ScrollReveal>
               ))}
             </div>

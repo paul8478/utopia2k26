@@ -16,7 +16,7 @@ const Sponsor = () => {
     sponsor1,
   ];
 
-  // Double the sponsors array for seamless looping
+  // Duplicate for seamless loop
   const allSponsors = [...sponsors, ...sponsors];
 
   return (
@@ -33,35 +33,45 @@ const Sponsor = () => {
         </div>
       </section>
 
-      {/* SPONSOR LOGOS — Infinite seamless marquee */}
+      {/* SPONSORS MARQUEE */}
       <section className="relative overflow-hidden bg-transparent mt-[30px] pb-20 w-full">
         <div className="flex animate-marquee py-[14px] [animation-duration:3s] md:[animation-duration:5s]">
-          {allSponsors.map((sponsor, index) => (
+          
+          {[...allSponsors, ...allSponsors].map((sponsor, index) => (
             <div
               key={index}
-              className="shrink-0 h-[150px] w-[150px] lg:h-[170px] lg:w-[170px] bg-white border border-black/65 rounded-[20px] flex justify-center items-center transition-transform duration-300 hover:-translate-y-[10px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)] cursor-pointer mx-5 lg:mx-10"
+              className="group relative shrink-0 h-[150px] w-[150px] lg:h-[170px] lg:w-[170px]
+            
+              overflow-hidden
+              flex justify-center items-center
+              transition-all duration-300
+              hover:-translate-y-[10px] hover:scale-105
+              hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)]
+              cursor-pointer mx-5 lg:mx-10"
             >
+              
+              {/* Background Image */}
+              <img
+                src="/assets/spback.png"
+                alt="background"
+                className="absolute inset-0 w-full h-full object-cover opacity-70 
+                transition-transform duration-500 group-hover:scale-110"
+              />
+
+              {/* Overlay (glass dark effect) */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition"></div>
+
+              {/* Logo */}
               <img
                 src={sponsor}
                 alt={`Sponsor ${(index % sponsors.length) + 1}`}
-                className="w-[80%] h-auto rounded-[20px]"
+                className="relative z-10 w-[70%] h-auto 
+                transition-all duration-300 
+                group-hover:scale-110"
               />
             </div>
           ))}
-          {/* Third copy to guarantee no gap on ultra-wide screens */}
-          {allSponsors.map((sponsor, index) => (
-            <div
-              key={`extra-${index}`}
-              aria-hidden="true"
-              className="shrink-0 h-[150px] w-[150px] lg:h-[170px] lg:w-[170px] bg-white border border-black/65 rounded-[20px] flex justify-center items-center transition-transform duration-300 hover:-translate-y-[10px] hover:shadow-[0px_15px_30px_rgba(0,0,0,0.15)] cursor-pointer mx-5 lg:mx-10"
-            >
-              <img
-                src={sponsor}
-                alt={`Sponsor ${(index % sponsors.length) + 1}`}
-                className="w-[80%] h-auto rounded-[20px]"
-              />
-            </div>
-          ))}
+
         </div>
       </section>
     </div>
