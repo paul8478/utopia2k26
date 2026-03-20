@@ -62,6 +62,11 @@ const Navbar = () => {
       <nav className={`fixed top-0 left-0 right-0 z-[9999] px-4 md:px-12 py-0 flex items-center justify-between backdrop-blur-md border-b ${navBg}`}>
         <Link to="/" className="flex items-center gap-2 md:gap-3 transition-transform hover:scale-[1.02] active:scale-95 duration-200">
           <img 
+            src="/logo_utopia.png" 
+            alt="Utopia Icon" 
+            className="hidden md:block h-14 w-auto object-contain drop-shadow-sm" 
+          />
+          <img 
             src="/Navbar_Logo.png" 
             alt="Utopia Logo" 
             className="hidden md:block h-16 w-auto object-contain drop-shadow-sm scale-[2.2] origin-left" 
