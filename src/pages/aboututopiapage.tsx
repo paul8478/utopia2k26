@@ -55,7 +55,7 @@ const AboutUtopiaPage = () => {
         
         {/* FULL WIDTH ABOUT IMAGE - Made larger with custom height */}
         <img
-  src="/deb/ABOUT.png"
+  src="/assets/ABOUT.webp"
   alt="About"
   className="block w-full h-[100vh] object-cover drop-shadow-2xl"            
 />

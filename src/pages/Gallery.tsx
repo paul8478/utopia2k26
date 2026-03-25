@@ -71,7 +71,7 @@ const Gallery = () => {
       >
         <section className="px-4 sm:px-10 lg:px-20 py-20 text-center">
           <motion.img
-            src="/deb/Culturex-CLmvyJNH.png"
+            src="/assets/Gallery.webp"
             alt="Gallery"
             className="w-full max-w-6xl mx-auto object-contain drop-shadow-2xl"
             animate={{ y: [0, -12, 0] }}
