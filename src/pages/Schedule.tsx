@@ -38,17 +38,14 @@ const UtopiaFestival: React.FC = () => {
   const [revealedCount, setRevealedCount] = useState<number>(0);
   const [isExiting, setIsExiting] = useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [lastSpeed, setLastSpeed] = useState<number>(0.6);
+  const [lastSpeed, setLastSpeed] = useState<number>(0.5); // Slightly faster default base speed
 
   // Sweep Refs
   const touchedStrings = useRef<Set<number>>(new Set());
-  const sweepStartTime = useRef<number>(0);
-  const lastInteractionTime = useRef<number>(0);
   const lastPluckTimes = useRef<{ [key: number]: number }>({});
 
   const vibState = useRef<{ [key: number]: Vibration }>({});
   const pathsRef = useRef<(SVGPathElement | null)[]>([]);
-  const rubCooldown = useRef<boolean>(false);
   const hasRevealed = useRef<boolean>(false);
 
   // Audio Refs for MP3s
@@ -123,25 +120,12 @@ const UtopiaFestival: React.FC = () => {
     }
 
     vibState.current[i] = { amp: 16, phase: Math.random() * 6 };
+    touchedStrings.current.add(i);
 
     if (hasRevealed.current || revealedCount >= DAY1_EVENTS.length) return;
 
-    if (now - lastInteractionTime.current > 500) {
-      touchedStrings.current.clear();
-      sweepStartTime.current = now;
-    }
-
-    lastInteractionTime.current = now;
-    touchedStrings.current.add(i);
-
-    if (touchedStrings.current.size === 5) {
-      const duration = now - sweepStartTime.current;
-      const speed = Math.max(0.6, Math.min(1.4, duration / 400));
-      setLastSpeed(speed);
-
-      triggerRevealAll();
-      touchedStrings.current.clear();
-    }
+    // Trigger reveal immediately upon any string being touched
+    triggerRevealAll();
   };
 
   const triggerRevealAll = () => {
@@ -150,14 +134,14 @@ const UtopiaFestival: React.FC = () => {
     DAY1_EVENTS.forEach((_, idx) => {
       setTimeout(() => {
         setRevealedCount(prev => prev + 1);
-      }, idx * 400);
+      }, idx * 250); // Sped up from 400ms to 250ms stagger
     });
 
-    const totalRevealTime = (DAY1_EVENTS.length - 1) * 400;
+    const totalRevealTime = (DAY1_EVENTS.length - 1) * 250;
     setTimeout(() => {
       setIsExiting(true);
-      setTimeout(() => setIsExpanded(true), 1200);
-    }, totalRevealTime + 1800);
+      setTimeout(() => setIsExpanded(true), 800);
+    }, totalRevealTime + 1200); // Sped up the expansion sequence slightly
   };
 
   return (
