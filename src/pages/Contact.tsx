@@ -11,6 +11,7 @@ import {
   Phone,
   MessageCircle,
   Smartphone,
+  User,
 } from "lucide-react";
 
 const Contact = () => {
@@ -86,34 +87,29 @@ const Contact = () => {
         `}
       </style>
 
-      {/* Intro Splash Screen Overlay - Adjusted z-index and padding for Navbar */}
-      <div 
+      {/* Intro Splash Screen Overlay */}
+      <div
         className={`fixed inset-0 z-40 pt-24 flex flex-col items-center justify-center bg-background transition-opacity duration-500 ease-in-out ${
           showIntro ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="relative flex items-center justify-center w-64 h-64 mb-8">
-          {/* Ringing Sound Waves (CSS Ripples) */}
           <div className="absolute inset-0 rounded-full border-2 border-primary/40 animate-wave-1"></div>
           <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-wave-2"></div>
-          
-          {/* The Phone (Lucide Icon + CSS Shake) */}
           <div className="relative z-10 bg-background rounded-full p-6 shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-border">
-            <Smartphone 
-              className="w-24 h-24 text-primary animate-ringing drop-shadow-lg" 
-              strokeWidth={1.5} 
+            <Smartphone
+              className="w-24 h-24 text-primary animate-ringing drop-shadow-lg"
+              strokeWidth={1.5}
             />
           </div>
         </div>
-
-        <p className="text-primary font-serif text-xl md:text-2xl animate-pulse tracking-wide">
+        <p className="text-primary font-bold text-xl md:text-2xl animate-pulse tracking-wide">
           Connecting to Utopia...
         </p>
       </div>
 
       {/* Main Page */}
       <div className="min-h-screen bg-background overflow-x-hidden">
-
         {/* HERO IMAGE */}
         <div className="w-full pt-32 pb-10 px-4 sm:px-10 lg:px-20 text-center">
           <img
@@ -124,10 +120,9 @@ const Contact = () => {
         </div>
 
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-5">
-
-          {/* Subtitle */}
+          {/* Subtitle - Updated to match Gallery page bold styling */}
           <div className="text-center mb-16">
-            <p className="mt-3 md:mt-6 max-w-2xl text-base md:text-lg font-sans text-muted-foreground leading-relaxed mx-auto">
+            <p className="mt-3 md:mt-6 max-w-4xl text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold leading-relaxed mx-auto">
               Have questions about Utopia? Reach out to us through any of the
               channels below and our team will get back to you as soon as
               possible.
@@ -135,13 +130,11 @@ const Contact = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
             {/* LEFT SECTION */}
             <div className="lg:col-span-2 space-y-12">
-
               {/* Contact Methods */}
               <section>
-                <h2 className="text-xl md:text-2xl font-serif mb-6">
+                <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-6">
                   Contact Information
                 </h2>
 
@@ -149,31 +142,27 @@ const Contact = () => {
                   {contactMethods.map((method, index) => (
                     <Card
                       key={index}
-                      className="border hover:border-primary transition-all duration-300 hover:shadow-md cursor-pointer p-5"
+                      className="p-6 border border-border bg-card rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-md cursor-pointer flex items-start gap-4"
                       onClick={() =>
                         method.action.startsWith("http")
                           ? window.open(method.action, "_blank")
                           : (window.location.href = method.action)
                       }
                     >
-                      <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 rounded-full border flex items-center justify-center">
-                          <method.icon className="w-5 h-5" />
-                        </div>
+                      <div className="w-10 h-10 shrink-0 rounded-full border border-border bg-background flex items-center justify-center">
+                        <method.icon className="w-5 h-5 text-foreground" />
+                      </div>
 
-                        <div>
-                          <h3 className="text-base font-medium">
-                            {method.label}
-                          </h3>
-
-                          <p className="text-sm text-primary mt-1">
-                            {method.value}
-                          </p>
-
-                          <p className="text-sm text-muted-foreground mt-1">
-                            {method.description}
-                          </p>
-                        </div>
+                      <div>
+                        <h3 className="text-base font-semibold text-foreground">
+                          {method.label}
+                        </h3>
+                        <p className="text-sm font-medium text-primary mt-1">
+                          {method.value}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {method.description}
+                        </p>
                       </div>
                     </Card>
                   ))}
@@ -182,8 +171,10 @@ const Contact = () => {
 
               {/* LOCATION MAP */}
               <section>
-                <h2 className="text-xl md:text-2xl font-serif tracking-tight mb-6">Our Location</h2>
-                <Card className="overflow-hidden border border-border shadow-sm">
+                <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-6">
+                  Our Location
+                </h2>
+                <Card className="overflow-hidden border border-border shadow-sm rounded-xl">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.553086135261!2d88.3482356!3d22.619495000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89d65da7b3775%3A0x30915f7e98f1b0d5!2sMCKV%20Institute%20of%20Engineering!5e1!3m2!1sen!2sin!4v1773599411319!5m2!1sen!2sin"
                     width="100%"
@@ -194,29 +185,33 @@ const Contact = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                     title="MCKVIE Location Map"
                   ></iframe>
-
                 </Card>
-
               </section>
-
             </div>
 
             {/* RIGHT SECTION */}
-            <div className="space-y-6">
-
+            <div className="space-y-8">
               {/* Direct Contact */}
-              <Card className="p-6">
-                <h3 className="text-lg font-serif mb-4">Direct Contact</h3>
-
-                <div className="space-y-3">
+              <section>
+                <h2 className="text-xl font-bold tracking-tight mb-6">
+                  Direct Contact
+                </h2>
+                <Card className="p-6 border border-border shadow-sm rounded-xl space-y-2">
                   {spcontact.map((sp) => (
                     <div
                       key={sp.phone}
-                      className="flex items-center justify-between p-2 hover:bg-muted/60 rounded-lg"
+                      className="flex items-center justify-between p-3 hover:bg-muted/50 rounded-lg border border-transparent hover:border-border transition-all"
                     >
-                      <span className="text-sm font-medium">{sp.name}</span>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <User className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-sm font-semibold text-foreground">
+                          {sp.name}
+                        </span>
+                      </div>
 
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-3 text-muted-foreground">
                         <button
                           onClick={() =>
                             window.open(
@@ -224,50 +219,58 @@ const Contact = () => {
                               "_blank"
                             )
                           }
+                          className="hover:text-primary transition-colors"
                         >
                           <MessageCircle className="w-4 h-4" />
                         </button>
-
-                        <a href={`tel:${sp.phone}`}>
+                        <a
+                          href={`tel:${sp.phone}`}
+                          className="hover:text-primary transition-colors"
+                        >
                           <Phone className="w-4 h-4" />
                         </a>
                       </div>
                     </div>
                   ))}
-                </div>
-              </Card>
+                </Card>
+              </section>
 
               {/* Availability */}
-              <Card className="p-6 text-center space-y-4">
-                <h3 className="text-lg font-serif">Availability</h3>
-
-                <div className="space-y-4 text-sm">
-                  <div className="flex items-center justify-center space-x-3">
-                    <Clock className="w-4 h-4 text-primary" />
-
-                    <div className="text-left">
-                      <p className="font-medium">Response Time</p>
-                      <p className="text-muted-foreground text-xs">
+              <section>
+                <h2 className="text-xl font-bold tracking-tight mb-6">
+                  Availability
+                </h2>
+                <Card className="p-6 border border-border shadow-sm rounded-xl space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-full border border-border bg-background flex items-center justify-center">
+                      <Clock className="w-5 h-5 text-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-foreground">
+                        Response Time
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
                         Within 24 hours
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center space-x-3">
-                    <Users className="w-4 h-4 text-primary" />
-
-                    <div className="text-left">
-                      <p className="font-medium">Support Hours</p>
-                      <p className="text-muted-foreground text-xs">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 shrink-0 rounded-full border border-border bg-background flex items-center justify-center">
+                      <Users className="w-5 h-5 text-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-foreground">
+                        Support Hours
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
                         9 AM - 6 PM IST
                       </p>
                     </div>
                   </div>
-                </div>
-              </Card>
-
+                </Card>
+              </section>
             </div>
-
           </div>
         </div>
       </div>
