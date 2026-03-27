@@ -568,7 +568,7 @@ const Index = () => {
               </ScrollReveal>
               <ScrollReveal>
                 <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">
-                  FAQ
+                  {" "}   
                 </span>
               </ScrollReveal>
               <ScrollReveal delay={0.1}>
