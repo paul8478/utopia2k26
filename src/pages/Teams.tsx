@@ -79,7 +79,7 @@ export default function Teams() {
               </div>
 
               {/* RESPONSIVE GRID */}
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
                 
                 {category.members.map((member, memberIndex) => (
                   <div 
@@ -100,7 +100,7 @@ export default function Teams() {
                     </div>
 
                     {/* 2. THE TEXT DETAILS LAYER */}
-                    <div className="absolute bottom-0 left-0 w-full p-4 md:p-5 opacity-0 translate-y-4 transition-all duration-500 ease-out pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 z-10">
+                    <div className="absolute bottom-0 left-0 w-full p-2 md:p-5 opacity-0 translate-y-4 transition-all duration-500 ease-out pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 z-10">
                       <h3 className="text-sm md:text-base font-bold text-[#0a0a0a] leading-tight mb-1 line-clamp-2">
                         {member.name}
                       </h3>

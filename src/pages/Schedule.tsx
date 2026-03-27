@@ -397,7 +397,7 @@ const UtopiaFestival: React.FC = () => {
           }
           #day1-panel .ev-card,
           #day2-panel .ev-card { 
-            width: 100%; 
+            width: calc(100% - 24px); 
             max-width: 100%;
             background: #ffffff;
             padding: 24px;

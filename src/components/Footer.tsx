@@ -6,7 +6,7 @@ const Footer = () => {
   const linkClassName = "group relative inline-flex items-center text-[1.02rem] md:text-[1.28rem] text-white/90 hover:text-[#ff8800] transition-all duration-300 hover:translate-x-1 font-[family-name:var(--font-medieval-sharp)] uppercase tracking-tight font-semibold after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#c4521a] after:transition-all after:duration-300 hover:after:w-full";
 
   return (
-    <div className="w-full z relative">
+    <div className="w-full relative z-50">
       <footer className="relative overflow-hidden bg-gradient-to-b from-[#3f3a37] via-[#342f2d] to-[#262220] text-background ">
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.4] blur-[0.1px] pointer-events-none z-0">
           <img

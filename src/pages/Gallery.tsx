@@ -90,8 +90,8 @@ const Gallery = () => {
         </section>
 
         {/* Updated Quote Section */}
-        <section className="pt-12 pb-8 text-center w-full px-2 sm:px-10 lg:px-20 overflow-hidden">
-          <p className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-serif italic tracking-widest text-muted-foreground/80 whitespace-nowrap mx-auto">
+        <section className="pt-12 pb-8 text-center w-full px-4 sm:px-10 lg:px-20 overflow-hidden">
+          <p className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-serif italic tracking-widest text-muted-foreground/80 mx-auto">
             "Moments fade, but the stories they create live forever."
           </p>
         </section>

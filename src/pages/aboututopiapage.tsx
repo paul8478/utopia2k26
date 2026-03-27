@@ -62,10 +62,10 @@ const AboutUtopiaPage = () => {
 
         {/* Subtitle */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-[-10] max-w-3xl mx-auto px-6"
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1, delay: 0.5 }}
+           className="-mt-10 max-w-3xl mx-auto px-6"
         >
           <p className="text-xl md:text-3xl text-slate-600 dark:text-slate-400 font-bold leading-relaxed">
             A visual journey through moments, culture, and creativity —
@@ -83,10 +83,10 @@ const AboutUtopiaPage = () => {
       </section>
 
       {/* CONTENT SECTIONS */}
-      <section className="px-6 md:px-20 py-20 space-y-40 pb-32">
+      <section className="px-6 md:px-20 py-12 md:py-20 space-y-20 md:space-y-40 pb-20 md:pb-32">
 
         {/* ROW 1 */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-7">
             <FadeInView direction="left">
               <div className="relative group overflow-hidden rounded-3xl shadow-xl">
@@ -116,7 +116,7 @@ const AboutUtopiaPage = () => {
         </div>
 
         {/* ROW 2 */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-5 order-2 md:order-1">
             <FadeInView direction="left">
               <h2 className="text-sm font-bold tracking-widest text-rose-600 uppercase mb-4">
@@ -143,7 +143,7 @@ const AboutUtopiaPage = () => {
         </div>
 
         {/* ROW 3 */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-center">
           <div className="md:col-span-7">
             <FadeInView direction="left">
               <img

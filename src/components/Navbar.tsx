@@ -114,14 +114,14 @@ const Navbar = () => {
           className="flex items-center gap-2 md:gap-3 transition-transform hover:scale-[1.02] active:scale-95 duration-200"
         >
           <img
-            src="/logo_utopia.png"
+            src="/logo_utopia_cropped.png"
             alt="Utopia Icon"
-            className="hidden md:block h-14 w-auto object-contain drop-shadow-sm"
+            className="h-10 md:h-14 lg:hidden w-auto object-contain drop-shadow-sm"
           />
           <img
             src="/Navbar_Logo.png"
             alt="Utopia Logo"
-            className="hidden md:block h-16 w-auto object-contain drop-shadow-sm scale-[2.2] origin-left"
+            className="hidden lg:block h-16 w-auto object-contain drop-shadow-sm scale-[2.2] origin-left"
           />
         </Link>
 
