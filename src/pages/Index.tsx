@@ -545,16 +545,38 @@ const Index = () => {
           <Sponsor />
         </div>
 
+       
+
         <div
           id="faq"
           data-section-id="faq"
           className="w-full pb-20 md:pb-32"
         >
+
+          
+           
           {/* Section Divider */}
           <div className="my-6 md:my-16 h-px w-full bg-border/50 max-w-7xl mx-auto" />
 
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-10 md:mb-16">
+
+              
+<ScrollReveal delay={0.1}>
+  <div className="mt-2 overflow-hidden whitespace-nowrap">
+    <div className="animate-marquee inline-block">
+      <a
+        href="https://docs.google.com/document/d/1eYDc8X1kOtJ3gQbe3jK1817Zts2p_nzy/edit"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm md:text-base font-serif font-medium tracking-tight text-gray-900 no-underline hover:no-underline"
+      >
+        Interested in production? Contact us. The last date to submit the quotation is 1 PM on 29th March 2026. The quotation will be opened on 30th March 2026.
+      </a>
+    </div>
+  </div>
+</ScrollReveal>
+<br/><br/>
               
               <ScrollReveal>
                 <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">
