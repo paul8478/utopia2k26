@@ -563,7 +563,7 @@ const Index = () => {
               </ScrollReveal>
               <ScrollReveal delay={0.1}>
                 <h2 className="mt-2 text-4xl md:text-5xl font-serif font-black tracking-tight text-foreground">
-                  Quick <span className="italic text-primary">FAQs</span>
+                  Quick <span className="italic text-primary">FAQS</span>
                 </h2>
               </ScrollReveal>
             </div>

@@ -48,7 +48,7 @@ const AboutUtopiaPage = () => {
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [1, 0.96]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.85, 0.9]);
 
   return (
     <div className="min-h-screen bg-[#FAF8F0] dark:bg-slate-950 text-slate-900 dark:text-white overflow-x-hidden">
@@ -59,10 +59,10 @@ const AboutUtopiaPage = () => {
         className="relative flex flex-col items-center text-center w-full"
       >
         <motion.img
-          src="/assets/ABOUT.webp"
+          src="/assets/about.png"
           alt="About"
           style={{ opacity, scale }}
-          className="w-full h-[100vh] object-cover"
+          className="w-full h-[100vh] object-contain"
         />
 
         {/* LOGOS */}
@@ -101,7 +101,7 @@ const AboutUtopiaPage = () => {
                 <img
                   src={logo.src}
                   alt={logo.label}
-                  className="w-[80%] h-[80%] object-contain"
+                  className="w-[100%] h-[100%] object-cover"
                 />
               </div>
 

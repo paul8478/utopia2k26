@@ -107,6 +107,11 @@
   }
 }
 
+/* Override: text-primary elements use the serif display font */
+.text-primary {
+  font-family: cursive;
+}
+
 /* Smooth scrolling container */
 html {
   scroll-behavior: smooth;
