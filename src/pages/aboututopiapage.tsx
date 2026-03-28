@@ -214,7 +214,7 @@ const AboutUtopiaPage = () => {
               </h2>
 
               <h3 className="text-4xl font-bold pb-3">
-                UTOPIA 2025
+                UTOPIA 2K26
               </h3>
 
               <p className="text-lg text-slate-600 dark:text-slate-400 pb-5">

@@ -27,7 +27,7 @@ const Footer = () => {
 
         <div className="container mx-auto px-5 sm:px-7 lg:px-10 relative z-10 pt-8 pb-4 md:pt-16 md:pb-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.45fr_1fr_1fr_1.2fr] gap-4 md:gap-7 lg:gap-10">
-            <div className="pt-6 md:pt-2 lg:-mt-6 flex flex-col items-start text-left lg:items-start lg:text-left">
+            <div className="pt-6 md:pt-2 lg:-mt-6 flex flex-col items-center text-center md:items-start md:text-left lg:items-start lg:text-left">
               <Link className="inline-block mb-4" to="/">
                 <span className="text-4xl md:text-5xl font-bold text-[#ff8800] font-[family-name:var(--font-medieval-sharp)] tracking-wider">
                   UTOPIA 2K26
@@ -38,9 +38,9 @@ const Footer = () => {
               </p>
             </div>
 
-            <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left lg:items-start lg:text-left">
               <h4 className={headingClassName}>Explore</h4>
-              <ul className="mt-3 space-y-2 flex flex-col items-start">
+              <ul className="mt-3 space-y-2 flex flex-col items-center md:items-start">
                 <li>
                   <Link className={linkClassName} to="/about">
                     About Us
@@ -59,9 +59,9 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left lg:items-start lg:text-left">
               <h4 className={`${headingClassName} mb-2`}>Discover</h4>
-              <ul className="mt-3 space-y-2 flex flex-col items-start">
+              <ul className="mt-3 space-y-2 flex flex-col items-center md:items-start">
                 <li>
                   <Link className={linkClassName} to="/event">
                     Events
@@ -80,17 +80,17 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="flex flex-col items-start text-left lg:items-start lg:text-left">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left lg:items-start lg:text-left">
               <h4 className={headingClassName}>Connect</h4>
-              <ul className="mt-3 space-y-2.5 w-full max-w-full">
+              <ul className="mt-3 space-y-2.5 w-full max-w-full flex flex-col items-center md:items-start">
                 <li>
                   <a
                     href="https://www.instagram.com/utopia.mckvie?igsh=MTExNWdhdWY3ZzExMg=="
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex w-full items-center justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
+                      className="group inline-flex w-auto md:w-full flex-col md:flex-row items-center md:items-center justify-center md:justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
                   >
-                    <span className="flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20">
+                      <span className="md:flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20 mb-2 md:mb-0">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -108,7 +108,7 @@ const Footer = () => {
                         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
                       </svg>
                     </span>
-                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold">
+                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold text-center md:text-left">
                       instagram.com/utopia.mckvie
                     </span>
                   </a>
@@ -118,9 +118,9 @@ const Footer = () => {
                     href="https://whatsapp.com/channel/0029Vb1611T8fewpIkWGQs0Z"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex w-full items-center justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
+                    className="group inline-flex w-auto md:w-full flex-col md:flex-row items-center md:items-center justify-center md:justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
                   >
-                    <span className="flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20">
+                      <span className="md:flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20 mb-2 md:mb-0">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -136,7 +136,7 @@ const Footer = () => {
                         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                       </svg>
                     </span>
-                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold">
+                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold text-center md:text-left">
                       whatsapp.com/channel/utopia
                     </span>
                   </a>
@@ -146,9 +146,9 @@ const Footer = () => {
                     href="mailto:utopiaculturalfestmckvie@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex w-full items-center justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
+                    className="group inline-flex w-auto md:w-full flex-col md:flex-row items-center md:items-center justify-center md:justify-start gap-2.5 text-white/90 hover:text-[#c4521a] transition-all duration-300"
                   >
-                    <span className="flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20">
+                    <span className="md:flex-none flex h-8 w-8 items-center justify-center rounded-full bg-white/10 transition-colors duration-300 group-hover:bg-[#c4521a]/20 mb-2 md:mb-0">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -165,7 +165,7 @@ const Footer = () => {
                         <polyline points="22,6 12,13 2,6"></polyline>
                       </svg>
                     </span>
-                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold break-words">
+                    <span className="min-w-0 flex-1 text-[11px] md:text-sm leading-tight font-[family-name:var(--font-open-sans)] tracking-wide font-semibold break-words text-center md:text-left">
                       utopiaculturalfestmckvie@gmail.com
                     </span>
                   </a>

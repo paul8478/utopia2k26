@@ -129,7 +129,7 @@ const Index = () => {
   const navigate = useNavigate();
   const faqs = [
     {
-      question: "How can I register for MCKVIE Hackathon 2K25?",
+      question: "How can I register for MCKVIE Hackathon 2K26?",
       answer: "You can register through the official event portal.",
     },
     {
@@ -555,17 +555,7 @@ const Index = () => {
 
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-10 md:mb-16">
-              <ScrollReveal>
-                <div className="mt-3 text-sm md:text-base font-sans text-muted-foreground opacity-80 blur-[0.7px] select-none transition-opacity duration-300 hover:opacity-90">
-                  Interested in event production or collaboration? Contact us —{" "}
-                  <Link
-                    to="/production"
-                    className="select-auto underline underline-offset-4 text-muted-foreground transition-colors duration-300 hover:text-foreground"
-                  >
-                    click here
-                  </Link>
-                </div>
-              </ScrollReveal>
+              
               <ScrollReveal>
                 <span className="text-[10px] font-sans uppercase tracking-[0.6em] text-primary">
                   {" "}   

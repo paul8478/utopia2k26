@@ -484,6 +484,7 @@
     footer .container {
         position: relative !important;
         padding: 0.1rem 0rem !important;
+        text-align: center !important;
     }
 
     /* Improve footer grid spacing */
@@ -512,9 +513,13 @@
 
     /* Footer section headings */
     footer h4 {
-        margin-bottom: 0.1rem !important;
+        margin-bottom: 0.2rem !important;
         font-weight: 700 !important;
-        letter-spacing: 0.1em !important;
+        letter-spacing: 0.08em !important;
+        font-size: 1.25rem !important; /* Slightly larger on mobile */
+        text-transform: uppercase !important;
+        text-align: center !important;
+        line-height: 1.1 !important;
     }
     
     /* Footer navigation links */
@@ -523,11 +528,21 @@
         display: block !important;
         padding: 0.2rem 0 !important;
         line-height: 1 !important;
+        text-align: center !important;
     }
 
     /* Ensure proper spacing between Explore and Participate sections */
     footer .col-span-1 {
         margin-bottom: 1rem !important;
+    }
+
+    /* Center column content for mobile footer */
+    footer .col-span-1,
+    footer .col-span-2 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* Social icons container */
