@@ -417,39 +417,6 @@
 
 /* ===== SECTION 3: FOOTER LAYOUT FIXES ===== */
 @media (max-width: 768px) {
-    /* ===== MOBILE NAVBAR LOGO FIX ===== */
-    @media (max-width: 768px) {
-        /* Ensure the header container is visible */
-        .styles-module-scss-module__EhpkfW__mobileHeader,
-        .styles-module-scss-module__EhpkfW__header {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            padding: 0 15px !important;
-        }
-    
-        /* Target the logo wrapper */
-        nav .flex.items-center, 
-        [class*="header"] .flex.items-center {
-            display: flex !important;
-        }
-    
-        /* HIDE the first logo (the small circular one) */
-        nav .flex.items-center img:first-child,
-        [class*="header"] .flex.items-center img:first-child {
-            display: none !important;
-        }
-    
-        /* SHOW and format the main Utopia logo */
-        nav .flex.items-center img:last-child,
-        [class*="header"] .flex.items-center img:last-child {
-            display: block !important;
-            height: 45px !important; /* Adjust height to fit your navbar */
-            width: auto !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-        }
-    }
     /* ===== FIX NAVBAR LOGOS FOR MOBILE ===== */
     @media (max-width: 768px) {
         /* Target the mobile header container */
@@ -462,10 +429,14 @@
         }
     
         /* Target the logo container specifically */
-        /* Adjust these class names if your HTML uses different ones for the logo wrapper */
+
         nav .flex.items-center {
             display: flex !important;
             gap: 10px !important; /* Space between the two logos */
+        }
+        /* Targets the Utopia logo specifically to move it down */
+        nav .flex.items-center img:last-child {
+            margin-top: 8px !important;
         }
     
         nav img {
@@ -592,4 +563,5 @@
         margin-top: 0.5rem !important;
         padding-top: 1rem !important;
     }
+    
 }
