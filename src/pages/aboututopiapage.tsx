@@ -59,7 +59,7 @@ const AboutUtopiaPage = () => {
         className="relative flex flex-col items-center text-center w-full"
       >
         <motion.img
-          src="/assets/about.webp"
+          src="/assets/ABOUT.webp"
           alt="About"
           style={{ opacity, scale }}
           className="w-full h-[100vh] object-contain"
