@@ -3,10 +3,60 @@ const artist1 = "/assets/1.png";
 import "../components/css/artist.css";
 import ScrollReveal from "./ScrollReveal";
 
-const Artist: React.FC = () => {
+interface ArtistProps {
+  flag?: 0 | 1;
+}
+
+const Artist: React.FC<ArtistProps> = ({ flag = 1 }) => {
+  const imageStyle = flag === 1 ? { filter: "blur(25px)" } : {};
+
+  const BlurOverlay = () => (
+    <div
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 10,
+        pointerEvents: "none",
+      }}
+    >
+      <span
+        style={{
+          fontSize: "clamp(3rem, 8vw, 6rem)",
+          fontWeight: "900",
+          color: "#ffffff",
+          lineHeight: 1,
+          textShadow: "0 0 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.5)",
+          fontFamily: "serif",
+        }}
+      >
+        ?
+      </span>
+      <span
+        style={{
+          fontSize: "clamp(0.65rem, 2vw, 1rem)",
+          fontWeight: "700",
+          color: "#ffffff",
+          letterSpacing: "0.3em",
+          textTransform: "uppercase",
+          marginTop: "6px",
+          textShadow: "0 0 16px rgba(0,0,0,0.9), 0 0 32px rgba(0,0,0,0.6)",
+          fontFamily: "sans-serif",
+          whiteSpace: "nowrap",
+        }}
+      >
+        Coming Soon !!!
+      </span>
+    </div>
+  );
+
   return (
     <>
-      {/* ── Section Header ───────────────────────────────────────────────── */}
       {/* ── Section Header ───────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-0 mb-6 md:mb-16 mt-6 md:mt-12 text-left">
         <ScrollReveal>
@@ -48,13 +98,21 @@ const Artist: React.FC = () => {
             <div className="relative flex justify-center items-center">
               {/* Mandala Background */}
               <div className="mandala-orbit">
-                <img 
-                  src="/avatar_mandala.png" 
-                  alt="Mandala Background" 
+                <img
+                  src="/avatar_mandala.png"
+                  alt="Mandala Background"
                   className="mandala-bg animate-slow-rotate"
+                  style={imageStyle}
                 />
               </div>
-              <img src={artist1} alt="Cultural Art" className="artist-photo" />
+              <img
+                src={artist1}
+                alt="Cultural Art"
+                className="artist-photo"
+                style={imageStyle}
+              />
+              {/* Overlay shown only when flag === 1 */}
+              {flag === 1 && <BlurOverlay />}
             </div>
           </div>
 
@@ -65,7 +123,7 @@ const Artist: React.FC = () => {
                 <ScrollReveal delay={0.1}>
                   <h2 className="text-[8vw] md:text-[3vw] font-serif leading-[0.95] tracking-[-0.02em]">
                     Our Day 1 Fest's Artist{" "}
-                    <span className="text-primary italic">Arijit Singh</span> in{" "}
+                    {/* <span className="text-primary italic">Arijit Singh</span> in{" "} */}
                     <span className="text-neon-pink italic">Utopia 2026</span>.
                   </h2>
                 </ScrollReveal>
@@ -86,7 +144,7 @@ const Artist: React.FC = () => {
                 <ScrollReveal delay={0.1}>
                   <h2 className="text-[8vw] md:text-[3vw] font-serif leading-[0.95] tracking-[-0.02em]">
                     Our Day 2 Fest's Artist{" "}
-                    <span className="text-primary italic">Arijit Singh</span> in{" "}
+                    {/* <span className="text-primary italic">Arijit Singh</span> in{" "} */}
                     <span className="text-neon-pink italic">Utopia 2026</span>.
                   </h2>
                 </ScrollReveal>
@@ -99,13 +157,21 @@ const Artist: React.FC = () => {
             <div className="relative flex justify-center items-center">
               {/* Mandala Background */}
               <div className="mandala-orbit">
-                <img 
-                  src="/avatar_mandala.png" 
-                  alt="Mandala Background" 
+                <img
+                  src="/avatar_mandala.png"
+                  alt="Mandala Background"
                   className="mandala-bg animate-slow-rotate"
+                  style={imageStyle}
                 />
               </div>
-              <img src={artist1} alt="Cultural Art" className="artist-photo w-[80%]" />
+              <img
+                src={artist1}
+                alt="Cultural Art"
+                className="artist-photo w-[80%]"
+                style={imageStyle}
+              />
+              {/* Overlay shown only when flag === 1 */}
+              {flag === 1 && <BlurOverlay />}
             </div>
           </div>
 
