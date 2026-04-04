@@ -142,12 +142,12 @@ const Index = () => {
   answer: "The entry gate timings will be announced by the organizers. Please arrive early to avoid any inconvenience.",
 },
 {
-  question: "Until what time will the entry gate remain open?",
-  answer: "The entry gate will remain open until the scheduled closing time set by the organizers. Late entry may not be permitted.",
-},
-{
   question: "Can we bring our friends or family members to the event?",
   answer: "Yes, friends and family members are welcome to attend the event. However, please ensure that they also have valid tickets or registrations if required.",
+},
+{
+  question: "When will the event start?",
+  answer: "The event will start as per the scheduled time mentioned on the schedule page. Participants are requested to arrive at least 15–20 minutes early for smooth entry and registration.",
 }
   ];
   const [showCustomLoader, setShowCustomLoader] = useState(() => {
@@ -574,14 +574,27 @@ const Index = () => {
 <ScrollReveal delay={0.1}>
   <div className="mt-2 overflow-hidden whitespace-nowrap">
     <div className="animate-marquee inline-block">
+      
+      {/* First copy */}
+      <a
+        href="https://docs.google.com/document/d/1eYDc8X1kOtJ3gQbe3jK1817Zts2p_nzy/edit"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm md:text-base font-serif font-medium tracking-tight text-gray-900 no-underline hover:no-underline mr-10"
+      >
+        Interested in production? Contact us. The last date to submit the quotation is 1 PM on 29th March 2026. The quotation will be opened on 30th March 2026.
+      </a>
+
+      {/* Second copy (duplicate for smooth loop) */}
       <a
         href="https://docs.google.com/document/d/1eYDc8X1kOtJ3gQbe3jK1817Zts2p_nzy/edit"
         target="_blank"
         rel="noopener noreferrer"
         className="text-sm md:text-base font-serif font-medium tracking-tight text-gray-900 no-underline hover:no-underline"
       >
-        Interested in production? Contact us. The last date to submit the quotation is 1 PM on 29th March 2026. The quotation will be opened on 30th March 2026.
+         Interested in production? Contact us. The last date to submit the quotation is 1 PM on 29th March 2026. The quotation will be opened on 30th March 2026.
       </a>
+
     </div>
   </div>
 </ScrollReveal>

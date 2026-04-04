@@ -87,16 +87,15 @@ const Navbar = () => {
         className={`fixed top-0 left-0 right-0 z-[9999] px-4 sm:px-6 md:px-12 flex items-center justify-between backdrop-blur-md border-b ${navBg}`}
       >
         {/* ✅ FIXED LOGO */}
-        <Link
-          to="/"
-          className="flex items-center gap-1 sm:gap-2 md:gap-5 transition-transform hover:scale-[1.02] active:scale-95 duration-200"
-        >
-          <img
-            src="/nb.png"
-            alt="Utopia Logo"
-            className="h-8 sm:h-10 md:h-12 lg:h-14 p-1.5 sm:p-2 w-auto object-contain drop-shadow-sm transition-all duration-300"
-          />
-        </Link>
+        <div
+  className="flex items-center gap-1 sm:gap-2 md:gap-5 transition-transform hover:scale-[1.02] active:scale-95 duration-200"
+>
+  <img
+    src="/nb.png"
+    alt="Utopia Logo"
+    className="h-8 sm:h-10 md:h-12 lg:h-14 p-1.5 sm:p-2 w-auto object-contain drop-shadow-sm transition-all duration-300"
+  />
+</div>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-1">

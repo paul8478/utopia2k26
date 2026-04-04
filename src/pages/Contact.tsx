@@ -138,7 +138,7 @@ const Contact = () => {
             <div className="space-y-8">
               {/* Direct Contact */}
               <section>
-                <h2 className="text-xl font-bold tracking-tight mb-6">
+                <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-6">
                   Direct Contact
                 </h2>
                 <Card className="p-6 border border-border shadow-sm rounded-xl space-y-2">
@@ -184,10 +184,10 @@ const Contact = () => {
                   ))}
                 </Card>
               </section>
-
+<br/>
               {/* Availability */}
               <section>
-                <h2 className="text-xl font-bold tracking-tight mb-6">
+                <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-6">
                   Availability
                 </h2>
                 <Card className="p-6 border border-border shadow-sm rounded-xl space-y-6">
