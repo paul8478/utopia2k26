@@ -47,7 +47,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className={linkClassName} to="/schedule">
+                  <Link className={linkClassName} to="/coming-soon">
                     Schedule
                   </Link>
                 </li>
