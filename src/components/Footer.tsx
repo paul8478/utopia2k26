@@ -63,12 +63,12 @@ const Footer = () => {
               <h4 className={`${headingClassName} mb-2`}>Discover</h4>
               <ul className="mt-3 space-y-2 flex flex-col items-center md:items-start">
                 <li>
-                  <Link className={linkClassName} to="/event">
+                  <Link className={linkClassName} to="/coming-soon">
                     Events
                   </Link>
                 </li>
                 <li>
-                  <Link className={linkClassName} to="/teams">
+                  <Link className={linkClassName} to="/coming-soon">
                     Our Team
                   </Link>
                 </li>
