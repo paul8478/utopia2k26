@@ -138,7 +138,7 @@ const EventOverview = () => {
         {/* CTA */}
         <ScrollReveal delay={0.32}>
           <div className="mt-10 md:mt-16 flex justify-center">
-            <button
+            {/* <button
               type="button"
               onClick={() => navigate("/event")}
               className="group relative inline-flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground font-sans text-[11px] font-bold uppercase tracking-[0.25em] rounded-sm overflow-hidden transition-all duration-300 hover:shadow-[0_8px_32px_hsl(var(--primary)/0.45)] hover:-translate-y-1"
@@ -159,7 +159,7 @@ const EventOverview = () => {
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
         </ScrollReveal>
       </div>
