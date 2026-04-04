@@ -20,17 +20,9 @@ const Navbar = () => {
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const isNeon = location.pathname === "/day-2";
-  const isHome = location.pathname === "/";
-  const isDark = ["/day-1", "/day-2"].includes(location.pathname);
-
   const navBg = "bg-white border-gray-200/30";
-
   const inactiveLinkColor = "text-black/80 hover:text-black";
-
   const activeLinkColor = "text-black";
-
-  const mobileLinkColor = "text-black/80 hover:text-black";
 
   useEffect(() => {
     const savedMute = localStorage.getItem("isMuted");
@@ -86,18 +78,16 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-[9999] px-4 sm:px-6 md:px-12 flex items-center justify-between backdrop-blur-md border-b ${navBg}`}
       >
-        {/* ✅ FIXED LOGO */}
-        <div
-  className="flex items-center gap-1 sm:gap-2 md:gap-5 transition-transform hover:scale-[1.02] active:scale-95 duration-200"
->
-  <img
-    src="/nb.png"
-    alt="Utopia Logo"
-    className="h-8 sm:h-10 md:h-12 lg:h-14 p-1.5 sm:p-2 w-auto object-contain drop-shadow-sm transition-all duration-300"
-  />
-</div>
+        {/* LOGO */}
+        <div className="flex items-center gap-1 sm:gap-2 md:gap-5 transition-transform hover:scale-[1.02] active:scale-95 duration-200">
+          <img
+            src="/nb.png"
+            alt="Utopia Logo"
+            className="h-8 sm:h-10 md:h-12 lg:h-14 p-1.5 sm:p-2 w-auto object-contain drop-shadow-sm transition-all duration-300"
+          />
+        </div>
 
-        {/* Desktop */}
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-1">
           {links.map((link) => (
             <MagneticButton key={link.to} strength={0.2}>
@@ -124,7 +114,7 @@ const Navbar = () => {
           </MagneticButton>
         </div>
 
-        {/* MOBILE BUTTON */}
+        {/* Mobile Hamburger */}
         <button
           className="md:hidden h-10 w-10 flex items-center justify-center border border-gray-300/60 bg-white/60 text-black rounded-md"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -140,13 +130,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`fixed md:hidden inset-x-0 top-[64px] bottom-0 z-[9998] backdrop-blur-xl px-6 pt-6 pb-10 overflow-y-auto flex flex-col items-center gap-6 ${
-              isDark
-                ? "bg-black/92"
-                : isHome
-                ? "bg-white/92"
-                : "bg-background/95"
-            }`}
+            className="fixed md:hidden inset-x-0 top-[64px] bottom-0 z-[9998] backdrop-blur-xl px-6 pt-6 pb-10 overflow-y-auto flex flex-col items-center gap-6 bg-amber-900/95"
           >
             {links.map((link, i) => (
               <motion.div
@@ -160,14 +144,29 @@ const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className={`font-serif text-xl sm:text-2xl ${
                     location.pathname === link.to
-                      ? activeLinkColor
-                      : mobileLinkColor
+                      ? "text-white"
+                      : "text-white/80 hover:text-white"
                   }`}
                 >
                   {link.label}
                 </Link>
               </motion.div>
             ))}
+
+            {/* Music Toggle Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: links.length * 0.1 }}
+            >
+              <button
+                onClick={toggleMute}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 text-white font-bold uppercase tracking-widest text-sm"
+              >
+                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                {isMuted ? "Unmute Music" : "Mute Music"}
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

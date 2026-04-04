@@ -28,7 +28,7 @@ const Sponsor = () => {
       <section className="py-10 px-10 md:px-20 relative">
         <div className="max-w-6xl mx-auto flex justify-center">
           <ScrollReveal>
-            <h2 className="text-[8vw] md:text-[3vw] font-serif leading-[0.95] tracking-[-0.02em] text-center mb-0">
+            <h2 className="mt-2 text-4xl md:text-5xl font-serif font-black tracking-tight text-foreground">
               Our Esteemed Event
               <span className="text-primary italic"> Sponsors</span>.
             </h2>
