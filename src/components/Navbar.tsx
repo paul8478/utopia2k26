@@ -130,7 +130,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed md:hidden inset-x-0 top-[64px] bottom-0 z-[9998] backdrop-blur-xl px-6 pt-6 pb-10 overflow-y-auto flex flex-col items-center gap-6 bg-amber-900/95"
+            className="fixed md:hidden inset-x-0 top-10 bottom-0 z-[9998] backdrop-blur-xl px-6 pt-6 pb-10 overflow-y-auto flex flex-col items-center gap-6 bg-amber-900/95"
           >
             {links.map((link, i) => (
               <motion.div
@@ -153,7 +153,7 @@ const Navbar = () => {
               </motion.div>
             ))}
 
-            {/* Music Toggle Button */}
+            {/* Music Toggle */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
