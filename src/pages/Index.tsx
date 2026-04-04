@@ -135,7 +135,7 @@ const Index = () => {
 },
 {
   question: "What is the last date to register?",
-  answer: "The last date for registration is October 9, 2025.",
+  answer: "The last date for registration is April 11, 2026.",
 },
 {
   question: "How long will the entry gate remain open?",
